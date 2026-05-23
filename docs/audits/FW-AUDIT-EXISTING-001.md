@@ -27,8 +27,8 @@ Décision recommandée à l'issue de l'audit : ouvrir **FW-DOCS-IMPORT-001** ava
 
 | Source citée par le ticket | Présence locale | Emplacement réel utilisé pour l'audit |
 |---|---|---|
-| `Forge-main.zip` | **Absent** | Substitut : [/home/roger/Projets/Forge/](../../../Forge/) (arbre Forge core vivant) |
-| `forge-docs.zip` | **Absent** | Substitut : [/home/roger/Projets/Forge/docs/](../../../Forge/docs/) |
+| `Forge-main.zip` | **Absent** | Substitut : `/home/roger/Projets/Forge/` (arbre Forge core vivant) |
+| `forge-docs.zip` | **Absent** | Substitut : `/home/roger/Projets/Forge/docs/` |
 | `README.md` (Forge-web) | Présent | `README.md` |
 | `mkdocs.yml` | **Absent dans Forge-web** | Présent dans Forge core : `Forge/mkdocs.yml` |
 | `CHARTE_DOC.md` | Absent dans Forge-web | Présent dans Forge core : `Forge/CHARTE_DOC.md` |

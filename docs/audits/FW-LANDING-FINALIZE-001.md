@@ -63,7 +63,7 @@ Fichiers **non** modifiés (interdits ou hors périmètre) :
 
 ## Landing page
 
-Inventaire de [`public/index.html`](../../public/index.html) après transformation :
+Inventaire de `public/index.html` après transformation :
 
 | Catégorie de lien | Avant | Après |
 |---|---|---|

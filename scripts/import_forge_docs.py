@@ -192,6 +192,32 @@ def sanitize_imported_markdown(dest: Path) -> int:
     return changed
 
 
+# Réécritures ciblées après import : (chemin relatif, motif, remplacement).
+# Chaque entrée corrige un lien connu cassé dans la source Forge core mais
+# fonctionnel à l'origine (dossier servi par auto-index ou nav MkDocs).
+KNOWN_FIXUPS: tuple[tuple[str, str, str], ...] = (
+    (
+        "reference.md",
+        "et les [ADR suivants](adr/)",
+        "et les ADR suivants",
+    ),
+)
+
+
+def apply_known_fixups(dest: Path) -> int:
+    """Applique les réécritures ciblées sur les fichiers importés."""
+    changed = 0
+    for rel, src, repl in KNOWN_FIXUPS:
+        f = dest / rel
+        if not f.exists():
+            continue
+        text = f.read_text(encoding="utf-8")
+        if src in text:
+            f.write_text(text.replace(src, repl), encoding="utf-8")
+            changed += 1
+    return changed
+
+
 def regenerate_index(dest: Path) -> None:
     """Régénère docs/forge/index.md après l'import."""
     content = (
@@ -286,11 +312,15 @@ def main() -> int:
     sanitized = sanitize_imported_markdown(dest)
     print(f"Sanitisation index.html → index.md : {sanitized} fichiers réécrits.")
 
-    # 4) index.md du dossier importé
+    # 4) Réécritures ciblées de liens connus cassés (cf. KNOWN_FIXUPS).
+    fixed = apply_known_fixups(dest)
+    print(f"Fixups ciblés appliqués : {fixed}.")
+
+    # 5) index.md du dossier importé
     regenerate_index(dest)
     print("docs/forge/index.md régénéré.")
 
-    # 5) Garde-fou final : aucun fichier interdit n'a fui
+    # 6) Garde-fou final : aucun fichier interdit n'a fui
     leaks: list[Path] = []
     for f in dest.rglob("*"):
         if not f.is_file():
