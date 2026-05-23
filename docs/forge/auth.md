@@ -430,11 +430,11 @@ ecriture DB automatique.
 
 ## MFA
 
-!!! info "forge-mvc-mfa est en Alpha — non publié PyPI en {{forge_version}}"
+!!! info "forge-mvc-mfa est en Alpha — non publié PyPI en 1.0.0b8"
     Le module MFA est marqué `Development Status :: 3 - Alpha` depuis `MFA-PYPI-READY-001`.
     Le secret TOTP est **chiffré au repos** via Fernet (`FORGE_MFA_SECRET_KEY`).
 
-    `forge-mvc-mfa` n'est pas publié sur PyPI en `{{forge_version}}`.
+    `forge-mvc-mfa` n'est pas publié sur PyPI en `1.0.0b8`.
     Installation depuis GitHub — voir
     [contrat d'installation](installation.md#contrat-dinstallation-des-opt-ins).
 

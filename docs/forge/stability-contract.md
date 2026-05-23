@@ -88,7 +88,7 @@ Les éléments suivants sont disponibles mais peuvent évoluer dans leur interfa
 | `forge starter:build` | Expérimental |
 | Pages publiques (`make:public-*`) | Disponible, interface stable, comportement peut s'affiner |
 | Backends de session FileStore / MariaDbStore | Disponible, API stable, options de configuration susceptibles d'évoluer |
-| `forge-mvc-mfa` (Alpha) | Secret TOTP chiffré au repos via Fernet (`FORGE_MFA_SECRET_KEY`). Non publié PyPI en `{{forge_version}}` — publication future. |
+| `forge-mvc-mfa` (Alpha) | Secret TOTP chiffré au repos via Fernet (`FORGE_MFA_SECRET_KEY`). Non publié PyPI en `1.0.0b8` — publication future. |
 | OIDC | Retiré du core (ADR-004). Si réintroduit via `forge-mvc-oidc`, sera expérimental jusqu'à Beta confirmée. |
 
 ---

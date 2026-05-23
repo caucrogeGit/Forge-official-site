@@ -166,11 +166,24 @@ def copy_whitelisted_tree(
     return copied, skipped
 
 
+# Substitutions statiques des macros normalement injectées par le hook
+# ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
+# dans Forge-web ; on remplace donc ces placeholders à l'import.
+# Source de vérité : pyproject.toml de Forge core (1.0.0b8 au 2026-05-22).
+FORGE_MACROS: dict[str, str] = {
+    "{{forge_version}}": "1.0.0b8",
+    "{{ forge_version }}": "1.0.0b8",
+    "{{forge_tag}}": "v1.0.0-beta.8",
+    "{{ forge_tag }}": "v1.0.0-beta.8",
+    "{{python_min}}": "3.12",
+    "{{ python_min }}": "3.12",
+}
+
+
 def sanitize_imported_markdown(dest: Path) -> int:
     """Rewrite imported .md to fix links that Forge core resolved against
-    its own ``index.html`` landing. In Forge-web the section landing is
-    ``forge/index.md``. We rewrite local ``index.html`` link targets to
-    ``index.md`` so MkDocs strict mode does not complain.
+    its own ``index.html`` landing and to substitute Forge core macros
+    that were normally injected at build time by a hook we don't ship.
 
     Returns the number of files modified.
     """
@@ -184,8 +197,15 @@ def sanitize_imported_markdown(dest: Path) -> int:
     changed = 0
     for md in dest.rglob("*.md"):
         original = md.read_text(encoding="utf-8")
-        rewritten = md_link_re.sub(lambda m: f"{m.group(1)}{m.group(2)}index.md{m.group(4)}", original)
-        rewritten = html_href_re.sub(lambda m: f"{m.group(1)}{m.group(2)}index.md{m.group(4)}", rewritten)
+        rewritten = md_link_re.sub(
+            lambda m: f"{m.group(1)}{m.group(2)}index.md{m.group(4)}", original
+        )
+        rewritten = html_href_re.sub(
+            lambda m: f"{m.group(1)}{m.group(2)}index.md{m.group(4)}", rewritten
+        )
+        # Substitution des macros Forge core (version, tag, python_min).
+        for placeholder, value in FORGE_MACROS.items():
+            rewritten = rewritten.replace(placeholder, value)
         if rewritten != original:
             md.write_text(rewritten, encoding="utf-8")
             changed += 1

@@ -141,24 +141,24 @@ pas installées par défaut. Elles sont tirées via les extras du package
     Les modules opt-in ont d'abord été traités en **source-only** avant leur publication progressive sur PyPI.
 
     `forge-mvc-rbac`, `forge-mvc-workflow` et `forge-mvc-stats` sont publiés sur PyPI et synchronisés avec le core.
-    `forge-mvc-mfa` est en statut Alpha depuis `MFA-PYPI-READY-001` — non publié en `{{forge_version}}`, publication prévue dans une prochaine release.
-    `forge-mvc-media` est en statut Alpha depuis `MEDIA-PYPI-READY-002` — non publié en `{{forge_version}}`, publication prévue dans une prochaine release.
+    `forge-mvc-mfa` est en statut Alpha depuis `MFA-PYPI-READY-001` — non publié en `1.0.0b8`, publication prévue dans une prochaine release.
+    `forge-mvc-media` est en statut Alpha depuis `MEDIA-PYPI-READY-002` — non publié en `1.0.0b8`, publication prévue dans une prochaine release.
 
-Pour installer les opt-ins en `{{forge_version}}` :
+Pour installer les opt-ins en `1.0.0b8` :
 
 ```bash
 # Core + opt-ins publiés depuis PyPI
 pip install --pre forge-mvc forge-mvc-rbac forge-mvc-workflow forge-mvc-stats
 
 # forge-mvc-media et forge-mvc-mfa — installer depuis les sources
-git clone --branch {{forge_tag}} https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.8 https://github.com/caucrogeGit/Forge.git
 cd Forge && pip install -e . && pip install -r requirements-dev.txt
 ```
 
 **Note sur MFA** : le module `forge-mvc-mfa` est en statut Alpha
 (`Development Status :: 3`) depuis `MFA-PYPI-READY-001`. Le secret TOTP est
 chiffré au repos via Fernet (`FORGE_MFA_SECRET_KEY`). Non publié sur PyPI
-en `{{forge_version}}` — publication prévue dans une prochaine release.
+en `1.0.0b8` — publication prévue dans une prochaine release.
 
 ---
 

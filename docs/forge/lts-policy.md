@@ -117,7 +117,7 @@ sans préavis. Une branche LTS pourrait interdire tout retrait pendant sa durée
 
 ### 4. La compatibilité est documentée
 
-La matrice de compatibilité couvre Python {{python_min}}–3.14, MariaDB 10.11+ et Node.js.
+La matrice de compatibilité couvre Python 3.12–3.14, MariaDB 10.11+ et Node.js.
 Une LTS pourrait geler cette matrice pour toute sa durée.
 
 ### 5. Des projets réels peuvent s'appuyer sur Forge 2.x

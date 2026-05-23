@@ -1,13 +1,13 @@
 # Auth — Challenge MFA à la connexion
 
-!!! info "Module en Alpha — non publié sur PyPI en {{forge_version}}"
+!!! info "Module en Alpha — non publié sur PyPI en 1.0.0b8"
     `forge-mvc-mfa` est marqué `Development Status :: 3 - Alpha` depuis `MFA-PYPI-READY-001`.
 
     Le secret TOTP est **chiffré au repos** via Fernet (`cryptography`) avec la clé
     `FORGE_MFA_SECRET_KEY`. Le chiffrement est obligatoire — démarrer sans cette
     variable d'environnement lève `MfaSecretKeyMissing`.
 
-    **Non publié sur PyPI dans la vague `{{forge_version}}`.** Non inclus dans `forge-mvc[all]`.
+    **Non publié sur PyPI dans la vague `1.0.0b8`.** Non inclus dans `forge-mvc[all]`.
     Installation depuis GitHub : voir [installation-github.md](../installation-github.md).
 
     Publication PyPI prévue lors d'une release dédiée.

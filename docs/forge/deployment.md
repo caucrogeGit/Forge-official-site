@@ -79,7 +79,7 @@ forge deploy:check
 
 | Élément vérifié | Résultat si absent ou invalide |
 |-----------------|-------------------------------|
-| Python ≥ {{python_min}} | `[ERREUR]` |
+| Python ≥ 3.12 | `[ERREUR]` |
 | Racine projet Forge | `[WARN]` |
 | Environnement virtuel `.venv` | `[WARN]` |
 | Dossier `env/` | `[WARN]` |

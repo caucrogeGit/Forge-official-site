@@ -25,7 +25,7 @@ forge new MonProjet --profile multilingual
 Compatibilité avec `--ref` :
 
 ```bash
-forge new MonProjet --ref {{forge_tag}} --profile standard
+forge new MonProjet --ref v1.0.0-beta.8 --profile standard
 ```
 
 Sans `--profile`, Forge utilise le profil `standard`.
@@ -143,7 +143,7 @@ forge new MonProjet --profile standard
 
 ```bash
 forge new MonProjet --profile auth-mfa
-# forge-mvc-mfa : voir installation-github.md (mode source-only en {{forge_version}})
+# forge-mvc-mfa : voir installation-github.md (mode source-only en 1.0.0b8)
 forge starter:build auth-mfa
 ```
 

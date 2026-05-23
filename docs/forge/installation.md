@@ -17,14 +17,14 @@ chemin le plus simple pour votre usage, puis passez au [guide de démarrage](gui
 
 ## Modèle de packages
 
-Forge {{forge_version}} distribue le **core** sur [PyPI](https://pypi.org/project/forge-mvc/) sous `forge-mvc=={{forge_version}}` (bêta publique — `--pre` requis).
+Forge 1.0.0b8 distribue le **core** sur [PyPI](https://pypi.org/project/forge-mvc/) sous `forge-mvc==1.0.0b8` (bêta publique — `--pre` requis).
 Les 4 modules opt-in restent en mode source-only via GitHub.
 Voir [Politique de release](release-policy.md#publication-pypi).
 
 | Package (monorepo) | Contenu | Statut |
 |---|---|---|
 | `forge-mvc` | Noyau complet — core, CLI, intégrations | Bêta |
-| `forge-mvc-mfa` | Brique MFA — TOTP, codes de récupération | **Alpha** — non publié PyPI en `{{forge_version}}` |
+| `forge-mvc-mfa` | Brique MFA — TOTP, codes de récupération | **Alpha** — non publié PyPI en `1.0.0b8` |
 | `forge-mvc-rbac` | Brique RBAC — contrôle d'accès par rôles | Beta |
 | `forge-mvc-workflow` | Brique workflow — statuts et transitions | Beta |
 | `forge-mvc-stats` | Brique statistiques — agrégations | Beta |
@@ -32,7 +32,7 @@ Voir [Politique de release](release-policy.md#publication-pypi).
 Pour installer Forge avec toutes les briques opt-in :
 
 ```bash
-git clone --branch {{forge_tag}} https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.8 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -65,12 +65,12 @@ pip install --pre "forge-mvc[all]"
 
 - **`forge-mvc-media`** : source-only après extraction Phase 11.
 - **`forge-mvc-mfa`** : Alpha — secret TOTP chiffré au repos (Fernet). Non publié
-  sur PyPI en `{{forge_version}}` — publication prévue lors d'une release dédiée.
+  sur PyPI en `1.0.0b8` — publication prévue lors d'une release dédiée.
 
-Pour installer les opt-ins en `{{forge_version}}`, utiliser le mode source :
+Pour installer les opt-ins en `1.0.0b8`, utiliser le mode source :
 
 ```bash
-git clone --branch {{forge_tag}} https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.8 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -84,7 +84,7 @@ python -m pip install -r requirements-dev.txt
 
 ## Version stable
 
-Forge {{forge_version}} utilise la référence stable `{{forge_tag}}` par défaut.
+Forge 1.0.0b8 utilise la référence stable `v1.0.0-beta.8` par défaut.
 
 ```bash
 forge --version

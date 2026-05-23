@@ -50,7 +50,7 @@ storage/uploads/
 ## Prérequis serveur
 
 - **OS** : Debian 12 ou Ubuntu 22.04+ recommandé
-- **Python** : {{python_min}} ou plus (`python3 --version`)
+- **Python** : 3.12 ou plus (`python3 --version`)
 - **MariaDB** : 10.11 LTS ou plus
 - **Nginx** : version récente (`nginx -v`)
 - **systemd** : présent sur Debian/Ubuntu

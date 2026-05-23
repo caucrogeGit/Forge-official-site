@@ -706,7 +706,7 @@ Affiche la version courante de Forge.
 
 ```bash
 $ forge --version
-Forge {{forge_version}}
+Forge 1.0.0b8
 ```
 
 ### `forge --help`

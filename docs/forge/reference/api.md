@@ -1847,7 +1847,7 @@ Résultats possibles : `OK`, `WARN`, `FAIL`, `SKIP`. Un `FAIL` retourne un code 
 
 | Famille | Ce qui est vérifié |
 |---|---|
-| Python | Version >= {{python_min}} |
+| Python | Version >= 3.12 |
 | Environnement | Présence et cohérence de `env/example` + `env/dev`, clés requises |
 | Structure MVC | `mvc/`, `mvc/routes.py`, `mvc/entities/`, `mvc/views/`, `mvc/controllers/` |
 | Entités | Validité des JSON d'entités dans `mvc/entities/` |
@@ -3020,7 +3020,7 @@ TOTP RFC 6238, codes de récupération, challenge multi-facteur et revalidation.
 Inclut l'anti-replay TOTP.
 
 ```bash
-# Mode source-only en {{forge_version}} et non publié sur PyPI en 1.0
+# Mode source-only en 1.0.0b8 et non publié sur PyPI en 1.0
 # Voir docs/installation.md#contrat-dinstallation-des-opt-ins
 ```
 
@@ -3063,7 +3063,7 @@ Référence détaillée : [stats.md](stats.md).
 
 Repository, galerie et helpers applicatifs liés à la table `media`.
 
-> Source-only, non publié sur PyPI en `{{forge_version}}`.
+> Source-only, non publié sur PyPI en `1.0.0b8`.
 > Installe depuis les sources : `pip install -e ./packages/forge-mvc-media/`
 > Les générateurs `make:crud --media` et `make:public:list` importent depuis ce module.
 

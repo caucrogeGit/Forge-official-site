@@ -3,13 +3,13 @@
 [Accueil](index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
 !!! info "Statut : Alpha — préparé pour publication future"
-    `forge-mvc-media` n'est **pas publié sur PyPI dans la vague `{{forge_version}}`**.
+    `forge-mvc-media` n'est **pas publié sur PyPI dans la vague `1.0.0b8`**.
     Le module est en statut `3 - Alpha` depuis `MEDIA-PYPI-READY-002`.
     L'installation via `pip install forge-mvc-media` reste impossible pour l'instant.
 
     Publication PyPI prévue dans une prochaine release (ticket dédié requis).
 
-Forge sépare les primitives génériques d'upload (`core/uploads/`) des helpers applicatifs médias (`forge_mvc_media`). Le core est installé avec Forge ; les helpers applicatifs sont fournis par le module opt-in `forge-mvc-media` (non publié sur PyPI en `{{forge_version}}`, publication prévue dans une prochaine release).
+Forge sépare les primitives génériques d'upload (`core/uploads/`) des helpers applicatifs médias (`forge_mvc_media`). Le core est installé avec Forge ; les helpers applicatifs sont fournis par le module opt-in `forge-mvc-media` (non publié sur PyPI en `1.0.0b8`, publication prévue dans une prochaine release).
 
 ## Frontière core / opt-in média
 
@@ -44,7 +44,7 @@ pip install -e packages/forge-mvc-media/
 
 L'option `-e` permet des modifications locales sans réinstallation.
 
-La dépendance `forge-mvc=={{forge_version}}` doit être satisfaite. Si vous travaillez depuis
+La dépendance `forge-mvc==1.0.0b8` doit être satisfaite. Si vous travaillez depuis
 le dépôt Forge directement (sans venv isolé), le core est déjà disponible via `PYTHONPATH`.
 
 ---
@@ -691,7 +691,7 @@ Les garanties suivantes sont assurées par `core/uploads/storage.py` et s'appliq
 | **Exposition hors racine** | Impossible | La route `/media/...` refuse tout chemin sortant de `storage/uploads/` |
 | **Double slash / normpath** | Nettoyé | `//` réduits avant normalisation |
 
-Ces garanties couvrent le code source audité en `{{forge_version}}`. Elles ne couvrent pas la
+Ces garanties couvrent le code source audité en `1.0.0b8`. Elles ne couvrent pas la
 détection MIME côté serveur (repose sur le `Content-Type` déclaré par le navigateur ;
 `python-magic` est hors périmètre) ni les permissions d'accès aux médias servis.
 

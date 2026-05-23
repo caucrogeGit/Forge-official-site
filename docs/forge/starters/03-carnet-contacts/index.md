@@ -46,7 +46,7 @@
 
 ### Prérequis généraux
 
-- Python {{python_min}} ou supérieur
+- Python 3.12 ou supérieur
 - Git
 - `pipx` (recommandé) ou environnement virtuel Python
 - MariaDB installé et démarré

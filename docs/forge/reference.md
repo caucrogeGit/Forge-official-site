@@ -2,7 +2,7 @@
 
 [Accueil](index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
-Cette section décrit l'API publique actuelle de Forge `{{forge_version}}`.
+Cette section décrit l'API publique actuelle de Forge `1.0.0b8`.
 Elle est organisée par thème pour faciliter la navigation.
 
 Pour les flux guidés, voir aussi le [guide de démarrage](guide.md),

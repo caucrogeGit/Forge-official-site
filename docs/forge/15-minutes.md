@@ -39,7 +39,7 @@ Un annuaire de contacts minimal :
 Avant de commencer :
 
 - Forge installé (`forge --version` doit répondre) ;
-- Python {{python_min}} ou plus ;
+- Python 3.12 ou plus ;
 - MariaDB installé et démarré (pour `forge db:init` en fin de tutoriel) ;
 - npm installé (optionnel — pour recompiler le CSS Tailwind).
 
