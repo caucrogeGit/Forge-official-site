@@ -7,12 +7,21 @@ venv/
 # MkDocs / build statique
 site/
 
+# Caches
+.cache/
+
+# Node / front toolchain
+node_modules/
+
 # Environnements et secrets
 .env
 .env.*
+!.env.example
 *.key
 *.pem
 *.crt
+cert.pem
+key.pem
 secrets/
 .envrc
 
