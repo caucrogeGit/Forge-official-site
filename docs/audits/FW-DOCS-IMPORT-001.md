@@ -45,7 +45,7 @@ Forge core est resté **strictement intact** à la fin du ticket (`git status --
 
 ## Script d'import
 
-Fichier : [scripts/import_forge_docs.py](../../scripts/import_forge_docs.py) (mode exécutable, 9,4 ko).
+Fichier : `scripts/import_forge_docs.py` (mode exécutable, 9,4 ko).
 
 Caractéristiques :
 
@@ -164,7 +164,7 @@ Total : 47 .md racine + 152 dans sous-dossiers (4 ignorés, 0 fuite).
 
 ## Modifications MkDocs
 
-[mkdocs.yml](../../mkdocs.yml) — section `nav` enrichie :
+`mkdocs.yml` — section `nav` enrichie :
 
 ```diff
  nav:

@@ -6,6 +6,7 @@ venv/
 
 # MkDocs / build statique
 site/
+dist/
 
 # Caches
 .cache/
