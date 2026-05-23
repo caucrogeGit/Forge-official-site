@@ -119,6 +119,7 @@ nav:
   - Projet Forge-web:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
       - Création du dépôt: meta/02-creation-depot-forge-web.md
+      - Préparation publication: deployment-readiness.md
 
   - Audits:
       - FW-AUDIT-EXISTING-001: audits/FW-AUDIT-EXISTING-001.md

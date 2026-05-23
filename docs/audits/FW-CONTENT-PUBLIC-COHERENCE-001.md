@@ -47,7 +47,7 @@ Aucun commit créé.
 
 ## Corrections landing
 
-[public/index.html](../../public/index.html) — 4 transformations + 1 ajout + 1 remplacement de lien :
+`public/index.html` — 4 transformations + 1 ajout + 1 remplacement de lien :
 
 ### 1. Version (replace_all)
 
