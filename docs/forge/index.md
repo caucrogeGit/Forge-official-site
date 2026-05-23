@@ -1,11 +1,12 @@
 # Documentation Forge
 
-Cette section accueillera la documentation publique du framework Forge.
+Cette section publie la documentation du framework Forge.
 
-La source canonique locale future est :
+Source canonique locale (lecture seule) :
 
 ```text
 /home/roger/Projets/Forge/docs/
 ```
 
-Aucun import documentaire n'a encore été effectué dans ce ticket.
+Import effectué par `scripts/import_forge_docs.py` selon une liste
+blanche stricte (FW-DOCS-IMPORT-001).

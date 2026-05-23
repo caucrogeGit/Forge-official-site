@@ -23,14 +23,21 @@ theme:
 
 nav:
   - Accueil: index.md
-  - Forge:
+  - Documentation Forge:
       - Vue d'ensemble: forge/index.md
+      - Installation: forge/installation.md
+      - Premiers pas: forge/getting-started.md
+      - Concepts: forge/concepts.md
+      - Référence: forge/reference.md
+      - Déploiement: forge/deployment.md
+      - Roadmap: forge/roadmap/forge-roadmap.md
   - Projet Forge-web:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
       - Création du dépôt: meta/02-creation-depot-forge-web.md
   - Audits:
       - FW-AUDIT-EXISTING-001: audits/FW-AUDIT-EXISTING-001.md
       - FW-REPO-STRUCTURE-001: audits/FW-REPO-STRUCTURE-001.md
+      - FW-MKDOCS-INIT-001: audits/FW-MKDOCS-INIT-001.md
 
 markdown_extensions:
   - admonition
