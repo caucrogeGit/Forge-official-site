@@ -23,21 +23,110 @@ theme:
 
 nav:
   - Accueil: index.md
+
   - Documentation Forge:
       - Vue d'ensemble: forge/index.md
-      - Installation: forge/installation.md
-      - Premiers pas: forge/getting-started.md
-      - Concepts: forge/concepts.md
-      - Référence: forge/reference.md
-      - Déploiement: forge/deployment.md
-      - Roadmap: forge/roadmap/forge-roadmap.md
+
+      - Installation:
+          - Vue d'ensemble: forge/installation.md
+          - Installer Forge:
+              - VM Debian vierge: forge/installation-vm-debian.md
+              - Avec pipx: forge/installation-pipx.md
+              - Depuis GitHub: forge/installation-github.md
+              - Windows WSL2: forge/installation-windows.md
+          - Environnement:
+              - MariaDB: forge/installation-mariadb.md
+              - Développement: forge/installation-developpement.md
+
+      - Premiers pas:
+          - Démarrer avec Forge: forge/getting-started.md
+          - 15 minutes avec Forge: forge/15-minutes.md
+          - Application complète: forge/app-complete-tutorial.md
+          - Guide de démarrage: forge/guide.md
+          - CRUD explicite: forge/crud.md
+
+      - Concepts:
+          - Vue d'ensemble: forge/concepts.md
+          - Positionnement: forge/positioning.md
+          - Architecture des entités: forge/entity_architecture.md
+          - Front et CSS: forge/front.md
+          - Profils de projet: forge/profiles.md
+          - FAQ: forge/faq.md
+
+      - Référence:
+          - Index: forge/reference.md
+          - Commandes CLI: forge/reference/cli-commands.md
+          - API Forge complète: forge/reference/api.md
+          - CRUD et relations: forge/reference/crud.md
+          - Pages publiques: forge/reference/pages-publiques.md
+          - Sessions: forge/reference/sessions.md
+          - Audit Auth: forge/reference/audit-auth.md
+          - Tests E2E: forge/reference/tests-e2e.md
+          - API JSON légère: forge/api-json.md
+          - Migrations SQL: forge/migrations.md
+          - Relations: forge/relations.md
+          - Mail: forge/mail.md
+          - Auth/User: forge/auth.md
+          - Sécurité et RBAC: forge/security.md
+          - RBAC: forge/rbac.md
+
+      - Modules et starters:
+          - Vue d'ensemble: forge/starters/index.md
+          - Créer un module: forge/module-author-guide.md
+          - Créer un starter: forge/starter-author-guide.md
+          - Contacts: forge/starters/01-contact-simple/index.md
+          - Utilisateurs / Auth: forge/starters/02-utilisateurs-auth/index.md
+          - Carnet de contacts: forge/starters/03-carnet-contacts/index.md
+          - Suivi pédagogique: forge/starters/04-suivi-comportement-eleves/index.md
+          - Communes & Séjours: forge/starters/communes-sejours/index.md
+          - Auth MFA: forge/starters/auth-mfa/index.md
+
+      - Déploiement:
+          - Guide de déploiement: forge/deployment.md
+          - Déploiement avancé: forge/deploy-advanced.md
+          - Sécurité production: forge/production-security.md
+
+      - Release et compatibilité:
+          - Vue d'ensemble: forge/release-and-compatibility.md
+          - Politique de release: forge/release-policy.md
+          - Politique de dépréciation: forge/deprecation-policy.md
+          - Compatibilité: forge/compatibility.md
+          - Guide de migration: forge/migration-guide.md
+          - Politique LTS: forge/lts-policy.md
+          - Contrat de stabilité: forge/stability-contract.md
+
+      - Philosophie:
+          - Charte: forge/charter.md
+          - ADR:
+              - ADR-001 Auth: forge/adr/001-auth-strategy.md
+              - ADR-002 Sessions: forge/adr/002-session-strategy.md
+              - ADR-003 Langue API: forge/adr/003-language-convention.md
+              - ADR-004 Périmètre core: forge/adr/004-core-perimeter.md
+              - ADR-005 Packaging: forge/adr/005-packaging.md
+              - ADR-006 Python 3.12+: forge/adr/006-python-version.md
+              - ADR-007 Charte v2: forge/adr/007-charter-v2-adoption.md
+              - ADR-008 Audit auth: forge/adr/008-auth-audit-architecture.md
+
+      - Projet Forge:
+          - Roadmap: forge/roadmap/forge-roadmap.md
+          - Forge Design: forge/roadmap/forge-design-roadmap.md
+          - Procédure de release: forge/release.md
+          - Validation locale: forge/release-local.md
+          - Contribution: forge/contributing.md
+          - Conventions: forge/contributing/conventions.md
+          - Licence: forge/licence.md
+
   - Projet Forge-web:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
       - Création du dépôt: meta/02-creation-depot-forge-web.md
+
   - Audits:
       - FW-AUDIT-EXISTING-001: audits/FW-AUDIT-EXISTING-001.md
       - FW-REPO-STRUCTURE-001: audits/FW-REPO-STRUCTURE-001.md
       - FW-MKDOCS-INIT-001: audits/FW-MKDOCS-INIT-001.md
+      - FW-DOCS-IMPORT-001: audits/FW-DOCS-IMPORT-001.md
+      - FW-LANDING-FINALIZE-001: audits/FW-LANDING-FINALIZE-001.md
+      - FW-LOCAL-QA-001: audits/FW-LOCAL-QA-001.md
 
 markdown_extensions:
   - admonition
