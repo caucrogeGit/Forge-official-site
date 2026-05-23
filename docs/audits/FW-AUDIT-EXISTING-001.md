@@ -14,8 +14,8 @@ Constats principaux :
 
 1. Les sources nommées dans le ticket (`Forge-main.zip`, `forge-docs.zip`, `notes-infrastructure-proxmox.md`, `notes-dns-domaine-forgemvc-com.md`, `conversations-projet-forge-web.md`) **n'existent pas sous forme de fichiers** sur la machine. Les équivalents vivants sont accessibles dans le dépôt Forge core (`/home/roger/Projets/Forge/`).
 2. La **source documentaire canonique** doit donc être le dépôt Forge core vivant — pas un zip — car il est le seul à jour (dernier remaniement docs : 2026-05-22, version annoncée `1.0.0-beta.8`).
-3. La **landing page** existe en trois copies divergentes (Forge core, sources/, public/). La plus récente et la plus propre est [public/index.html](../../public/index.html), mais elle conserve quelques liens GitHub absolus et des liens MkDocs relatifs qui présupposent que la doc sera publiée sous `/docs/` du même domaine.
-4. Aucun `mkdocs.yml` n'existe encore dans Forge-web : il devra être adapté depuis [Forge/mkdocs.yml](../../../Forge/mkdocs.yml), avec retrait du hook spécifique à Forge core et changement du `site_url`.
+3. La **landing page** existe en trois copies divergentes (Forge core, sources/, public/). La plus récente et la plus propre est `public/index.html`, mais elle conserve quelques liens GitHub absolus et des liens MkDocs relatifs qui présupposent que la doc sera publiée sous `/docs/` du même domaine.
+4. Aucun `mkdocs.yml` n'existe encore dans Forge-web : il devra être adapté depuis `Forge/mkdocs.yml`, avec retrait du hook spécifique à Forge core et changement du `site_url`.
 5. Aucun secret n'est présent dans Forge-web. Le `.gitignore` actuel couvre correctement `.env`, clés, certificats et `site/`.
 6. La conversation `01-architecture-generale-forge-web.md` cite des documents (`conversations-projet-forge-web.md`, `notes-infrastructure-proxmox.md`, `notes-dns-domaine-forgemvc-com.md`, `CHARTE_DOC.md`) qui sont des **sources externes au dépôt** (probablement ChatGPT et un fichier Forge core). Cette dépendance documentaire externe doit être tracée.
 
@@ -29,9 +29,9 @@ Décision recommandée à l'issue de l'audit : ouvrir **FW-DOCS-IMPORT-001** ava
 |---|---|---|
 | `Forge-main.zip` | **Absent** | Substitut : [/home/roger/Projets/Forge/](../../../Forge/) (arbre Forge core vivant) |
 | `forge-docs.zip` | **Absent** | Substitut : [/home/roger/Projets/Forge/docs/](../../../Forge/docs/) |
-| `README.md` (Forge-web) | Présent | [README.md](../../README.md) |
-| `mkdocs.yml` | **Absent dans Forge-web** | Présent dans Forge core : [Forge/mkdocs.yml](../../../Forge/mkdocs.yml) |
-| `CHARTE_DOC.md` | Absent dans Forge-web | Présent dans Forge core : [Forge/CHARTE_DOC.md](../../../Forge/CHARTE_DOC.md) |
+| `README.md` (Forge-web) | Présent | `README.md` |
+| `mkdocs.yml` | **Absent dans Forge-web** | Présent dans Forge core : `Forge/mkdocs.yml` |
+| `CHARTE_DOC.md` | Absent dans Forge-web | Présent dans Forge core : `Forge/CHARTE_DOC.md` |
 | `notes-infrastructure-proxmox.md` | **Absent** | À recréer dans `notes/` |
 | `notes-dns-domaine-forgemvc-com.md` | **Absent** | À recréer dans `notes/` |
 | `conversations-projet-forge-web.md` | **Absent** | À recréer dans `notes/` |
@@ -153,15 +153,15 @@ Conséquence : la prochaine étape (FW-DOCS-IMPORT-001) doit définir une procé
 
 Trois copies coexistent :
 
-1. **Source d'origine** : [Forge/docs/index.html](../../../Forge/docs/index.html) — 55 884 octets, 46 liens GitHub Pages. C'est la landing servie par MkDocs comme `index.html` de la doc Forge core.
-2. **Snapshot importé** : [sources/forge-landing/index.original.html](../../sources/forge-landing/index.original.html) — 53 714 octets, 26 liens. Préservé tel quel pour traçabilité.
-3. **Landing de travail** : [public/index.html](../../public/index.html) — 53 175 octets, 6 liens GitHub absolus restants.
+1. **Source d'origine** : `Forge/docs/index.html` — 55 884 octets, 46 liens GitHub Pages. C'est la landing servie par MkDocs comme `index.html` de la doc Forge core.
+2. **Snapshot importé** : `sources/forge-landing/index.original.html` — 53 714 octets, 26 liens. Préservé tel quel pour traçabilité.
+3. **Landing de travail** : `public/index.html` — 53 175 octets, 6 liens GitHub absolus restants.
 
 `index.original.html` et `index.before-forge-web-links.html` sont **identiques au bit près** (`diff -q` muet) — la deuxième copie n'apporte rien et peut être supprimée pour éviter la confusion (à décider en FW-REPO-STRUCTURE-001).
 
 ### 6.2 Extraction propre vers Forge-web
 
-L'extraction est **déjà entamée** (commit `52110fd`). La landing de travail [public/index.html](../../public/index.html) a déjà :
+L'extraction est **déjà entamée** (commit `52110fd`). La landing de travail `public/index.html` a déjà :
 
 - remplacé les `https://caucrogegit.github.io/Forge/...` par des chemins relatifs `./docs/...` (présupposant publication sous `forgemvc.com/docs/`) ;
 - supprimé les liens redondants ;
@@ -194,7 +194,7 @@ Aucune mention résiduelle de GitHub Pages dans `public/index.html`. La transiti
 
 ### 7.2 `mkdocs.yml` de Forge core (à adapter)
 
-Source : [Forge/mkdocs.yml](../../../Forge/mkdocs.yml). Éléments à transformer si on duplique ce fichier dans Forge-web :
+Source : `Forge/mkdocs.yml`. Éléments à transformer si on duplique ce fichier dans Forge-web :
 
 | Clé | Valeur actuelle (Forge core) | Adaptation Forge-web recommandée |
 |---|---|---|
@@ -214,7 +214,7 @@ Source : [Forge/mkdocs.yml](../../../Forge/mkdocs.yml). Éléments à transforme
 
 ### 7.3 Dépendances
 
-[Forge/requirements-docs.txt](../../../Forge/requirements-docs.txt) :
+`Forge/requirements-docs.txt` :
 
 ```text
 mkdocs>=1.6

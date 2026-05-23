@@ -1,0 +1,60 @@
+site_name: Forge
+site_description: Site officiel du framework web Python Forge
+site_author: Roger Cauchon
+site_url: https://forgemvc.com/
+
+repo_name: caucrogeGit/Forge-web
+repo_url: https://github.com/caucrogeGit/Forge-web
+edit_uri: ""
+
+theme:
+  name: material
+  language: fr
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: black
+      accent: deep orange
+
+nav:
+  - Accueil: index.md
+  - Forge:
+      - Vue d'ensemble: forge/index.md
+  - Projet Forge-web:
+      - Architecture générale: meta/01-architecture-generale-forge-web.md
+      - Création du dépôt: meta/02-creation-depot-forge-web.md
+  - Audits:
+      - FW-AUDIT-EXISTING-001: audits/FW-AUDIT-EXISTING-001.md
+      - FW-REPO-STRUCTURE-001: audits/FW-REPO-STRUCTURE-001.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search:
+      lang: fr
+      separator: '[\s\-\.:\_/]+'
+
+docs_dir: docs
+site_dir: site
