@@ -27,7 +27,7 @@ DEFAULT_PACKAGES: tuple[str, ...] = (
     "forge-mvc-mfa",
 )
 
-EXPECTED_VERSION = "1.0.0b8"
+EXPECTED_VERSION = "1.0.0b9"
 PYPI_JSON = "https://pypi.org/pypi/{name}/json"
 
 
