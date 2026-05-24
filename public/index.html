@@ -366,10 +366,10 @@
     <div class="mt-16 mb-10">
       <h3 id="modules" class="text-2xl font-bold tracking-tight mb-3">Modules officiels opt-in</h3>
       <p class="text-slate-500 text-sm max-w-2xl">
-        Distribués séparément sur PyPI. Installer un module se fait via
-        <code class="text-xs bg-slate-100 px-2 py-0.5 rounded">pip install forge-mvc-&lt;module&gt;</code>
-        ou via extras
-        <code class="text-xs bg-slate-100 px-2 py-0.5 rounded">forge-mvc[mfa]</code>.
+        Distribués séparément sur PyPI à la version <code class="text-xs bg-slate-100 px-2 py-0.5 rounded">1.0.0b8</code>.
+        Installation via
+        <code class="text-xs bg-slate-100 px-2 py-0.5 rounded">pip install --pre forge-mvc-&lt;module&gt;</code>.
+        MFA et Media sont en statut <em>Alpha</em>.
       </p>
     </div>
 
@@ -616,7 +616,8 @@
         </div>
         <p class="text-xs text-slate-400 mt-3 leading-relaxed">
           Forge 1.0.0-beta.8 est une préversion — <code class="text-xs">--pip-args="--pre"</code> est requis.
-          Les modules opt-in s'installent depuis GitHub via <code class="text-xs bg-slate-100 px-1.5 py-0.5 rounded">requirements-dev.txt</code>.
+          Les 5 modules opt-in sont publiés sur PyPI à la même version
+          (<code class="text-xs">pip install --pre forge-mvc-&lt;module&gt;</code>).
         </p>
         <div class="mt-5 flex gap-3">
           <a href="/docs/forge/installation/"
@@ -718,8 +719,8 @@
         <p class="text-white/60 text-sm leading-relaxed mb-5">
           Forge marque l'ouverture du code source en lecture, étude et usage éducatif. Core minimal
           (HTTP, routing, sessions, templating, SQL visible, formulaires, CRUD),
-          4 modules officiels installables séparément (MFA, RBAC, Workflow, Stats),
-          charte philosophique stable et 41 tickets livrés pendant la refonte.
+          5 modules officiels installables séparément (RBAC, Workflow, Stats, Media, MFA),
+          charte philosophique stable et documentation complète.
         </p>
         <a href="/docs/forge/roadmap/forge-roadmap/"
            target="_blank" rel="noopener noreferrer"
@@ -727,12 +728,12 @@
       </div>
 
       <div class="landing-panel rounded-xl p-8 border border-white/10">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Après 3.0</div>
-        <h2 class="text-3xl font-bold tracking-tight text-white mb-4">Stabilisation</h2>
+        <div class="text-xs landing-accent-text font-semibold mb-2">Travaux en cours</div>
+        <h2 class="text-3xl font-bold tracking-tight text-white mb-4">Stabilisation 1.0</h2>
         <p class="text-white/60 text-sm leading-relaxed mb-5">
-          Stabilisation continue, raffinements de packaging (src layout standard),
-          consolidation des APIs modules. Forge reste un framework explicite,
-          pédagogique et durable.
+          Préparation de la prochaine bêta : raffinements de packaging, consolidation
+          des APIs modules, finitions CLI et documentation. Forge reste un framework
+          explicite, pédagogique et durable.
         </p>
         <a href="/docs/forge/roadmap/forge-roadmap/"
            target="_blank" rel="noopener noreferrer"
