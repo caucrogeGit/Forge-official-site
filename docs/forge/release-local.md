@@ -36,7 +36,7 @@ Puis exécuter la validation complète (script existant) :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b8
+# ex. : bash tools/release-validate.sh 1.0.0b10
 ```
 
 Ce script couvre : cohérence de version, CHANGELOG, pytest, ruff, compileall,
@@ -134,7 +134,7 @@ ls dist/
 Puis installer :
 
 ```bash
-pipx install dist/forge_mvc-1.0.0b8-py3-none-any.whl --force
+pipx install dist/forge_mvc-1.0.0b10-py3-none-any.whl --force
 ```
 
 ### Vérifier que c'est bien la bonne installation qui répond
@@ -145,7 +145,7 @@ which forge
 forge --version
 ```
 
-Résultat attendu : `Forge 1.0.0b8`
+Résultat attendu : `Forge 1.0.0b10`
 
 Si le terminal indique :
 
@@ -385,7 +385,7 @@ Dans le navigateur, à l'URL affichée par Forge :
 
 ### Starter 6 — Auth MFA (TOTP)
 
-**Prérequis** : `forge-mvc-mfa` installé (source-only — `pip install -r requirements-dev.txt` depuis le dépôt).
+**Prérequis** : `forge-mvc-mfa` installé (`pip install --pre forge-mvc-mfa` — publié sur PyPI depuis `1.0.0-beta.9`, statut Alpha).
 
 ```bash
 cd ~/Projets
@@ -463,7 +463,7 @@ Le build MkDocs `--strict` détecte les ancres cassées et les liens internes in
 | Étape | Résultat attendu |
 |---|---|
 | `python -m build` | wheel créée dans `dist/` |
-| `forge --version` | `Forge 1.0.0b8` |
+| `forge --version` | `Forge 1.0.0b10` |
 | `forge starter:list` | 7 starters affichés |
 | `forge starter:build N --dry-run` | plan affiché sans erreur (×7) |
 | `forge db:init` + `starter:build 1` | CRUD contacts fonctionnel |

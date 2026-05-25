@@ -169,12 +169,12 @@ def copy_whitelisted_tree(
 # Substitutions statiques des macros normalement injectées par le hook
 # ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
 # dans Forge-web ; on remplace donc ces placeholders à l'import.
-# Source de vérité : pyproject.toml de Forge core (1.0.0b9 au 2026-05-22).
+# Source de vérité : pyproject.toml de Forge core (1.0.0b10 au 2026-05-25).
 FORGE_MACROS: dict[str, str] = {
-    "{{forge_version}}": "1.0.0b9",
-    "{{ forge_version }}": "1.0.0b9",
-    "{{forge_tag}}": "v1.0.0-beta.9",
-    "{{ forge_tag }}": "v1.0.0-beta.9",
+    "{{forge_version}}": "1.0.0b10",
+    "{{ forge_version }}": "1.0.0b10",
+    "{{forge_tag}}": "v1.0.0-beta.10",
+    "{{ forge_tag }}": "v1.0.0-beta.10",
     "{{python_min}}": "3.12",
     "{{ python_min }}": "3.12",
 }

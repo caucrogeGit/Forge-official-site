@@ -7,17 +7,17 @@ Cette roadmap concerne uniquement **Forge**, le framework MVC Python : cœur, CL
 Forge Design est désormais traité dans une roadmap séparée.
 
 > **Note** : Ce document contient l'historique de développement interne pré-publication.
-> La version publique actuelle est **Forge 1.0.0-beta.9**.
+> La version publique actuelle est **Forge 1.0.0-beta.10**.
 
 ---
 
-## État actuel — Forge 1.0.0-beta.9
+## État actuel — Forge 1.0.0-beta.10
 
-**Tag courant : `v1.0.0-beta.9` (2026-05-24)**
+**Tag courant : `v1.0.0-beta.10` (2026-05-25)**
 
-Précédent : v1.0.0-beta.8 (2026-05-22), v1.0.0-beta.7 (2026-05-22), v1.0.0-beta.6 (2026-05-21), v1.0.0-beta.5 (2026-05-17), v1.0.0-beta.3 (2026-05-16), v1.0.0-beta.2 (2026-05-16), v1.0.0-beta.1 (2026-05-15), v3.0.5 (2026-05-14), v3.0.4 (2026-05-14), v3.0.3 (2026-05-14), v3.0.2 (2026-05-13), v3.0.1 (2026-05-12), v3.0.0 (2026-05-12).
+Précédent : v1.0.0-beta.9 (2026-05-24), v1.0.0-beta.8 (2026-05-22), v1.0.0-beta.7 (2026-05-22), v1.0.0-beta.6 (2026-05-21), v1.0.0-beta.5 (2026-05-17), v1.0.0-beta.3 (2026-05-16), v1.0.0-beta.2 (2026-05-16), v1.0.0-beta.1 (2026-05-15), v3.0.5 (2026-05-14), v3.0.4 (2026-05-14), v3.0.3 (2026-05-14), v3.0.2 (2026-05-13), v3.0.1 (2026-05-12), v3.0.0 (2026-05-12).
 
-**Statut : v1.0.0-beta.9 préparée (core + 5 opt-ins). Phase B9 close : sécurité (cryptography, compare_digest, X-Real-IP), WSGI production encadrée, sessions renforcées, opt-in media en CI, dédomainisation core, landing rafraîchie, sweep documentaire. Bloc B9-C : 12 tickets CLI déjà clos.**
+**Statut : v1.0.0-beta.10 publiée (core + 5 opt-ins). Phase B10 close : 20 tickets livrés couvrant stabilisation post-beta.9, WSGI headers partagés, MFA secret key boot validation, défense symlinks, app.py prod guard, audits dépendances bloquants en release, identité publique alignée (Roger Lequette / forgemvc@gmail.com), politique DB_ADMIN_* clarifiée, validation release indépendante du PATH, convention de tag SemVer publique verrouillée. Audit pré-release `B10-CLOSING-AUDIT-001` validé GO.**
 
 > Note historique : Forge 1.5.0 marquait la fin du socle initial (Phases 0–4 RBAC).
 > Les phases 4.5 à 10 ont abouti à Forge 2.0.0, puis à Forge 2.0.1 (corrections critiques)
@@ -1301,6 +1301,95 @@ verrouille toute régression. Détail dans
 
 **Total Bloc B9-C : 12 tickets livrés.** Série officiellement close —
 plus de tickets `CLI-HELP-FLAGS-*` prévus.
+
+---
+
+## Phase B10 — Stabilisation post-beta.9 / pré-release beta.10
+
+**Objectif** : phase corrective post-publication `1.0.0-beta.9`. Remettre la
+base en état strictement vert (tests rouges, validateur PEP 440 / SemVer,
+documentation opt-ins PyPI) puis durcir les derniers points sensibles (headers
+WSGI, isolation tests opt-in, défense uploads, validation MFA au boot, garde
+prod sur `app.py`, identité publique alignée) avant la release corrective
+`1.0.0-beta.10`.
+
+La phase B10 consolide les corrections issues de l'audit post-beta.9, puis
+ajoute plusieurs tickets de durcissement et de cohérence release apparus
+pendant la stabilisation. Les tickets sont regroupés par rôle :
+
+* **Bloquants immédiats** — fait passer la suite de tests au vert
+* **Critiques pré-RC** — durcissements indispensables avant toute release
+* **Durcissement et garde-fous** — qualité, défenses en profondeur,
+  cohérence documentaire et tests méta
+* **Cohérence release** — robustesse de l'outillage de validation et de la
+  roadmap elle-même
+* **Clôture** — audit final + tag `beta.10`
+
+### Bloquants immédiats
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `AUTH-SESSION-HARDENING-TESTS-ALIGN-001` | **livré** | Corriger les 4 tests rouges dans `tests/test_auth_session_hardening.py` après l'évolution du contrat session `first_name` / `last_name` (cf `CORE-SESSION-DEDOMAIN-001`). |
+| `RELEASE-VALIDATE-PEP440-SEMVERSION-001` | **livré** | Rendre `tools/release-validate.sh` compatible avec `1.0.0-beta.x` côté SemVer public et `1.0.0bx` côté PEP 440. |
+| `DOCS-OPTINS-PYPI-BETA9-SWEEP-001` | **livré** | Corriger les docs indiquant encore que `forge-mvc-mfa` / `forge-mvc-media` ne sont pas publiés alors que les opt-ins beta.9 sont disponibles sur PyPI. |
+
+### Critiques pré-RC
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `WSGI-SECURITY-HEADERS-001` | **livré** | Garantir les headers de sécurité (`X-Frame-Options`, `X-Content-Type-Options`, HSTS, Referrer-Policy, Permissions-Policy, CSP) dans le chemin WSGI via un helper ou middleware Forge, puis documenter l’articulation avec le reverse proxy. |
+| `TESTS-OPTIN-IMPORTORSKIP-001` | **livré** | Protéger les tests opt-in avec `pytest.importorskip(...)` ou un mécanisme équivalent pour préserver une installation core-only. |
+| `CI-PAGES-MKDOCS-STRICT-001` | **livré** | Passer le workflow GitHub Pages en `mkdocs build --strict`. |
+| `DEPENDENCY-AUDIT-RELEASE-GUARD-001` | **livré** | Décider si l'audit de dépendances (CVE) doit devenir bloquant pour les releases. |
+
+### Durcissement et garde-fous
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `UPLOADS-SYMLINK-DEFENSE-001` | **livré** | Vérifier par tests la défense contre les symlinks dans `uploads/` et statics, puis corriger si nécessaire (`is_symlink()` / `resolve(strict=True)`). |
+| `MFA-SECRET-KEY-BOOT-VALIDATION-001` | **livré** | Valider au boot la configuration `FORGE_MFA_SECRET_KEY` quand MFA est installé ou activé. |
+| `APP-PY-PROD-HOST-GUARD-001` | **livré** | Empêcher une exposition accidentelle de `python app.py` en production, notamment lorsque `APP_ENV=prod` et que `APP_HOST` cible une interface publique (`0.0.0.0`, `::`, ou équivalent). |
+| `DOCS-CLI-COMMANDS-EXAMPLES-RESTRUCTURE-001` | **livré** | Réorganiser la référence CLI et ajouter des exemples d'utilisation par scénarios. |
+| `DOCS-IMPORTS-VALIDITY-SWEEP-001` | **livré** | Corriger les imports obsolètes ou invalides dans les exemples de documentation (ex. `from core.auth import is_mfa_enabled` → `from forge_mvc_mfa import ...`). |
+| `DOCS-SITE-ARTIFACT-POLICY-001` | **livré** | Clarifier que `docs/` est la source MkDocs officielle et que `site/` est uniquement un artefact généré localement par `mkdocs build`, ignoré par Git et supprimable sans perte. |
+| `TESTS-AUTOUSE-FIXTURES-AUDIT-001` | **livré** | Auditer les fixtures `autouse` hors `conftest.py` pour limiter les contaminations d'état global (cas révélé par `test_configurable_session_store_001` lors de B9). |
+| `LANDING-CONTACT-NAV-FORM-001` | **livré** | Ajouter Contact à la navigation landing, créer une section formulaire vers `forgemvc@gmail.com`, et aligner l'identité publique Forge sur Roger Lequette. |
+| `ENV-PROD-DB-ADMIN-SECRETS-POLICY-001` | **livré** | Clarifier que les secrets MariaDB admin/root ne doivent pas être stockés dans l'environnement runtime de production ; réserver `DB_ADMIN_*` au provisioning CLI ou à un fichier local non commité. |
+
+### Cohérence release
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `RELEASE-VALIDATE-PATH-ROBUSTNESS-001` | **livré** | Rendre `tools/release-validate.sh` plus robuste en utilisant un interpréteur Python explicite (`PYTHON_BIN`) au lieu d'un `PATH` implicite. |
+| `ROADMAP-B10-CONSISTENCY-SWEEP-001` | **livré** | Nettoyer la cohérence de la roadmap B10 avant l'audit final : compteurs, sections, statuts et tickets ajoutés en cours de phase. |
+| `RELEASE-TAG-CONVENTION-TEST-ALIGN-001` | **livré** | Aligner `tests/meta/test_release_current_version_001.py` sur la convention de tag SemVer Forge (`v1.0.0-beta.x` et non `v1.0.0bx`). |
+
+### Clôture
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `B10-CLOSING-AUDIT-001` | **livré** | Audit final B10 réalisé (`docs/history/audits/audit-pre-release-beta10.md`) ; décision **GO** pour `RELEASE-BETA10-001`. |
+| `RELEASE-BETA10-001` | **livré** | Release corrective `1.0.0-beta.10` préparée (2026-05-25) — bump versions (core + 4 opt-ins), CHANGELOG, build/twine/install isolé OK ; tag `v1.0.0-beta.10` créé. Push et publication PyPI conditionnés à validation explicite. |
+
+### Ordre de traitement
+
+L'ordre de réalisation suit l'ordre des sections ci-dessus : bloquants
+immédiats d'abord (pour repasser au vert), puis critiques pré-RC,
+durcissement, cohérence release et enfin clôture. La numérotation rigide
+qui figurait dans cette section a été retirée — l'ordre des sections
+suffit, et la liste évoluait à chaque ajout de ticket en cours de phase
+(`ROADMAP-B10-CONSISTENCY-SWEEP-001`).
+
+### Corrections terrain hors-audit (livrées en cours de phase)
+
+Tickets résolvant des problèmes découverts en condition réelle pendant la
+phase B10, hors du périmètre de l'audit initial. Indépendants des
+sections ci-dessus.
+
+| Ticket | Statut | Rôle |
+|---|---|---|
+| `APP-PY-TLS-HANDSHAKE-PER-THREAD-001` | **livré** | Corriger le blocage TLS de la boucle d'accept dans `app.py` — handshake TLS exécuté dans le thread du client via `TLSThreadingHTTPServer`, borné par `TLS_HANDSHAKE_TIMEOUT = 10s`. Découvert terrain (VS Code Remote SSH + certificat auto-signé non encore accepté). |
+| `APP-PY-TLS-HANDSHAKE-DOCS-001` | **livré** | Documenter le correctif TLS via ADR-015 et enrichir la docstring de `TLSThreadingHTTPServer` pour empêcher une future régression par « simplification ». |
 
 ---
 

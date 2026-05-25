@@ -2,14 +2,15 @@
 
 [Accueil](index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
-!!! info "Forge 1.0.0b8 — bêta disponible sur PyPI"
+!!! info "Forge 1.0.0b10 — bêta disponible sur PyPI"
 
     Le core `forge-mvc` est publié sur [PyPI](https://pypi.org/project/forge-mvc/)
-    sous la version `1.0.0b8`. L'option `--pip-args="--pre"` est nécessaire car
-    `1.0.0b8` est une préversion bêta PEP 440.
+    sous la version `1.0.0b10`. L'option `--pip-args="--pre"` est nécessaire car
+    `1.0.0b10` est une préversion bêta PEP 440.
 
-    Les **modules opt-in** (MFA, RBAC, workflow, statistiques) restent en mode
-    source-only via GitHub — voir [Installation depuis GitHub](installation-github.md).
+    Depuis `1.0.0-beta.9`, **tous les opt-ins officiels** (MFA, RBAC, workflow,
+    statistiques, media) sont publiés sur PyPI — voir
+    [Installation](installation.md#contrat-dinstallation-des-opt-ins).
 
 `pipx` est la méthode la plus simple pour utiliser Forge comme commande globale.
 

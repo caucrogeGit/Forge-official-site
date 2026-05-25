@@ -64,7 +64,7 @@ pipx ensurepath
 source ~/.bashrc    # ou ouvrir un nouveau terminal
 
 # Vérification
-forge --version     # doit afficher Forge 1.0.0b8
+forge --version     # doit afficher Forge 1.0.0b10
 ```
 
 ---
@@ -122,7 +122,7 @@ frictions suivantes peuvent apparaître :
 - **Tests** : certains tests dépendent du système Unix et peuvent échouer
 - **forge sync:landing** : dépend de commandes shell Unix
 
-Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b8. Les contributions
+Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b10. Les contributions
 pour le support natif Windows sont bienvenues, mais non planifiées.
 
 ---

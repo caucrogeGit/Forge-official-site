@@ -25,7 +25,7 @@ forge new MonProjet --profile multilingual
 Compatibilité avec `--ref` :
 
 ```bash
-forge new MonProjet --ref v1.0.0-beta.8 --profile standard
+forge new MonProjet --ref v1.0.0-beta.10 --profile standard
 ```
 
 Sans `--profile`, Forge utilise le profil `standard`.
@@ -135,7 +135,7 @@ forge new MonProjet --profile standard
 **Intention** :
 
 - tout le contenu du profil `standard` ;
-- `forge-mvc-mfa` installé (voir [installation-github.md](installation-github.md)) ;
+- `forge-mvc-mfa` installé (`pip install --pre forge-mvc-mfa` — publié sur PyPI depuis `1.0.0-beta.9`, statut Alpha) ;
 - contrôleurs auth sans stubs ni lazy imports MFA ;
 - routes `/login/mfa` toujours actives.
 
@@ -143,7 +143,7 @@ forge new MonProjet --profile standard
 
 ```bash
 forge new MonProjet --profile auth-mfa
-# forge-mvc-mfa : voir installation-github.md (mode source-only en 1.0.0b8)
+# forge-mvc-mfa : pip install --pre forge-mvc-mfa (publié sur PyPI depuis 1.0.0-beta.9)
 forge starter:build auth-mfa
 ```
 
