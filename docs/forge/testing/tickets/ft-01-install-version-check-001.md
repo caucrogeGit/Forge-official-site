@@ -31,7 +31,7 @@ Vérifier que la version de Forge affichée par la CLI est lisible, cohérente a
 Ce ticket vérifie que :
 
 - la commande `forge --version` produit une sortie claire et non ambiguë ;
-- la version affichée correspond à la version documentée dans `docs/installation-pipx.md` ou `docs/compatibility.md` ;
+- la version affichée correspond à la version documentée dans `docs/install/pipx.md` ou `docs/compatibility.md` ;
 - un testeur débutant peut confirmer qu'il utilise la bonne version sans ambiguïté ;
 - le format de version affiché est cohérent (PEP 440 ou SemVer selon la documentation).
 
@@ -57,12 +57,12 @@ Ce ticket vérifie que :
 
 ## 5. Contexte utile avant de commencer
 
-Forge utilise un format de version PEP 440 en interne (ex : `1.0.0b10`) et une notation SemVer dans certaines communications (ex : `1.0.0-beta.3`). Ces deux formats désignent la même version.
+Forge utilise un format de version PEP 440 en interne (ex : `1.0.0b11`) et une notation SemVer dans certaines communications (ex : `1.0.0-beta.3`). Ces deux formats désignent la même version.
 
 La cohérence entre ce que la CLI affiche et ce que la documentation présente est importante pour éviter la confusion chez les testeurs débutants.
 
 ```text
-Format PEP 440 :  1.0.0b10
+Format PEP 440 :  1.0.0b11
 Format SemVer  :  1.0.0-beta.3  (exemple — vérifier la documentation)
 Ces deux notations désignent la même version.
 ```
@@ -72,8 +72,8 @@ Ces deux notations désignent la même version.
 ## 6. Documentation Forge à consulter
 
 ```text
-docs/installation.md
-docs/installation-pipx.md
+docs/install/index.md
+docs/install/pipx.md
 docs/compatibility.md
 docs/release-and-compatibility.md
 ```

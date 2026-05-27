@@ -318,7 +318,7 @@ Avant toute release, exécuter le script de validation :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b10
+# ex. : bash tools/release-validate.sh 1.0.0b11
 ```
 
 Ce script vérifie en une seule passe :
@@ -356,12 +356,12 @@ Vérifications post-publication :
 
 ### Publication PyPI
 
-**État Forge 1.0.0b10 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b10`.
-`1.0.0b10` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
+**État Forge 1.0.0b11 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b11`.
+`1.0.0b11` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
 
 | Package | Publication PyPI | Notes |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b10` | `pip install --pre forge-mvc` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b11` | `pip install --pre forge-mvc` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -396,7 +396,7 @@ reste manuelle et délibérée.
 
 | Package | Statut PyPI | Règle |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b10` | Publié dès `1.0.0-beta.1` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b11` | Publié dès `1.0.0-beta.1` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -465,7 +465,7 @@ installer `forge-mvc-mfa` ou `forge-mvc-media` directement.
 Avant leur publication PyPI, les opt-ins `forge-mvc-rbac`, `forge-mvc-workflow` et `forge-mvc-stats` étaient disponibles en **source-only** via GitHub :
 
 - non publiés sur PyPI ;
-- installables depuis le dépôt GitHub (voir `docs/installation-github.md`) ;
+- installables depuis le dépôt GitHub (voir `docs/install/github.md`) ;
 - versionnés indépendamment du core jusqu'à la publication coordonnée.
 
 ### Opt-ins publiés et synchronisés

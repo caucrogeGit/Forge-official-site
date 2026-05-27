@@ -28,19 +28,19 @@ nav:
       - Vue d'ensemble: forge/index.md
 
       - Installation:
-          - Vue d'ensemble: forge/installation.md
+          - Vue d'ensemble: forge/install/index.md
           - Installer Forge:
-              - VM Debian vierge: forge/installation-vm-debian.md
-              - Avec pipx: forge/installation-pipx.md
-              - Depuis GitHub: forge/installation-github.md
-              - Windows WSL2: forge/installation-windows.md
+              - VM Debian vierge: forge/install/vm-debian.md
+              - Avec pipx: forge/install/pipx.md
+              - Depuis GitHub: forge/install/github.md
+              - Windows WSL2: forge/install/windows-wsl.md
           - Environnement:
-              - MariaDB: forge/installation-mariadb.md
-              - Développement: forge/installation-developpement.md
+              - MariaDB: forge/install/mariadb.md
+              - Développement: forge/install/core-dev.md
 
       - Premiers pas:
           - Démarrer avec Forge: forge/getting-started.md
-          - 15 minutes avec Forge: forge/15-minutes.md
+          - Bonjour Forge: forge/bonjour-forge.md
           - Application complète: forge/app-complete-tutorial.md
           - Guide de démarrage: forge/guide.md
           - CRUD explicite: forge/crud.md

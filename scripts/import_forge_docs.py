@@ -29,6 +29,7 @@ FORGEWEB_ROOT = Path(__file__).resolve().parent.parent
 # par les fichiers racine ; les exclure casserait les liens internes.
 WHITELISTED_SUBDIRS: tuple[str, ...] = (
     "adr",
+    "install",
     "reference",
     "starters",
     "contributing",
@@ -169,12 +170,12 @@ def copy_whitelisted_tree(
 # Substitutions statiques des macros normalement injectées par le hook
 # ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
 # dans Forge-official-site ; on remplace donc ces placeholders à l'import.
-# Source de vérité : pyproject.toml de Forge core (1.0.0b10 au 2026-05-25).
+# Source de vérité : pyproject.toml de Forge core (1.0.0b11 au 2026-05-27).
 FORGE_MACROS: dict[str, str] = {
-    "{{forge_version}}": "1.0.0b10",
-    "{{ forge_version }}": "1.0.0b10",
-    "{{forge_tag}}": "v1.0.0-beta.10",
-    "{{ forge_tag }}": "v1.0.0-beta.10",
+    "{{forge_version}}": "1.0.0b11",
+    "{{ forge_version }}": "1.0.0b11",
+    "{{forge_tag}}": "v1.0.0-beta.11",
+    "{{ forge_tag }}": "v1.0.0-beta.11",
     "{{python_min}}": "3.12",
     "{{ python_min }}": "3.12",
 }

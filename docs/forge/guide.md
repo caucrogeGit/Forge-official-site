@@ -8,9 +8,9 @@ Pour la référence complète (contrôleurs, formulaires, sécurité, CLI), voir
 
 !!! tip "Forge n'est pas encore installé ?"
     Commencez par le parcours adapté dans le menu Installation :
-    [VM Debian vierge](installation-vm-debian.md), [pipx](installation-pipx.md),
-    [GitHub](installation-github.md), [mode développement](installation-developpement.md)
-    ou [préparation MariaDB](installation-mariadb.md).
+    [VM Debian vierge](install/vm-debian.md), [pipx](install/pipx.md),
+    [GitHub](install/github.md), [mode développement](install/core-dev.md)
+    ou [préparation MariaDB](install/mariadb.md).
 
 ---
 
@@ -35,7 +35,7 @@ Il reste deux choses manuelles : **renseigner les mots de passe MariaDB** dans `
 ### Cas B — Installation manuelle (usage avancé)
 
 ```bash
-git clone --branch v1.0.0-beta.10 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
+git clone --branch v1.0.0-beta.11 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
 cd MonProjet
 rm -rf .git && git init && git add -A && git commit -m "init: MonProjet"
 python3 -m venv .venv

@@ -156,7 +156,7 @@ pip install --pre forge-mvc \
                   forge-mvc-media
 
 # Mode éditable depuis les sources (contribution Forge)
-git clone --branch v1.0.0-beta.10 https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.11 https://github.com/caucrogeGit/Forge.git
 cd Forge && pip install -e . && pip install -r requirements-dev.txt
 ```
 

@@ -54,7 +54,7 @@ pip install -e packages/forge-mvc-media/
 
 L'option `-e` permet des modifications locales sans réinstallation.
 
-La dépendance `forge-mvc==1.0.0b10` doit être satisfaite. Si vous travaillez depuis
+La dépendance `forge-mvc==1.0.0b11` doit être satisfaite. Si vous travaillez depuis
 le dépôt Forge directement (sans venv isolé), le core est déjà disponible via `PYTHONPATH`.
 
 ---
@@ -701,7 +701,7 @@ Les garanties suivantes sont assurées par `core/uploads/storage.py` et s'appliq
 | **Exposition hors racine** | Impossible | La route `/media/...` refuse tout chemin sortant de `storage/uploads/` |
 | **Double slash / normpath** | Nettoyé | `//` réduits avant normalisation |
 
-Ces garanties couvrent le code source audité en `1.0.0b10`. Elles ne couvrent pas la
+Ces garanties couvrent le code source audité en `1.0.0b11`. Elles ne couvrent pas la
 détection MIME côté serveur (repose sur le `Content-Type` déclaré par le navigateur ;
 `python-magic` est hors périmètre) ni les permissions d'accès aux médias servis.
 

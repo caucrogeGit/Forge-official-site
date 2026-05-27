@@ -1,6 +1,6 @@
 # Installation sur Windows 11
 
-[Accueil](index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
+[Accueil](../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
 Forge est conçu pour Linux et macOS. Sur Windows, **la voie recommandée est WSL2**
 (Windows Subsystem for Linux 2), qui fournit un environnement Linux complet directement
@@ -64,7 +64,7 @@ pipx ensurepath
 source ~/.bashrc    # ou ouvrir un nouveau terminal
 
 # Vérification
-forge --version     # doit afficher Forge 1.0.0b10
+forge --version     # doit afficher Forge 1.0.0b11
 ```
 
 ---
@@ -76,7 +76,7 @@ forge new MonProjet
 cd MonProjet
 ```
 
-Puis suivre le [Guide de démarrage](getting-started.md) normalement.
+Puis suivre le [Guide de démarrage](../getting-started.md) normalement.
 
 ---
 
@@ -107,7 +107,7 @@ sudo service mariadb start
 sudo mysql_secure_installation
 ```
 
-Puis suivre [Préparer MariaDB](installation-mariadb.md).
+Puis suivre [Préparer MariaDB](mariadb.md).
 
 ---
 
@@ -122,14 +122,14 @@ frictions suivantes peuvent apparaître :
 - **Tests** : certains tests dépendent du système Unix et peuvent échouer
 - **forge sync:landing** : dépend de commandes shell Unix
 
-Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b10. Les contributions
+Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b11. Les contributions
 pour le support natif Windows sont bienvenues, mais non planifiées.
 
 ---
 
 ## Voir aussi
 
-- [Vue d'ensemble de l'installation](installation.md)
-- [Installation avec pipx](installation-pipx.md)
-- [Préparer MariaDB](installation-mariadb.md)
-- [Démarrer avec Forge](getting-started.md)
+- [Vue d'ensemble de l'installation](index.md)
+- [Installation avec pipx](pipx.md)
+- [Préparer MariaDB](mariadb.md)
+- [Démarrer avec Forge](../getting-started.md)

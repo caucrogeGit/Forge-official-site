@@ -1,6 +1,6 @@
 # Installation depuis GitHub
 
-[Accueil](index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
+[Accueil](../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
 Cette méthode est utile si vous voulez créer un projet directement depuis la
 référence stable du dépôt.
@@ -8,7 +8,7 @@ référence stable du dépôt.
 ## Cloner la version stable
 
 ```bash
-git clone --branch v1.0.0-beta.10 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
+git clone --branch v1.0.0-beta.11 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
 cd MonProjet
 ```
 
@@ -18,7 +18,7 @@ cd MonProjet
 rm -rf .git
 git init
 git add -A
-git commit -m "init: MonProjet — based on Forge 1.0.0b10"
+git commit -m "init: MonProjet — based on Forge 1.0.0b11"
 ```
 
 ## Installer l'environnement local
