@@ -1,6 +1,6 @@
 # Préparation à la publication
 
-> Cette page documente l'état de préparation du site Forge-web avant déploiement
+> Cette page documente l'état de préparation du site Forge-official-site avant déploiement
 > sur la VM web. Elle ne décrit pas la procédure de déploiement elle-même : tant
 > que la VM, le DNS et le reverse proxy ne sont pas en place, le site reste local.
 
@@ -22,7 +22,7 @@ dist/
     ├── 404.html                → page 404 MkDocs Material
     ├── assets/                 → JS/CSS/fonts Material
     ├── forge/                  → documentation Forge importée
-    ├── meta/                   → docs internes Forge-web
+    ├── meta/                   → docs internes Forge-official-site
     ├── audits/                 → rapports d'audit
     ├── search/                 → interface de recherche Material
     ├── sitemap.xml             → sitemap MkDocs (généré, pages /docs/*)
@@ -181,7 +181,7 @@ Périmètre suggéré pour ce futur ticket :
 Les pages-clés exposées dans `sitemap.xml` (manuel, racine du site) :
 
 - `/` (landing)
-- `/docs/` (accueil documentation Forge-web)
+- `/docs/` (accueil documentation Forge-official-site)
 - `/docs/forge/` (accueil Forge)
 - `/docs/forge/installation/`
 - `/docs/forge/getting-started/`

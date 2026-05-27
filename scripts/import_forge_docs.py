@@ -2,7 +2,7 @@
 """Import contrôlé de la documentation Forge vers docs/forge/.
 
 Source par défaut : /home/roger/Projets/Forge/docs/
-Destination par défaut : docs/forge/ (relatif au dépôt Forge-web)
+Destination par défaut : docs/forge/ (relatif au dépôt Forge-official-site)
 
 Règles :
   - liste blanche stricte ;
@@ -168,7 +168,7 @@ def copy_whitelisted_tree(
 
 # Substitutions statiques des macros normalement injectées par le hook
 # ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
-# dans Forge-web ; on remplace donc ces placeholders à l'import.
+# dans Forge-official-site ; on remplace donc ces placeholders à l'import.
 # Source de vérité : pyproject.toml de Forge core (1.0.0b10 au 2026-05-25).
 FORGE_MACROS: dict[str, str] = {
     "{{forge_version}}": "1.0.0b10",
@@ -328,7 +328,7 @@ def main() -> int:
         status = "OK" if present else "ABSENT"
         print(f"  - {name:14s} {status:6s} copiés={n_copied:4d} ignorés={n_skipped:4d}")
 
-    # 3) Sanitisation des liens index.html (Forge core → Forge-web).
+    # 3) Sanitisation des liens index.html (Forge core → Forge-official-site).
     sanitized = sanitize_imported_markdown(dest)
     print(f"Sanitisation index.html → index.md : {sanitized} fichiers réécrits.")
 

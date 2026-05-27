@@ -1,4 +1,4 @@
-# Forge-web
+# Forge-official-site
 
 Site officiel du framework Forge.
 
@@ -12,7 +12,7 @@ Objectif du projet :
 
 ## Périmètre
 
-Ce dépôt concerne uniquement Forge-web :
+Ce dépôt concerne uniquement Forge-official-site :
 
 - landing page ;
 - documentation publique ;

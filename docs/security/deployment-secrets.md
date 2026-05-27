@@ -1,8 +1,8 @@
-# Politique secrets de déploiement — Forge-web
+# Politique secrets de déploiement — Forge-official-site
 
 ## Principe
 
-Le dépôt `Forge-web` ne contient **aucun secret permettant d'accéder à la
+Le dépôt `Forge-official-site` ne contient **aucun secret permettant d'accéder à la
 VM de production**.
 
 Un développeur disposant uniquement d'un clone du dépôt ne doit pas pouvoir

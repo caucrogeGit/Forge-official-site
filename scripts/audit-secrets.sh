@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Audit reproductible de l'exposition de secrets dans le dépôt Forge-web.
+# Audit reproductible de l'exposition de secrets dans le dépôt Forge-official-site.
 #
 # Vérifie qu'aucun secret permettant d'accéder à la VM de production
 # n'est suivi par Git ou présent dans l'historique.

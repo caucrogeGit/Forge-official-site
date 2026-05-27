@@ -116,7 +116,7 @@ nav:
           - Conventions: forge/contributing/conventions.md
           - Licence: forge/licence.md
 
-  - Projet Forge-web:
+  - Projet Forge-official-site:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
       - Création du dépôt: meta/02-creation-depot-forge-web.md
       - Préparation publication: deployment-readiness.md
