@@ -130,6 +130,7 @@ nav:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
       - Création du dépôt: meta/02-creation-depot-forge-web.md
       - Préparation publication: deployment-readiness.md
+      - Publication manuelle docs Forge: operations/manual-forge-docs-publication.md
 
   - Audits:
       - FW-AUDIT-EXISTING-001: audits/FW-AUDIT-EXISTING-001.md
