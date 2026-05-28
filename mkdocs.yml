@@ -128,6 +128,7 @@ nav:
       - FW-DOCS-IMPORT-001: audits/FW-DOCS-IMPORT-001.md
       - FW-LANDING-FINALIZE-001: audits/FW-LANDING-FINALIZE-001.md
       - FW-LOCAL-QA-001: audits/FW-LOCAL-QA-001.md
+      - OFFICIAL-SITE-LOCAL-DOCS-LINKS-001: audits/OFFICIAL-SITE-LOCAL-DOCS-LINKS-001.md
 
 markdown_extensions:
   - admonition
