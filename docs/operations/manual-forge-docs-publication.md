@@ -49,8 +49,13 @@ rien sur la VM.
 
 ```bash
 cd ~/Projets/Forge-official-site
-bash scripts/sync-forge-docs-and-deploy.sh
+make docs-check
 ```
+
+Cette commande appelle en interne
+`bash scripts/sync-forge-docs-and-deploy.sh`. Le script reste
+utilisable directement si besoin de surcharger une variable
+d'environnement ponctuelle.
 
 Le dry-run :
 
@@ -76,8 +81,12 @@ Une fois le dry-run vert :
 
 ```bash
 cd ~/Projets/Forge-official-site
-DRY_RUN=0 bash scripts/sync-forge-docs-and-deploy.sh
+make docs-publish
 ```
+
+Cette commande appelle en interne
+`DRY_RUN=0 bash scripts/sync-forge-docs-and-deploy.sh`. Elle publie
+réellement sur `forgemvc.com` : ne la lancer qu'après un dry-run vert.
 
 Ce mode reprend toutes les étapes du dry-run, puis :
 
