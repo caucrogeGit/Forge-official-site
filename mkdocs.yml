@@ -74,6 +74,14 @@ nav:
           - Vue d'ensemble: forge/starters/index.md
           - Créer un module: forge/module-author-guide.md
           - Créer un starter: forge/starter-author-guide.md
+          - Bonjour Forge: forge/starters/welcome/index.md
+          - Paramètres GET: forge/starters/query-params/index.md
+          - Première vue HTML: forge/starters/first-html-view/index.md
+          - Route dynamique: forge/starters/dynamic-route/index.md
+          - Premier SQL: forge/starters/first-sql/index.md
+          - Formulaire POST: forge/starters/form-post/index.md
+          - Debug requête: forge/starters/request-debug/index.md
+          - Validation serveur: forge/starters/server-validation/index.md
           - Contacts: forge/starters/01-contact-simple/index.md
           - Utilisateurs / Auth: forge/starters/02-utilisateurs-auth/index.md
           - Carnet de contacts: forge/starters/03-carnet-contacts/index.md
@@ -113,6 +121,8 @@ nav:
           - Procédure de release: forge/release.md
           - Validation locale: forge/release-local.md
           - Contribution: forge/contributing.md
+          - Dépôt canonique: forge/contributing/canonical-repo.md
+          - Réglages GitHub: forge/project/github-repository-settings.md
           - Conventions: forge/contributing/conventions.md
           - Licence: forge/licence.md
 

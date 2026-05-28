@@ -200,6 +200,14 @@ pipx inject forge-mvc --pip-args="--pre" forge-mvc-workflow
 Voir [Installation — vue d'ensemble](index.md) pour les
 détails.
 
+!!! tip "Mettre à jour Forge plus tard"
+    Si vous avez créé votre projet avec une beta précédente, lancez
+    `forge update --check` pour voir la version installée et la
+    commande pip à exécuter. `forge update --pre` met à jour Forge
+    dans l'environnement courant (`.venv`) — pour une install pipx,
+    la commande affichera le bon `pipx upgrade forge-mvc` à lancer.
+    Voir [`forge update`](../reference/cli-commands.md#forge-update).
+
 ---
 
 ## 8. Étape 6 — Configurer Git
@@ -457,9 +465,8 @@ Depuis Windows, ouvrir le navigateur sur :
 | URL | Réponse attendue |
 |---|---|
 | `https://localhost:8000/welcome` | Texte brut : `Bonjour Forge` |
+| `https://localhost:8000/welcome/greet` | Texte brut : `Bonjour Forge` |
 | `https://localhost:8000/welcome/greet?name=Roger` | Texte brut : `Bonjour Roger` |
-| `https://localhost:8000/welcome/inspect` | Page HTML « Debug Forge » avec le dump masqué de `request.data` |
-| `https://localhost:8000/welcome/cycle` | Vue HTML Jinja2 — premier exemple de `BaseController.render(...)` |
 | `https://localhost:8000/` | Page d'accueil par défaut du squelette (HomeController) |
 
 Si une route renvoie 404, vérifier que le starter `welcome` a bien
@@ -564,7 +571,7 @@ Si une route renvoie 404, vérifier que le starter `welcome` a bien
 | `forge db:init` | OK |
 | `forge doctor` | OK |
 | `forge run` actif (autoreload) | OK |
-| Routes `/welcome`, `/welcome/greet`, `/welcome/inspect` | OK |
+| Routes `/welcome`, `/welcome/greet` | OK |
 
 > **Forge est installé. Le projet répond. Vous pouvez maintenant
 > créer votre application.**

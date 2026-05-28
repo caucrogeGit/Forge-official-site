@@ -33,6 +33,7 @@ WHITELISTED_SUBDIRS: tuple[str, ...] = (
     "reference",
     "starters",
     "contributing",
+    "project",
     "roadmap",
     "history",
     "testing",
@@ -221,6 +222,16 @@ KNOWN_FIXUPS: tuple[tuple[str, str, str], ...] = (
         "reference.md",
         "et les [ADR suivants](adr/)",
         "et les ADR suivants",
+    ),
+    (
+        "install/core-dev.md",
+        "| Décisions architecturales | [ADR](../adr/) |",
+        "| Décisions architecturales | ADR dans la navigation Philosophie |",
+    ),
+    (
+        "starters/01-contact-simple/index.md",
+        "../index.md#progression-recommandee",
+        "../#progression-recommandee",
     ),
 )
 

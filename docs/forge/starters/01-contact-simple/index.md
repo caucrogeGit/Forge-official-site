@@ -3,10 +3,29 @@
 [Accueil](../../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
 <div style="border:1px solid #FED7AA;background:linear-gradient(135deg,#FFF7ED 0%,#FFFFFF 55%,#F8FAFC 100%);border-radius:18px;padding:1.5rem 1.6rem;margin:1rem 0 1.5rem 0;">
-  <p style="margin:0 0 .35rem 0;font-size:.85rem;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.08em;">Starter Forge · Niveau 1</p>
+  <p style="margin:0 0 .35rem 0;font-size:.85rem;font-weight:700;color:#EA580C;text-transform:uppercase;letter-spacing:.08em;">Starter Forge · Palier 9 (avancé)</p>
   <h2 style="margin:.1rem 0 .45rem 0;font-size:2rem;line-height:1.15;color:#0F172A;">Application Contacts</h2>
-  <p style="margin:0;color:#334155;font-size:1.05rem;max-width:880px;">Premier parcours Forge : une seule entité <code>Contact</code>, un CRUD généré, puis un câblage manuel des routes.</p>
+  <p style="margin:0;color:#334155;font-size:1.05rem;max-width:880px;">Synthèse avancée et point d'arrivée de la <a href="../#progression-recommandee">progression officielle des starters</a> : une seule entité <code>Contact</code>, un CRUD généré, puis un câblage manuel des routes. Ce starter officiel reste le CRUD le plus simple, mais il assemble toutes les briques vues aux paliers 1 à 8.</p>
 </div>
+
+!!! warning "Palier 9 — synthèse avancée"
+    Ce starter est une **synthèse avancée**, pas une étape immédiate
+    après Bonjour Forge. Avant de l'aborder, il est recommandé
+    d'avoir compris :
+
+    - les routes (palier 1 — `Bonjour Forge`) ;
+    - les contrôleurs et `Response.text(...)` (palier 1) ;
+    - les paramètres d'URL avec `request.param(...)` (palier 2 — `query-params`) ;
+    - le rendu HTML avec `BaseController.render(...)` (palier 3 — `first-html-view`) ;
+    - les routes dynamiques `/{id}` avec `request.route_param(...)` (palier 4 — `dynamic-route`) ;
+    - l'inspection de la requête (palier 5 — `request-debug`) ;
+    - les formulaires POST avec CSRF (palier 6 — `form-post`) ;
+    - la validation serveur minimale (palier 7 — `server-validation`) ;
+    - les migrations SQL et `core.database.db.fetch_one` (palier 8 — `first-sql`).
+
+    Voir la
+    [Progression recommandée des starters](../#progression-recommandee)
+    pour le détail.
 
 <div class="grid cards" markdown>
 
@@ -14,13 +33,16 @@
 
     ---
 
-    Construire une petite application CRUD pour gérer des contacts.
+    Construire une petite application CRUD pour gérer des contacts —
+    synthèse avancée des paliers 1 à 8 de la progression officielle.
 
 -   **Niveau**
 
     ---
 
-    Débutant Forge. Aucune relation, aucune authentification métier spécifique.
+    Avancé. Ce starter assemble toutes les briques vues aux paliers
+    pédagogiques précédents (routes, contrôleurs, vues HTML,
+    formulaires POST avec CSRF, validation serveur, migrations SQL).
 
 -   **Temps estimé**
 
@@ -74,7 +96,11 @@ Une fois que `forge --version` s'affiche correctement, revenez ici pour construi
 ## Partie 2 — Construire l'application starter
 
 !!! tip "Profil recommandé"
-    Ce starter est le point d'entrée officiel de Forge. Il correspond au profil `minimal` ou `standard`. Voir [Profils de projet](../../profiles.md) pour choisir le bon profil au moment de `forge new`.
+    Ce starter officiel correspond au profil `minimal` ou `standard`.
+    Voir [Profils de projet](../../profiles.md) pour choisir le bon
+    profil au moment de `forge new`. Pour le **premier** contact
+    avec Forge, démarrer plutôt par
+    [Bonjour Forge](../welcome/index.md) (palier 1, sans BDD).
 
 ## 1. Présentation rapide
 
@@ -116,28 +142,13 @@ Les deux méthodes arrivent au même résultat : un projet Forge local avec un e
 !!! tip "Si vous avez suivi la Partie 1"
     `forge` est déjà installé via `pipx install forge-mvc`. Dans l'onglet "Installation automatique" ci-dessous, ignorez la ligne `pipx install ...` et commencez directement par `forge new Contacts`.
 
-=== "Installation automatique"
-
-    ```bash
-    pipx install git+https://github.com/caucrogeGit/Forge.git
-    forge new Contacts
-    cd Contacts
-    source .venv/bin/activate
-    forge doctor
-    ```
-
-=== "Installation manuelle"
-
-    ```bash
-    git clone https://github.com/caucrogeGit/Forge.git Contacts
-    cd Contacts
-    python -m venv .venv
-    source .venv/bin/activate
-    pip install -r requirements.txt
-    pip install -e .
-    npm install
-    forge doctor
-    ```
+!!! note "Installation Forge"
+    Cette page suppose que vous êtes **déjà** dans un projet Forge
+    créé avec ce starter et que `forge doctor` ne signale aucun
+    problème bloquant. Si Forge n'est pas encore installé, voir les
+    parcours d'installation officiels : [Installation Forge — vue
+    d'ensemble](../../install/index.md) (pipx, développeur du core,
+    Windows + WSL, VM Debian…).
 
 !!! note "CLI officielle"
     La documentation utilisateur suppose la CLI officielle `forge`, disponible après installation du package.
@@ -253,14 +264,10 @@ Cette commande crée la base de données du projet, l'utilisateur applicatif et 
 
 ## 4. Développement de l'application
 
-!!! tip "Commande rapide"
-    Pour générer directement ce starter depuis un projet Forge vierge :
-
-    ```bash
-    forge starter:build 1
-    ```
-
-    Le reste de ce chapitre détaille ce que cette commande fait étape par étape.
+Cette section détaille pas à pas ce que Forge produit pour ce
+starter — chaque artefact (entité, modèle, contrôleur, formulaire,
+vues, routes) est expliqué dans l'ordre où vous le rencontrez en
+développement.
 
 ### 4.1 Ce que l'on apprend
 
@@ -899,53 +906,15 @@ https://localhost:8000/contacts
 
 ## Reconstruction
 
-Le starter peut être reconstruit de deux façons.
+La procédure complète de reconstruction du starter (étapes
+détaillées, alias disponibles, options `--dry-run` / `--public` /
+`--init-db` / `--force`) est documentée dans le fichier
+[Reconstruction du starter Contacts](rebuild.md), pour ne pas
+mélanger « ce que ce starter fait » (cette page) et « comment le
+régénérer en CLI » (rebuild).
 
-### Génération automatique
-
-Depuis un projet Forge vierge, après configuration de `env/dev` et initialisation de la base :
-
-```bash
-forge starter:build 1
-```
-
-Alias disponibles :
-
-```bash
-forge starter:build contacts
-forge starter:build contact-simple
-```
-
-Pour prévisualiser sans écrire :
-
-```bash
-forge starter:build 1 --dry-run
-```
-
-Pour générer des routes publiques de test (sans authentification) :
-
-```bash
-forge starter:build 1 --public
-```
-
-Pour initialiser la base puis construire le starter en une seule commande :
-
-```bash
-forge starter:build 1 --init-db
-```
-
-Pour reconstruire un starter déjà présent :
-
-```bash
-forge starter:build 1 --force
-```
-
-!!! warning "Attention avec --force"
-    L'option `--force` reconstruit uniquement les fichiers du starter Contacts : `mvc/entities/contact/`, `mvc/controllers/contact_controller.py`, `mvc/models/contact_model.py`, `mvc/forms/contact_form.py`, `mvc/views/contact/` et le bloc de routes marqué. Elle ne touche pas les autres entités ni le reste de `mvc/routes.py`.
-
-### Reconstruction manuelle
-
-Le fichier de reconstruction pas à pas est disponible dans [starters/01-contact-simple/rebuild.md](rebuild.md).
+La référence CLI globale est dans
+[Commandes CLI](../../reference/cli-commands.md).
 
 ---
 
@@ -960,3 +929,15 @@ Le fichier de reconstruction pas à pas est disponible dans [starters/01-contact
 | `mariadb: command not found` | client MariaDB absent | `sudo apt install mariadb-client` |
 | erreur de compilation Python | outils de build absents | `sudo apt install build-essential pkg-config libmariadb-dev` |
 | erreur certificat HTTPS | `openssl` absent | `sudo apt install openssl` |
+
+---
+
+## Après ce starter
+
+Ce starter clôt la progression pédagogique de base.
+
+Il rassemble les notions vues dans les paliers précédents : routes,
+contrôleurs, vues, formulaires, validation serveur, SQL et
+migrations.
+
+[Revenir à la vue d'ensemble des starters](../index.md)
