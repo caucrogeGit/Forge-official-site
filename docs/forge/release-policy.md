@@ -151,6 +151,7 @@ chaque package publiable :
 | `forge-mvc-stats` | `4 - Beta` | API stable et testée, usage production externe encore limité |
 | `forge-mvc-mfa` | `3 - Alpha` | Secret TOTP chiffré au repos (Fernet, `MFA-PYPI-READY-001`) — publié sur PyPI depuis `1.0.0-beta.9`, passage Alpha → Beta à venir |
 | `forge-mvc-media` | `3 - Alpha` | API applicative encore bêta — publié sur PyPI depuis `1.0.0-beta.9` (voir `production-limits.md`) |
+| `forge-mvc-iot` | `3 - Alpha` | Module IoT opt-in (MQTT → `iot_events` → API HTTP) — publié sur PyPI depuis `1.0.0-beta.12`, API encore en stabilisation |
 
 Critères de passage Beta → Stable d'un module opt-in :
 
@@ -318,7 +319,7 @@ Avant toute release, exécuter le script de validation :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b11
+# ex. : bash tools/release-validate.sh 1.0.0b12
 ```
 
 Ce script vérifie en une seule passe :
@@ -356,12 +357,12 @@ Vérifications post-publication :
 
 ### Publication PyPI
 
-**État Forge 1.0.0b11 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b11`.
-`1.0.0b11` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
+**État Forge 1.0.0b12 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b12`.
+`1.0.0b12` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
 
 | Package | Publication PyPI | Notes |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b11` | `pip install --pre forge-mvc` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b12` | `pip install --pre forge-mvc` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -396,7 +397,7 @@ reste manuelle et délibérée.
 
 | Package | Statut PyPI | Règle |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b11` | Publié dès `1.0.0-beta.1` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b12` | Publié dès `1.0.0-beta.1` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |

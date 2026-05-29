@@ -180,7 +180,7 @@ Vérifier :
 
 ```bash
 forge --version
-# Forge 1.0.0b11
+# Forge 1.0.0b12
 ```
 
 Si la commande `forge` n'est pas trouvée :

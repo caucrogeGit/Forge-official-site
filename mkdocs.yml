@@ -88,6 +88,28 @@ nav:
           - Suivi pédagogique: forge/starters/04-suivi-comportement-eleves/index.md
           - Communes & Séjours: forge/starters/communes-sejours/index.md
           - Auth MFA: forge/starters/auth-mfa/index.md
+          - Bonjour IoT: forge/starters/welcome-iot/index.md
+
+      - Forge IoT (opt-in):
+          - Opt-ins projet:
+              - Structure des opt-ins: forge/architecture/optins-project-structure.md
+              - Audit forge optin:enable: forge/architecture/optins-cli-enable-audit.md
+          - IoT:
+              - Architecture: forge/iot/architecture.md
+              - Contrat MQTT: forge/iot/mqtt-contract.md
+              - Configuration: forge/iot/configuration.md
+              - Subscriber MQTT: forge/iot/mqtt-subscriber.md
+              - Stockage des événements: forge/iot/storage-events.md
+              - API HTTP: forge/iot/http-api.md
+              - iot:doctor: forge/iot/doctor.md
+              - iot:init: forge/iot/init-command.md
+              - iot:listen: forge/iot/listen-command.md
+              - iot:simulate: forge/iot/simulator.md
+              - Mosquitto local: forge/iot/mosquitto-local.md
+              - Smoke test local: forge/iot/local-smoke-test.md
+              - Bac Pro / BTS CIEL: forge/iot/bts-ciel.md
+              - Exemple ESP32: forge/iot/esp32-example.md
+              - Évaluation Arduino R4: forge/iot/arduino-r4-assessment.md
 
       - Déploiement:
           - Guide de déploiement: forge/deployment.md

@@ -16,6 +16,14 @@ juste après [Bonjour Forge](../welcome/index.md).
 - aucune vue HTML
 - aucune base de données
 
+## Classes Forge utilisées
+
+| Classe | Rôle dans ce starter | Référence |
+|--------|----------------------|-----------|
+| `Request` | Lire un paramètre de *query string* avec `request.param(...)`. | [Request](../../reference/http.md#3-request-reference) |
+| `Response` | Construire la réponse texte avec `Response.text(...)`. | [Response](../../reference/http.md#4-response-reference) |
+| `BaseController` | Classe parente du contrôleur. | [BaseController](../../reference/api.md#coremvccontroller) |
+
 ## Exemple
 
 `/query-params/hello?name=Roger`
@@ -37,6 +45,14 @@ with router.group("", public=True) as pub:
     pub.add("GET", "/query-params",       QueryParamsController.index, name="query_params_index")
     pub.add("GET", "/query-params/hello", QueryParamsController.hello, name="query_params_hello")
 ```
+
+### Comprendre ce code
+
+- Deux routes publiques dans le même groupe : une page d'accueil
+  informative, et `/query-params/hello` qui lit le paramètre.
+- Le `name=` est utile même pour des URL fixes : il permet ensuite de
+  générer l'URL depuis un template avec `url_for("query_params_hello")`,
+  au lieu de la coder en dur.
 
 ## Le contrôleur
 
@@ -61,6 +77,17 @@ class QueryParamsController(BaseController):
         name = request.param("name", default="Forge")
         return Response.text(f"Bonjour {name}")
 ```
+
+### Comprendre ce code
+
+- Un *paramètre d'URL* (ou *query string*) est la partie après le `?` :
+  `?name=Roger` apporte la valeur `name=Roger`.
+- `request.param("name", default="Forge")` lit cette valeur. Le second
+  argument évite tout cas particulier « clé absente ».
+- Le type retourné est toujours `str` ; toute conversion (int, date…)
+  est à faire explicitement côté contrôleur.
+- La réponse reste un `Response.text(...)` — aucun template ici, donc
+  rien à rendre.
 
 ## Tester dans le navigateur
 

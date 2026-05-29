@@ -49,7 +49,7 @@ Voir [Politique de release](../release-policy.md#publication-pypi).
 Pour installer Forge avec toutes les briques opt-in :
 
 ```bash
-git clone --branch v1.0.0-beta.11 https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.12 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -99,7 +99,7 @@ Fernet) ; l'API de `forge-mvc-media` reste bêta — voir
 Pour installer en mode éditable depuis les sources (contribution Forge) :
 
 ```bash
-git clone --branch v1.0.0-beta.11 https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.12 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -113,7 +113,7 @@ python -m pip install -r requirements-dev.txt
 
 ## Version stable
 
-Forge 1.0.0b11 utilise la référence stable `v1.0.0-beta.11` par défaut.
+Forge 1.0.0b12 utilise la référence stable `v1.0.0-beta.12` par défaut.
 
 ```bash
 forge --version

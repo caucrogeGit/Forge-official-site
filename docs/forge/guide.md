@@ -35,7 +35,7 @@ Il reste deux choses manuelles : **renseigner les mots de passe MariaDB** dans `
 ### Cas B — Installation manuelle (usage avancé)
 
 ```bash
-git clone --branch v1.0.0-beta.11 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
+git clone --branch v1.0.0-beta.12 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
 cd MonProjet
 rm -rf .git && git init && git add -A && git commit -m "init: MonProjet"
 python3 -m venv .venv

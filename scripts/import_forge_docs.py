@@ -40,6 +40,10 @@ WHITELISTED_SUBDIRS: tuple[str, ...] = (
     "entities",
     "security",
     "static",
+    # Forge IoT (opt-in `forge-mvc-iot`) et structure des opt-ins —
+    # publiés à partir de 1.0.0-beta.12.
+    "iot",
+    "architecture",
 )
 
 # Extensions de fichiers autorisées.
@@ -52,6 +56,9 @@ ALLOWED_EXTENSIONS: frozenset[str] = frozenset({
     ".webp",
     ".gif",
     ".ico",
+    # Sketch Arduino d'exemple référencé par docs/iot/esp32-example.md
+    # (asset de documentation téléchargeable, non sensible).
+    ".ino",
 })
 
 # Motifs de noms de fichiers explicitement refusés (ceinture de sécurité).
@@ -171,12 +178,12 @@ def copy_whitelisted_tree(
 # Substitutions statiques des macros normalement injectées par le hook
 # ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
 # dans Forge-official-site ; on remplace donc ces placeholders à l'import.
-# Source de vérité : pyproject.toml de Forge core (1.0.0b11 au 2026-05-27).
+# Source de vérité : pyproject.toml de Forge core (1.0.0b12 au 2026-05-29).
 FORGE_MACROS: dict[str, str] = {
-    "{{forge_version}}": "1.0.0b11",
-    "{{ forge_version }}": "1.0.0b11",
-    "{{forge_tag}}": "v1.0.0-beta.11",
-    "{{ forge_tag }}": "v1.0.0-beta.11",
+    "{{forge_version}}": "1.0.0b12",
+    "{{ forge_version }}": "1.0.0b12",
+    "{{forge_tag}}": "v1.0.0-beta.12",
+    "{{ forge_tag }}": "v1.0.0-beta.12",
     "{{python_min}}": "3.12",
     "{{ python_min }}": "3.12",
 }

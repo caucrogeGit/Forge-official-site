@@ -36,7 +36,7 @@ Puis exécuter la validation complète (script existant) :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b11
+# ex. : bash tools/release-validate.sh 1.0.0b12
 ```
 
 Ce script couvre : cohérence de version, CHANGELOG, pytest, ruff, compileall,
@@ -134,7 +134,7 @@ ls dist/
 Puis installer :
 
 ```bash
-pipx install dist/forge_mvc-1.0.0b11-py3-none-any.whl --force
+pipx install dist/forge_mvc-1.0.0b12-py3-none-any.whl --force
 ```
 
 ### Vérifier que c'est bien la bonne installation qui répond
@@ -145,7 +145,7 @@ which forge
 forge --version
 ```
 
-Résultat attendu : `Forge 1.0.0b11`
+Résultat attendu : `Forge 1.0.0b12`
 
 Si le terminal indique :
 
@@ -175,7 +175,7 @@ forge doctor
 forge starter:list
 ```
 
-`forge starter:list` doit afficher les 14 starters sans erreur. C'est la vérification minimale que les ressources sont bien incluses dans la wheel.
+`forge starter:list` doit afficher les 15 starters sans erreur. C'est la vérification minimale que les ressources sont bien incluses dans la wheel.
 
 ---
 
@@ -199,6 +199,7 @@ forge starter:build 11 --force --dry-run
 forge starter:build 12 --force --dry-run
 forge starter:build 13 --force --dry-run
 forge starter:build 14 --force --dry-run
+forge starter:build 15 --force --dry-run
 ```
 
 !!! note "Ce que --dry-run valide"
@@ -489,8 +490,8 @@ Le build MkDocs `--strict` détecte les ancres cassées et les liens internes in
 | Étape | Résultat attendu |
 |---|---|
 | `python -m build` | wheel créée dans `dist/` |
-| `forge --version` | `Forge 1.0.0b11` |
-| `forge starter:list` | 14 starters affichés |
+| `forge --version` | `Forge 1.0.0b12` |
+| `forge starter:list` | 15 starters affichés |
 | `forge starter:build N --dry-run` | plan affiché sans erreur (×14) |
 | `forge db:init` + `starter:build 1` | CRUD contacts fonctionnel |
 | `forge db:init` + `starter:build 2` | login `admin` / `secret123` → `/dashboard` |
