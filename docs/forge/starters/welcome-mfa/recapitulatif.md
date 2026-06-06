@@ -1,0 +1,33 @@
+# Aide-mémoire de la progression MFA
+
+Récapitulatif des paliers de la progression *Bonjour Forge MFA* et des API du module
+opt-in `forge-mvc-mfa` introduites à chaque étape.
+
+!!! note "Module opt-in"
+    `forge-mvc-mfa` est **publié sur PyPI** (Alpha) : `pip install --pre forge-mvc-mfa`.
+    Il exige `FORGE_MFA_SECRET_KEY` (Fernet) pour chiffrer les secrets. Ce parcours
+    montre chaque brique MFA **isolée**, pour comprendre chaque API avant de la câbler.
+
+## Niveau débutant — mécaniques TOTP (sans état)
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Bonjour Forge MFA](/docs/forge/starters/welcome-mfa/debutant/mfa-welcome/) | Inspecter facteurs, statuts, clé | `validate_mfa_secret_key_config` |
+| 2 | [Secret TOTP et QR](/docs/forge/starters/welcome-mfa/debutant/mfa-secret/) | Générer secret + URI `otpauth://` | `generate_totp_secret`, `totp_provisioning_uri` |
+| 3 | [Vérifier un code TOTP](/docs/forge/starters/welcome-mfa/debutant/mfa-verify/) | Confronter code et secret | `verify_totp_code` |
+
+## Niveau intermédiaire — enrôlement & flux de connexion (session)
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Enrôler un facteur TOTP](/docs/forge/starters/welcome-mfa/intermediaire/mfa-enroll/) | Créer pending puis confirmer | `create_totp_factor`, `confirm_totp_factor` |
+| 2 | [Challenge de connexion](/docs/forge/starters/welcome-mfa/intermediaire/mfa-challenge/) | Second facteur au login | `start_mfa_challenge`, `verify_mfa_challenge` |
+| 3 | [Codes de récupération](/docs/forge/starters/welcome-mfa/intermediaire/mfa-recovery/) | Codes de secours à usage unique | `create_recovery_codes`, `consume_recovery_code` |
+
+## Niveau avancé — durcissement
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Revalidation (step-up)](/docs/forge/starters/welcome-mfa/avance/mfa-revalidation/) | Exiger une MFA récente | `mark_mfa_revalidated`, `require_recent_mfa` |
+| 2 | [Anti-rejeu TOTP](/docs/forge/starters/welcome-mfa/avance/mfa-replay/) | Empêcher le rejeu d'un code | `record_used`, `is_replay` |
+| 3 | [Secret chiffré au repos](/docs/forge/starters/welcome-mfa/avance/mfa-crypto/) | Chiffrer les secrets (Fernet) | `encrypt_totp_secret`, `decrypt_totp_secret` |

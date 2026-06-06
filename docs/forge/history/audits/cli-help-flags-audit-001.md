@@ -4,7 +4,7 @@
 
 Audit exhaustif du support de `--help` dans les commandes CLI Forge
 (commit de base `b3bee28`). **62 commandes** sont déclarées dans
-`forge.py` et listées dans [forge --help](../../reference/cli-commands.md).
+`forge.py` et listées dans [forge --help](/docs/forge/reference/cli-commands/).
 
 Bilan global :
 
@@ -32,7 +32,7 @@ Les groupes les plus solides sont **Starters/modules** (5/6) et
 1. **Recensement** : lecture exhaustive de `forge.py`
    pour extraire les commandes dispatchées (`if command == "..."` /
    `if command in (…)`), croisée avec la sortie de `forge --help` et
-   avec [docs/reference/cli-commands.md](../../reference/cli-commands.md).
+   avec [docs/reference/cli-commands.md](/docs/forge/reference/cli-commands/).
 2. **Probe automatisée** : exécution de `forge <cmd> --help` pour 61
    commandes (`new` exclu car il clonerait un projet et changerait le
    répertoire courant), avec un timeout de 10 s, capture de
@@ -272,7 +272,7 @@ dans leur `main`).
 
 ### Cause 6 — La doc CLI ne sert pas de garde-fou
 
-[docs/reference/cli-commands.md](../../reference/cli-commands.md) liste
+[docs/reference/cli-commands.md](/docs/forge/reference/cli-commands/) liste
 les commandes avec un usage textuel, mais sans contrat « cette
 commande supporte `--help` ». Le test
 `tests/meta/test_forge_help_coverage_001.py`

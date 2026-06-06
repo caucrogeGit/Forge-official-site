@@ -13,7 +13,7 @@ Permettre à Forge de devenir une brique utile pour des projets IoT
 monolithique**.
 
 Pour une entrée pédagogique orientée enseignement, voir
-[Forge IoT pour Bac Pro / BTS CIEL](bts-ciel.md).
+[Forge IoT pour Bac Pro / BTS CIEL](/docs/forge/iot/bts-ciel/).
 
 Forge IoT doit rester :
 
@@ -28,15 +28,15 @@ Forge IoT doit rester :
 | Brique | Type | Statut |
 |--------|------|--------|
 | Forge Core (`forge-mvc`) | Framework MVC HTTP générique | existe |
-| `forge-mvc-iot` | Module officiel opt-in (futur) | à créer |
+| `forge-mvc-iot` | Opt-in officiel (futur) | à créer |
 | Mosquitto | Broker MQTT local recommandé | externe |
 | Broker MQTT cloud | Alternative possible (HiveMQ, EMQX, AWS IoT, …) | externe, non prioritaire |
 | Forge Design IoT | Interface de lecture (futur) | à créer |
 
 Forge IoT est un **module opt-in** au même titre que `forge-mvc-rbac`,
 `forge-mvc-workflow`, `forge-mvc-stats`, `forge-mvc-mfa`,
-`forge-mvc-media`. Voir [ADR-004 — Périmètre core](../adr/004-core-perimeter.md)
-et [ADR-005 — Packaging](../adr/005-packaging.md).
+`forge-mvc-images`. Voir [ADR-004 — Périmètre core](/docs/forge/adr/004-core-perimeter/)
+et [ADR-005 — Packaging](/docs/forge/adr/005-packaging/).
 
 ## Architecture générale
 

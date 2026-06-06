@@ -15,11 +15,11 @@
       <img src="./static/img/forge-logo.png" alt="Forge" class="h-32 w-auto object-contain">
     </a>
 
-    <a href="/docs/forge/getting-started/"
+    <a href="/docs/forge/guide/getting-started/"
        target="_blank" rel="noopener noreferrer"
        class="text-sm font-medium text-white/60 hover:text-white transition-colors">Démarrer</a>
 
-    <a href="/docs/forge/crud/"
+    <a href="/docs/forge/features/crud/"
        target="_blank" rel="noopener noreferrer"
        class="text-sm font-medium text-white/60 hover:text-white transition-colors">CRUD</a>
 
@@ -29,11 +29,11 @@
     <a href="#starters"
        class="text-sm font-medium text-white/60 hover:text-white transition-colors">Starters</a>
 
-    <a href="/docs/forge/concepts/"
+    <a href="/docs/forge/guide/concepts/"
        target="_blank" rel="noopener noreferrer"
        class="text-sm font-medium text-white/60 hover:text-white transition-colors">Architecture</a>
 
-    <a href="/docs/forge/reference/"
+    <a href="/docs/forge/reference/reference/"
        target="_blank" rel="noopener noreferrer"
        class="text-sm font-medium text-white/60 hover:text-white transition-colors">Référence</a>
 
@@ -60,7 +60,7 @@
   </div>
 
   <div class="landing-version-strip landing-accent-text flex justify-center gap-2 text-sm font-medium mb-12">
-    <span>v1.0.0-beta.12</span><span class="opacity-40">·</span>
+    <span>v1.0.0-beta.13</span><span class="opacity-40">·</span>
     <span>Python 3.12+</span><span class="opacity-40">·</span>
     <span>MariaDB</span><span class="opacity-40">·</span>
     <span>MVC serveur</span><span class="opacity-40">·</span>
@@ -77,96 +77,125 @@
     Forge génère un MVC CRUD explicite à partir d'un modèle JSON visible.
   </p>
   <p class="text-base text-white/70 max-w-2xl mx-auto leading-relaxed">
-    <span class="landing-accent-text font-semibold">1.0.0-beta.12</span> introduit
-    <strong class="text-white">Forge IoT</strong>, le branchement
-    <strong class="text-white">opt-in</strong> explicite et un parcours
-    pédagogique complet MQTT → base → API.
+    <span class="landing-accent-text font-semibold">1.0.0-beta.13</span> introduit
+    les <strong class="text-white">slugs canoniques</strong>, l'opt-in
+    <strong class="text-white">Forge Video</strong> et un
+    <strong class="text-white">modèle opt-in unifié</strong> avec un parcours
+    pédagogique par module.
   </p>
 </section>
 
-<!-- Nouveautés 1.0.0-beta.12 — Forge IoT & opt-ins explicites -->
-<section id="beta12" class="py-24 px-6 bg-[#111110]">
+<!-- Nouveautés 1.0.0-beta.13 — Slugs canoniques & Forge Video -->
+<section id="beta13" class="py-24 px-6 bg-[#111110]">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
-      <div class="text-xs landing-accent-text font-semibold mb-2">Nouveautés 1.0.0-beta.12</div>
+      <div class="text-xs landing-accent-text font-semibold mb-2">Nouveautés 1.0.0-beta.13</div>
       <h2 class="text-4xl font-bold tracking-tight text-white mb-4">
-        Forge IoT et opt-ins explicites.
+        Slugs canoniques et Forge Video.
       </h2>
       <p class="text-white/50 text-lg max-w-2xl mx-auto">
-        Un parcours pédagogique complet MQTT → base → API, branché
-        explicitement dans le projet. Le core reste autonome.
+        La dernière beta fonctionnelle : une vraie feature (les slugs), un
+        nouvel opt-in média, et un modèle opt-in unifié. Le core reste autonome.
       </p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5">
-      <!-- Bloc Forge IoT -->
+      <!-- Bloc Slugs canoniques -->
       <div class="landing-panel rounded-xl p-8 border border-white/10">
-        <div class="text-xs landing-accent-text font-semibold mb-2">forge-mvc-iot · publié sur PyPI</div>
-        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Forge IoT</h3>
+        <div class="text-xs landing-accent-text font-semibold mb-2">core/http/slug.py · feature phare</div>
+        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Slugs canoniques</h3>
         <p class="text-white/60 text-sm leading-relaxed mb-5">
-          Réception <strong class="text-white/80">MQTT</strong> via
-          <strong class="text-white/80">Mosquitto</strong>, stockage des
-          relevés dans la table <code class="text-xs">iot_events</code> et
-          lecture via une <strong class="text-white/80">API HTTP JSON</strong>.
-          Pensé pour l'<strong class="text-white/80">ESP32</strong> et les
-          sections <strong class="text-white/80">BTS CIEL</strong> / Bac Pro.
+          Des identifiants d'URL <strong class="text-white/80">lisibles et
+          stables</strong>, produits d'une seule façon officielle
+          (<code class="text-xs">slugify</code> déterministe) depuis une colonne
+          <strong class="text-white/80">source</strong>. Colonne
+          <code class="text-xs">VARCHAR(180)</code> + index unique,
+          <strong class="text-white/80">CRUD</strong> et
+          <strong class="text-white/80">routage public par slug</strong> générés.
         </p>
         <ul class="text-white/60 text-sm leading-relaxed space-y-2 mb-6">
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge iot:doctor</code> — diagnostic IoT</li>
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge iot:init</code> — migration <code class="text-xs">iot_events</code></li>
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge iot:listen</code> — subscriber MQTT résilient</li>
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge iot:simulate</code> — capteurs simulés</li>
+          <li><span class="landing-accent-text mr-2">·</span>type <code class="text-xs">slug</code> dans le contrat d'entité</li>
+          <li><span class="landing-accent-text mr-2">·</span><code class="text-xs">is_valid_slug</code> — contrat de validation unique</li>
+          <li><span class="landing-accent-text mr-2">·</span>route <code class="text-xs">/{ressource}/{slug}</code> + lookup par slug</li>
+          <li><span class="landing-accent-text mr-2">·</span>validé bout-en-bout sur une vraie base MariaDB</li>
         </ul>
         <div class="flex flex-wrap gap-3 text-sm">
-          <a href="/docs/forge/iot/architecture/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Architecture →</a>
-          <a href="/docs/forge/iot/mosquitto-local/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Mosquitto local →</a>
-          <a href="/docs/forge/iot/doctor/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">iot:doctor →</a>
-          <a href="/docs/forge/iot/listen-command/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">iot:listen →</a>
-          <a href="/docs/forge/iot/simulator/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">iot:simulate →</a>
-          <a href="/docs/forge/iot/esp32-example/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Exemple ESP32 →</a>
-          <a href="/docs/forge/iot/bts-ciel/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">BTS CIEL →</a>
+          <a href="/docs/forge/entities/slugs/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Documentation slugs →</a>
+          <a href="/docs/forge/adr/017-slug-type/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">ADR-017 type slug →</a>
+          <a href="/docs/forge/reference/cli-commands/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Référence CLI →</a>
         </div>
       </div>
 
-      <!-- Bloc Opt-ins explicites -->
+      <!-- Bloc Forge Video -->
       <div class="landing-panel rounded-xl p-8 border border-white/10">
-        <div class="text-xs landing-accent-text font-semibold mb-2">optins/ · branchement explicite</div>
-        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Opt-ins explicites</h3>
+        <div class="text-xs landing-accent-text font-semibold mb-2">forge-mvc-video · publié sur PyPI</div>
+        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Forge Video</h3>
         <p class="text-white/60 text-sm leading-relaxed mb-5">
-          Pas de découverte magique : les opt-ins sont branchés
-          explicitement dans le projet, sous <code class="text-xs">optins/</code>,
-          via un registre visible. Le starter
-          <code class="text-xs">welcome-iot</code> montre le parcours complet.
+          Chaîne complète <strong class="text-white/80">upload → traitement →
+          lecture</strong> : stockage uuid-based, extraction de métadonnées
+          (<code class="text-xs">ffprobe</code>),
+          <strong class="text-white/80">transcodage MP4 (H.264/AAC)</strong> et
+          <strong class="text-white/80">lecture en streaming HTTP Range</strong>.
+          Le transcodage tourne dans un worker dédié, jamais pendant une requête.
         </p>
         <ul class="text-white/60 text-sm leading-relaxed space-y-2 mb-6">
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge optin:enable iot</code> — branche l'opt-in (dry-run par défaut)</li>
-          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge optin:list</code> — état des opt-ins (lecture seule)</li>
-          <li><span class="text-white/30 mr-2">·</span>starter <code class="text-xs">welcome-iot</code></li>
+          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge video:doctor</code> — diagnostic (FFmpeg/ffprobe)</li>
+          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge video:init</code> — migration <code class="text-xs">videos</code></li>
+          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge video:upload</code> — entrée d'upload officielle</li>
+          <li><span class="landing-accent-text mr-2">$</span><code class="text-xs">forge video:process</code> — worker de transcodage</li>
         </ul>
         <div class="flex flex-wrap gap-3 text-sm">
-          <a href="/docs/forge/architecture/optins-project-structure/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Structure des opt-ins →</a>
-          <a href="/docs/forge/architecture/optins-cli-enable-audit/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Audit optin:enable →</a>
-          <a href="/docs/forge/reference/cli-commands/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Référence CLI →</a>
-          <a href="/docs/forge/starters/welcome-iot/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Starter welcome-iot →</a>
+          <a href="/docs/forge/video/parcours/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Parcours complet →</a>
+          <a href="/docs/forge/starters/welcome-video/installation/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Starter welcome-video →</a>
+          <a href="/docs/forge/history/audits/audit-video-closing/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Audit de clôture →</a>
         </div>
       </div>
     </div>
 
-    <!-- Installation : core autonome, IoT opt-in -->
+    <!-- Autres nouveautés beta.13 -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+      <div class="landing-panel rounded-xl p-6 border border-white/10">
+        <h3 class="text-lg font-bold tracking-tight text-white mb-2">Modèle opt-in unifié</h3>
+        <p class="text-white/60 text-sm leading-relaxed">
+          Une seule façon d'ajouter une brique optionnelle :
+          <code class="text-xs">opt-in:install / enable / disable / list</code>,
+          avec un vocabulaire clair « opt-in ». Le cœur ne s'alourdit jamais.
+        </p>
+      </div>
+      <div class="landing-panel rounded-xl p-6 border border-white/10">
+        <h3 class="text-lg font-bold tracking-tight text-white mb-2">Parcours welcome par module</h3>
+        <p class="text-white/60 text-sm leading-relaxed">
+          Chaque opt-in a sa progression pédagogique, du premier contact au
+          niveau avancé, générable en un starter pour apprendre brique par brique.
+        </p>
+      </div>
+      <div class="landing-panel rounded-xl p-6 border border-white/10">
+        <h3 class="text-lg font-bold tracking-tight text-white mb-2">Production-readiness</h3>
+        <p class="text-white/60 text-sm leading-relaxed">
+          <code class="text-xs">forge doctor</code> durci,
+          <code class="text-xs">migration:apply --dry-run</code>, endpoint de
+          <em>health</em> et une <strong class="text-white/80">checklist de
+          déploiement</strong> documentée.
+        </p>
+      </div>
+    </div>
+
+    <!-- Installation : core autonome, opt-ins à la demande -->
     <div class="landing-panel rounded-xl overflow-hidden border border-white/10 mt-5">
       <pre class="px-7 py-6 text-sm leading-loose overflow-x-auto text-[#abb2bf]"><span class="text-white/35"># Forge Core reste autonome</span>
 <span class="landing-accent-text">$</span> pip install --pre forge-mvc
 
-<span class="text-white/35"># Forge IoT s'installe seulement si le projet en a besoin</span>
-<span class="landing-accent-text">$</span> pip install --pre forge-mvc-iot</pre>
+<span class="text-white/35"># Les opt-ins s'installent seulement si le projet en a besoin</span>
+<span class="landing-accent-text">$</span> pip install --pre forge-mvc-video</pre>
     </div>
 
     <!-- Preuve qualité -->
     <p class="text-white/50 text-sm leading-relaxed text-center mt-8">
-      Forge 1.0.0-beta.12 a été publiée après retour de la suite complète à
-      <strong class="text-white/80">0 échec</strong>.
-      <a href="/docs/forge/history/audits/audit-pre-release-beta12/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Audit pré-release →</a>
-      <a href="/docs/forge/history/audits/audit-beta12-post-publish/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Audit post-publication →</a>
+      Forge 1.0.0-beta.13 a été publiée après un audit de clôture vert
+      (<strong class="text-white/80">16587 tests, 0 échec</strong>,
+      <code class="text-xs">mkdocs --strict</code>).
+      <a href="/docs/forge/roadmap/beta13-roadmap/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Roadmap beta.13 →</a>
+      <a href="/docs/forge/deployment/production-checklist/" target="_blank" rel="noopener noreferrer" class="landing-accent-text font-semibold">Checklist de production →</a>
     </p>
   </div>
 </section>
@@ -298,9 +327,9 @@ application = create_configured_wsgi_app()
     --workers 4 --bind 127.0.0.1:8000</pre>
         </div>
         <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-          À lire dans l'ordre : <a href="/docs/forge/wsgi-deployment/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">WSGI minimal</a>,
-          <a href="/docs/forge/production-limits/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">limites de production</a>,
-          puis le <a href="/docs/forge/deployment/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">guide de déploiement</a> complet.
+          À lire dans l'ordre : <a href="/docs/forge/deployment/wsgi-deployment/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">WSGI minimal</a>,
+          <a href="/docs/forge/deployment/production-limits/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">limites de production</a>,
+          puis le <a href="/docs/forge/deployment/deployment/" target="_blank" rel="noopener noreferrer" class="landing-accent-text">guide de déploiement</a> complet.
         </p>
         <div class="mt-5 flex gap-3">
           <a href="/docs/forge/install/production/"
@@ -317,64 +346,76 @@ application = create_configured_wsgi_app()
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
       <h2 class="text-4xl font-bold tracking-tight mb-4">
-        Starters progressifs.
+        Un parcours welcome par module.
       </h2>
+      <p class="text-slate-500 text-lg max-w-2xl mx-auto">
+        Chaque brique a sa progression pédagogique, du premier contact au niveau
+        avancé. Générez le parcours en un starter et apprenez brique par brique.
+      </p>
     </div>
 
     <div class="grid md:grid-cols-2 gap-5">
-      <a href="/docs/forge/starters/welcome/"
+      <a href="/docs/forge/starters/welcome-forge/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all md:col-span-2">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Premier pas</div>
-        <h3 class="font-semibold text-lg mb-2">Bienvenue dans Forge</h3>
+        <div class="text-xs landing-accent-text font-semibold mb-2">Parcours cœur · débutant → avancé</div>
+        <h3 class="font-semibold text-lg mb-2">welcome-forge</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Onze paliers : première vue HTML, route dynamique, CSRF, formulaire POST, validation serveur, premier SQL, relations, upload, API JSON, transactions. Le socle pour apprendre Forge pas à pas.</p>
       </a>
 
-      <a href="/docs/forge/starters/01-contact-simple/"
+      <a href="/docs/forge/starters/welcome-iot/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 1</div>
-        <h3 class="font-semibold text-lg mb-2">Contacts</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Cycle complet d'un CRUD sur une entité : JSON canonique, SQL, formulaire, contrôleur et vues.</p>
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-iot</div>
+        <h3 class="font-semibold text-lg mb-2">Forge IoT</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">MQTT → événements → API HTTP, du bonjour IoT au subscriber résilient. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-iot</code>.</p>
       </a>
 
-      <a href="/docs/forge/starters/02-utilisateurs-auth/"
+      <a href="/docs/forge/starters/welcome-video/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 2</div>
-        <h3 class="font-semibold text-lg mb-2">Utilisateurs et authentification</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Application de démonstration autour des sessions, du login/logout et des routes protégées.</p>
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-video</div>
+        <h3 class="font-semibold text-lg mb-2">Forge Video</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Upload, transcodage MP4 et lecture en streaming, du listing à la sonde et au transcodage. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-video</code>.</p>
       </a>
 
-      <a href="/docs/forge/starters/03-carnet-contacts/"
+      <a href="/docs/forge/starters/welcome-images/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 3</div>
-        <h3 class="font-semibold text-lg mb-2">Carnet relationnel</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Relations explicites, clés étrangères, tables pivots visibles et requêtes SQL lisibles.</p>
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-images</div>
+        <h3 class="font-semibold text-lg mb-2">Forge Images</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Variantes et miniatures, galerie attachée à une entité, image de couverture, garde anti-upload piégé. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-images</code>.</p>
       </a>
 
-      <a href="/docs/forge/starters/04-suivi-comportement-eleves/"
+      <a href="/docs/forge/starters/welcome-files/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 4</div>
-        <h3 class="font-semibold text-lg mb-2">Suivi pédagogique</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Démonstrateur plus dense : dashboard, relations, sécurité applicative et données métier.</p>
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-files</div>
+        <h3 class="font-semibold text-lg mb-2">Forge Files</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">La brique générique d'upload : écriture anti-traversal, stockage et service de fichiers en streaming. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-files</code>.</p>
       </a>
 
-      <a href="/docs/forge/starters/communes-sejours/"
+      <a href="/docs/forge/starters/welcome-mfa/installation/"
          target="_blank" rel="noopener noreferrer"
          class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 5</div>
-        <h3 class="font-semibold text-lg mb-2">Communes &amp; Séjours</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Démonstrateur avancé : pages publiques, formulaire de demande, notifications mail et données réelles.</p>
-      </a>
-
-      <a href="/docs/forge/starters/auth-mfa/"
-         target="_blank" rel="noopener noreferrer"
-         class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
-        <div class="text-xs landing-accent-text font-semibold mb-2">Niveau 6</div>
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-mfa</div>
         <h3 class="font-semibold text-lg mb-2">Auth MFA (TOTP)</h3>
-        <p class="text-sm text-slate-500 leading-relaxed">Contrôleurs Auth avec authentification multi-facteurs TOTP. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-mfa</code>.</p>
+        <p class="text-sm text-slate-500 leading-relaxed">Secret TOTP et QR, challenge de connexion, codes de récupération, secret chiffré au repos. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-mfa</code>.</p>
+      </a>
+
+      <a href="/docs/forge/starters/welcome-rbac/installation/"
+         target="_blank" rel="noopener noreferrer"
+         class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
+        <div class="text-xs landing-accent-text font-semibold mb-2">welcome-rbac</div>
+        <h3 class="font-semibold text-lg mb-2">Contrôle d'accès RBAC</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Permissions et rôles, protection de routes, permission dans un template, résolution des rôles de la requête. Nécessite <code class="text-xs bg-slate-100 px-1 rounded">forge-mvc-rbac</code>.</p>
+      </a>
+
+      <a href="/docs/forge/starters/"
+         target="_blank" rel="noopener noreferrer"
+         class="rounded-xl border border-dashed border-slate-300 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all md:col-span-2 text-center">
+        <h3 class="font-semibold text-lg mb-1">Voir tous les parcours →</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Et aussi welcome-audio, welcome-workflow, welcome-stats et welcome-mail.</p>
       </a>
     </div>
   </div>
@@ -420,7 +461,7 @@ application = create_configured_wsgi_app()
         </p>
       </a>
 
-      <a href="/docs/forge/reference/" target="_blank" rel="noopener noreferrer"
+      <a href="/docs/forge/reference/reference/" target="_blank" rel="noopener noreferrer"
          class="block rounded-xl border border-slate-200 bg-white p-6 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
         <div class="text-xs landing-accent-text font-semibold mb-2">mvc/</div>
         <h3 class="font-semibold mb-2">API applicative</h3>
@@ -431,7 +472,7 @@ application = create_configured_wsgi_app()
         </p>
       </a>
 
-      <a href="/docs/forge/wsgi-deployment/" target="_blank" rel="noopener noreferrer"
+      <a href="/docs/forge/deployment/wsgi-deployment/" target="_blank" rel="noopener noreferrer"
          class="block rounded-xl border border-slate-200 bg-white p-6 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
         <div class="text-xs landing-accent-text font-semibold mb-2">core/wsgi.py</div>
         <h3 class="font-semibold mb-2">API WSGI</h3>
@@ -440,7 +481,7 @@ application = create_configured_wsgi_app()
         </p>
       </a>
 
-      <a href="/docs/forge/reference/" target="_blank" rel="noopener noreferrer"
+      <a href="/docs/forge/reference/reference/" target="_blank" rel="noopener noreferrer"
          class="block rounded-xl border border-slate-200 bg-white p-6 hover:border-[#E8651A]/40 hover:shadow-md transition-all">
         <div class="text-xs landing-accent-text font-semibold mb-2">docs/reference/</div>
         <h3 class="font-semibold mb-2">Référence complète</h3>
@@ -471,7 +512,7 @@ application = create_configured_wsgi_app()
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-      <a href="/docs/forge/concepts/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/guide/concepts/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16"/><path d="M4 12h10"/><path d="M4 19h16"/><path d="m16 9 3 3-3 3"/></svg>
@@ -481,7 +522,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/concepts/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/guide/concepts/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 8 4-8 4-8-4 8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 17 8 4 8-4"/></svg>
@@ -491,7 +532,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/front/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/front/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="m10 13-2 2 2 2"/><path d="m14 17 2-2-2-2"/></svg>
@@ -501,7 +542,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/migrations/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/migrations/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
@@ -511,7 +552,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/entity_architecture/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/entity_architecture/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H7a4 4 0 0 0-4 4v2a3 3 0 0 1-3 3 3 3 0 0 1 3 3v2a4 4 0 0 0 4 4h1" transform="translate(3)"/><path d="M16 3h1a4 4 0 0 1 4 4v2a3 3 0 0 0 3 3 3 3 0 0 0-3 3v2a4 4 0 0 1-4 4h-1" transform="translate(-3)"/></svg>
@@ -521,7 +562,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/migrations/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/migrations/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12"/><circle cx="6" cy="18" r="3"/><path d="M18 6a3 3 0 1 0-3 3h3v12"/><path d="M6 12h9"/></svg>
@@ -531,7 +572,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/crud/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/crud/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18"/><path d="M3 12h18"/><path d="M3 19h18"/><path d="M8 5v14"/><path d="M16 5v14"/></svg>
@@ -551,7 +592,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/security/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/philosophy/security/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-5"/></svg>
@@ -561,7 +602,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/auth/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/auth/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -571,7 +612,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/media/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/media/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -581,7 +622,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/mail/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/mail/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
@@ -591,7 +632,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/front/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/front/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v10H4Z"/><path d="M8 21h8"/><path d="M12 15v6"/><path d="m8 9 2 2 4-4 2 2"/></svg>
@@ -622,7 +663,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/deployment/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/deployment/deployment/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 12h8"/><path d="M8 17h5"/></svg>
@@ -632,7 +673,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/api-json/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/reference/api-json/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
@@ -661,7 +702,7 @@ application = create_configured_wsgi_app()
       </article>
       </a>
 
-      <a href="/docs/forge/rbac/" class="block group" target="_blank" rel="noopener noreferrer">
+      <a href="/docs/forge/features/rbac/" class="block group" target="_blank" rel="noopener noreferrer">
       <article class="rounded-xl border border-slate-200 bg-white p-7 hover:border-[#E8651A]/40 hover:shadow-md transition-all group-hover:border-[#E8651A]/40 group-hover:shadow-md cursor-pointer h-full">
         <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="15" r="4"/><path d="m10 12 8-8"/><path d="m15 7 2 2"/><path d="m17 5 2 2"/></svg>
@@ -839,11 +880,11 @@ router = Router()
     <div class="grid md:grid-cols-2 gap-5 mt-5">
       <div class="landing-panel rounded-xl p-8 border border-white/10">
         <div class="text-xs landing-accent-text font-semibold mb-2">État actuel</div>
-        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Forge 1.0.0-beta.12</h3>
+        <h3 class="text-2xl font-bold tracking-tight text-white mb-4">Forge 1.0.0-beta.13</h3>
         <p class="text-white/60 text-sm leading-relaxed mb-5">
           Forge marque l'ouverture du code source en lecture, étude et usage éducatif.
-          Core minimal, 4 modules officiels opt-in, charte philosophique stable
-          et plus de 50 tickets livrés.
+          Core minimal, onze opt-ins officiels, slugs canoniques, contrat public
+          gelé et charte philosophique stable.
         </p>
         <a href="/docs/forge/roadmap/forge-roadmap/"
            target="_blank" rel="noopener noreferrer"
@@ -924,7 +965,7 @@ router = Router()
       <a href="https://pypi.org/project/forge-mvc/"
          target="_blank" rel="noopener noreferrer"
          class="text-white/40 hover:text-white transition-colors">PyPI</a>
-      <a href="/docs/forge/licence/"
+      <a href="/docs/forge/philosophy/licence/"
          target="_blank" rel="noopener noreferrer"
          class="text-white/40 hover:text-white transition-colors">Licence</a>
       <a href="https://github.com/caucrogeGit/Forge/blob/main/CHARTE_DOC.md"

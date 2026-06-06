@@ -8,7 +8,7 @@
 
 Le testeur ne corrige pas Forge pendant un ticket FT. Son rôle est d'observer, de lancer les outils de diagnostic prévus, de collecter les preuves et de remplir un retour exploitable.
 
-Un bon retour terrain ne dit pas seulement "ça ne marche pas".  
+Un bon retour terrain ne dit pas seulement "ça ne marche pas".
 Il indique la commande lancée, le résultat obtenu, le diagnostic exécuté, les logs utiles, le statut et la gravité.
 
 ---
@@ -212,7 +212,7 @@ Si la documentation Forge est fausse, incomplète ou contradictoire pendant un t
 9. choisir le statut `BLOQUÉ PAR DOCUMENTATION` ou `VALIDÉ AVEC FRICTION` ;
 10. proposer la gravité S1, S2, S3 ou S4.
 
-Voir : [Modèle de retour testeur](field-test-feedback-template.md) · [Triage et stabilisation](field-test-triage.md)
+Voir : [Modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/) · [Triage et stabilisation](/docs/forge/testing/field-test-triage/)
 
 ---
 

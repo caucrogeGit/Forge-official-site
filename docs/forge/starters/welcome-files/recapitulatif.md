@@ -1,0 +1,35 @@
+# Aide-mémoire de la progression Files
+
+Récapitulatif des paliers de la progression *Bonjour Forge Files* et des API du
+module opt-in `forge-mvc-files` introduites à chaque étape.
+
+!!! note "Module opt-in et fondation"
+    `forge-mvc-files` est l'upload générique extrait du core (ADR-019), **sans
+    état**. Il ne dépend de rien d'autre que le core, et il est publié sur PyPI
+    depuis `1.0.0-beta.13` (`pip install --pre forge-mvc-files`, palier
+    « Installation »). C'est la fondation sur laquelle `forge-mvc-images` est
+    bâti ; les futurs opt-ins média composeront ses primitives (ADR-020).
+
+## Niveau débutant — inspecter, stocker, servir
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Bonjour Forge Files](/docs/forge/starters/welcome-files/debutant/files-welcome/) | Inspecter racine et politique d'upload | `upload_root` |
+| 2 | [Stocker un document](/docs/forge/starters/welcome-files/debutant/file-store/) | Valider puis écrire (façade document) | `save_upload`, `SavedUpload` |
+| 3 | [Servir un fichier](/docs/forge/starters/welcome-files/debutant/file-serve/) | Relire un fichier, anti-traversal + 404 | `serve_media_file` |
+
+## Niveau intermédiaire — valider, limiter, supprimer
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Valider un upload](/docs/forge/starters/welcome-files/intermediaire/file-validate/) | Nommer la règle qui rejette | hiérarchie `UploadError` |
+| 2 | [Limiter les uploads](/docs/forge/starters/welcome-files/intermediaire/file-rate-limit/) | Rate-limit par IP | `is_upload_rate_limited`, `record_upload_attempt` |
+| 3 | [Supprimer un fichier](/docs/forge/starters/welcome-files/intermediaire/file-delete/) | Supprimer par chemin, idempotent | `delete_media_file` |
+
+## Niveau avancé — primitives de stockage sécurisé
+
+| # | Palier | Ce qu'on apprend | API-clé |
+|---|--------|------------------|---------|
+| 1 | [Assainir un nom de fichier](/docs/forge/starters/welcome-files/avance/file-safe-name/) | Réduire un nom à un nom sûr | `secure_filename` |
+| 2 | [Chemin anti-traversal](/docs/forge/starters/welcome-files/avance/file-safe-path/) | Juger/normaliser un chemin | `is_safe_media_path`, `normalize_media_path` |
+| 3 | [Écrire des octets générés](/docs/forge/starters/welcome-files/avance/file-bytes/) | Écrire un contenu côté serveur | `save_bytes` |

@@ -28,7 +28,7 @@ Si chaque étape passe, l'intégration locale est saine.
 Ce smoke test suppose :
 
 - **Mosquitto actif** localement — voir
-  [Mosquitto local](mosquitto-local.md) :
+  [Mosquitto local](/docs/forge/iot/mosquitto-local/) :
 
   ```bash
   sudo systemctl status mosquitto
@@ -97,7 +97,7 @@ Si la table manque, `forge iot:listen` affiche `Table iot_events
 absente` et renvoie vers `forge iot:init` / `forge migration:apply` ; si
 la base est injoignable, il affiche `Connexion base impossible` et
 renvoie vers `forge iot:doctor --db`. Détail dans
-[Écoute](listen-command.md).
+[Écoute](/docs/forge/iot/listen-command/).
 
 Enfin, avec l'application lancée (`forge run`), relis les mesures
 stockées :
@@ -115,7 +115,7 @@ curl http://localhost:8000/api/iot/events
 - il **ne teste pas** TLS ni l'authentification MQTT ;
 - il **ne teste pas** Forge Design.
 
-Pour un broker local, voir [Mosquitto local](mosquitto-local.md). Pour
-le détail de chaque commande, voir [Diagnostic](doctor.md),
-[Initialisation](init-command.md), [Écoute](listen-command.md) et
-[Simulateur](simulator.md).
+Pour un broker local, voir [Mosquitto local](/docs/forge/iot/mosquitto-local/). Pour
+le détail de chaque commande, voir [Diagnostic](/docs/forge/iot/doctor/),
+[Initialisation](/docs/forge/iot/init-command/), [Écoute](/docs/forge/iot/listen-command/) et
+[Simulateur](/docs/forge/iot/simulator/).

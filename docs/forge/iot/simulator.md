@@ -133,7 +133,7 @@ Sans `--profile`, le comportement est **inchangé** (température simple,
 ## Conformité au contrat
 
 Le simulateur valide chaque message contre le contrat
-[`forge/{site}/{device_id}/telemetry`](mqtt-contract.md) **avant** de se
+[`forge/{site}/{device_id}/telemetry`](/docs/forge/iot/mqtt-contract/) **avant** de se
 connecter au broker. Une option hors slug est donc rejetée proprement,
 sans ouvrir de socket :
 
@@ -175,7 +175,7 @@ forge iot:simulate --profile temperature --count 3
 ```
 
 Le chemin du CA n'apparaît jamais dans la sortie. Détails :
-[Configuration — TLS MQTT](configuration.md#tls-mqtt-preparation).
+[Configuration — TLS MQTT](/docs/forge/iot/configuration/#tls-mqtt-preparation).
 
 ## Codes de sortie
 
@@ -192,14 +192,14 @@ diagnostiquer le broker.
 ## Parcours recommandé
 
 Besoin d'un broker pour ces commandes ? Voir
-[Mosquitto local](mosquitto-local.md) pour l'installer et le lancer.
+[Mosquitto local](/docs/forge/iot/mosquitto-local/) pour l'installer et le lancer.
 
 ```bash
 forge iot:doctor --mqtt              # 1. confirmer que le broker répond
 forge iot:simulate --count 3 --interval 1   # 2. publier 3 mesures
 ```
 
-Côté consommation, lance [`forge iot:listen`](listen-command.md) dans un
+Côté consommation, lance [`forge iot:listen`](/docs/forge/iot/listen-command/) dans un
 autre terminal : il écoute le broker et insère les mesures reçues dans
 `iot_events`. Tu peux ensuite les relire via `GET /api/iot/events`.
 

@@ -55,7 +55,7 @@ réalistes.
 Les **profils** du simulateur (`--profile temperature|humidity|presence|energy`)
 permettent de construire des exercices sans capteur réel : chaque profil
 fournit un `kind`, une `value` et une `unit` cohérents. Voir
-[Simulateur — profils de simulation](simulator.md#profils-de-simulation).
+[Simulateur — profils de simulation](/docs/forge/iot/simulator/#profils-de-simulation).
 
 ```bash
 forge iot:simulate --profile humidity --count 5
@@ -81,7 +81,7 @@ forge/atelier/esp32-001/telemetry
 Mosquitto est le **broker** : il reçoit les messages publiés et les
 redistribue à tous les abonnés du topic. Il ne stocke pas les mesures à
 long terme — il les fait circuler. Installation et démarrage :
-[Mosquitto local](mosquitto-local.md).
+[Mosquitto local](/docs/forge/iot/mosquitto-local/).
 
 ## Rôle de Forge IoT
 
@@ -110,7 +110,7 @@ stockées (les afficher, les analyser, les visualiser). C'est le point
 d'entrée d'une future interface — sans dépendre du broker directement.
 En classe, l'API reste **ouverte** ; pour un projet exposé sur le
 réseau, on peut la protéger par un
-[token Bearer](http-api.md#protection-par-bearer-token)
+[token Bearer](/docs/forge/iot/http-api/#protection-par-bearer-token)
 (`FORGE_IOT_API_TOKEN`).
 
 ## Exemple de message
@@ -151,7 +151,7 @@ forge iot:simulate --count 3 --interval 1   # terminal 2 : publier 3 mesures
 curl http://localhost:8000/api/iot/events   # terminal 3 : relire les mesures
 ```
 
-Le scénario complet encadré : [smoke test local](local-smoke-test.md).
+Le scénario complet encadré : [smoke test local](/docs/forge/iot/local-smoke-test/).
 
 ## Activités possibles en classe
 
@@ -208,7 +208,7 @@ Associer chaque panne à la commande utile :
 ## Erreurs fréquentes
 
 - **Mosquitto arrêté** → `ConnectionRefusedError` : démarrer le broker
-  (voir [Mosquitto local](mosquitto-local.md)) ;
+  (voir [Mosquitto local](/docs/forge/iot/mosquitto-local/)) ;
 - **table absente** → `iot_storage_not_ready` : `forge iot:init` puis
   `forge migration:apply` ;
 - **topic invalide** → le message est rejeté : respecter
@@ -221,7 +221,7 @@ Associer chaque panne à la commande utile :
 Cette page pose le cadre pédagogique général. Sont **hors périmètre** :
 
 - en classe, on part du simulateur `forge iot:simulate` ; pour un
-  capteur réel, voir l'[exemple ESP32](esp32-example.md) ;
+  capteur réel, voir l'[exemple ESP32](/docs/forge/iot/esp32-example/) ;
 - l'**Arduino R4** n'est pas couvert ici (hors périmètre) — l'exemple cible l'ESP32 ;
 - pas de fiche élève PDF, pas de grille d'évaluation, pas de séquence
   pédagogique complète — pourront venir plus tard ;

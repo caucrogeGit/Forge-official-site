@@ -1,5 +1,12 @@
 # Structure des opt-ins dans un projet Forge
 
+!!! note "Renommage CLI (ADR-016)"
+    La famille de commandes est désormais `forge opt-in:install/remove/enable/disable/list`
+    (avec tiret). Les mentions `optin:` ci-dessous conservent le **nom d'époque**
+    des tickets livrés ; la commande actuelle est `forge opt-in:enable`. Voir le
+    [glossaire opt-in](/docs/forge/reference/vocabulaire-opt-in/) et
+    [ADR-016](/docs/forge/adr/016-opt-in-unification/).
+
 > Ticket : `OPTINS-PROJECT-STRUCTURE-001`. Ce document **pose le contrat**
 > d'une convention de branchement local des opt-ins dans une application
 > Forge générée. Il est **architecture + documentation uniquement** :
@@ -144,7 +151,7 @@ Ce ticket ne déplace ni ne copie aucune migration : il fixe seulement
 
 Les **starters restent officiellement gérés par Forge CLI**
 (`forge starter:build`, profils `forge new`). Un starter opt-in (ex.
-`welcome-iot`) peut, à terme, **générer** une structure `optins/<module>/`
+`welcome-optin-iot`) peut, à terme, **générer** une structure `optins/<module>/`
 prête à brancher — mais la responsabilité du starter reste côté Forge
 CLI. Le dossier `optins/` est la **cible** de cette génération, pas un
 système concurrent.
@@ -184,12 +191,12 @@ def register(router):
 Le package `forge-mvc-iot` (dans `packages/forge-mvc-iot/`) fournit tout
 le reste : contrat MQTT, subscriber, repository, API HTTP, CLI
 (`forge iot:doctor`, `iot:init`, `iot:listen`, `iot:simulate`). Voir
-l'[architecture Forge IoT](../iot/architecture.md) et l'[audit de
-clôture IoT](../history/audits/audit-iot-closing.md).
+l'[architecture Forge IoT](/docs/forge/iot/architecture/) et l'[audit de
+clôture IoT](/docs/forge/history/audits/audit-iot-closing/).
 
 !!! example "Exemple vivant : le starter `welcome-iot`"
     Cette convention n'est pas que théorique : le starter
-    [`welcome-iot`](../starters/welcome-iot/index.md) **génère réellement**
+    `welcome-iot` **génère réellement**
     cette structure `optins/iot/` dans le projet créé
     (`OPTINS-IOT-PROJECT-BRIDGE-001`). C'est le premier opt-in officiel
     branché via `optins/registry.py`. Les autres modules (`rbac`,
@@ -240,16 +247,16 @@ Ce ticket **pose le contrat**. Ne sont **pas** faits ici :
 ## Tickets suivants
 
 - `OPTINS-IOT-PROJECT-BRIDGE-001` (**livré**) — applique concrètement
-  cette structure à Forge IoT : le starter `welcome-iot` génère
+  cette structure à Forge IoT : le starter `welcome-optin-iot` génère
   `optins/iot/` et branche l'API via `optins/registry.py`.
 - `OPTINS-CLI-ENABLE-AUDIT-001` (**livré**) — cadre la future commande
-  `forge optin:enable` : voir l'[audit `forge optin:enable`](optins-cli-enable-audit.md)
+  `forge optin:enable` : voir l'[audit `forge optin:enable`](/docs/forge/architecture/optins-cli-enable-audit/)
   (commande cible, idempotence, dry-run, gestion des conflits, sans
   discovery ni écrasement silencieux).
 - `OPTINS-CLI-ENABLE-IOT-001` (**livré**) — implémente
   `forge optin:enable iot` (dry-run par défaut, `--apply`, idempotent).
   Voir la
-  [référence CLI](../reference/cli-commands.md#opt-ins-branchement-projet).
+  [référence CLI](/docs/forge/reference/cli-commands/#opt-ins-branchement-projet).
 - `OPTINS-CLI-ENABLE-ROUTES-APPLY-001` (**livré**) — `--apply` branche
   `mvc/routes.py` **si la structure est reconnue** (`router = Router()`),
   sinon `[WARN]` + instruction manuelle (aucune modification).

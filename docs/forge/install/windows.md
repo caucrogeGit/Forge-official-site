@@ -64,7 +64,7 @@ pipx ensurepath
 source ~/.bashrc    # ou ouvrir un nouveau terminal
 
 # Vérification
-forge --version     # doit afficher Forge 1.0.0b12
+forge --version     # doit afficher Forge 1.0.0b13
 ```
 
 ---
@@ -76,7 +76,7 @@ forge new MonProjet
 cd MonProjet
 ```
 
-Puis suivre le [Guide de démarrage](../getting-started.md) normalement.
+Puis suivre le [Guide de démarrage](/docs/forge/guide/getting-started/) normalement.
 
 ---
 
@@ -107,7 +107,7 @@ sudo service mariadb start
 sudo mysql_secure_installation
 ```
 
-Puis suivre [Préparer MariaDB](mariadb.md).
+Puis suivre [Préparer MariaDB](/docs/forge/install/mariadb/).
 
 ---
 
@@ -122,14 +122,14 @@ frictions suivantes peuvent apparaître :
 - **Tests** : certains tests dépendent du système Unix et peuvent échouer
 - **forge sync:landing** : dépend de commandes shell Unix
 
-Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b12. Les contributions
+Ces frictions ne sont pas testées ni supportées dans Forge 1.0.0b13. Les contributions
 pour le support natif Windows sont bienvenues, mais non planifiées.
 
 ---
 
 ## Voir aussi
 
-- [Vue d'ensemble de l'installation](index.md)
-- [Installation avec pipx](pipx.md)
-- [Préparer MariaDB](mariadb.md)
-- [Démarrer avec Forge](../getting-started.md)
+- [Vue d'ensemble de l'installation](/docs/forge/install/)
+- [Installation avec pipx](/docs/forge/install/pipx/)
+- [Préparer MariaDB](/docs/forge/install/mariadb/)
+- [Démarrer avec Forge](/docs/forge/guide/getting-started/)

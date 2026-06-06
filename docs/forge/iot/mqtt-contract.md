@@ -4,7 +4,7 @@
 > encore dans Forge. Cette page fige le format des topics et du payload
 > JSON que `forge-mvc-iot` acceptera dans son itération 1, avant
 > qu'un code de réception soit écrit (voir
-> [Architecture Forge IoT](architecture.md) et le ticket
+> [Architecture Forge IoT](/docs/forge/iot/architecture/) et le ticket
 > `IOT-MQTT-SUBSCRIBER-001`).
 
 ## Objectif
@@ -285,5 +285,5 @@ Ce contrat débloque :
 - `IOT-STORAGE-EVENTS-001` — table SQL des événements IoT, dont les
   colonnes seront alignées sur les champs du contrat.
 
-Voir [Architecture Forge IoT](architecture.md#tickets-suivants) pour
+Voir [Architecture Forge IoT](/docs/forge/iot/architecture/#tickets-suivants) pour
 la liste complète des jalons.

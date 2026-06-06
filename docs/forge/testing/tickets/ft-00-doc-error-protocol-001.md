@@ -152,10 +152,10 @@ Pour ce ticket, le testeur devra produire un exemple similaire basé sur un scé
 
 ## 10. Procédure de test
 
-1. Ouvrir la [charte de campagne](../field-test-charter.md).
+1. Ouvrir la [charte de campagne](/docs/forge/testing/field-test-charter/).
 2. Lire la section consacrée aux statuts finaux.
 3. Lire la section consacrée aux preuves minimales obligatoires.
-4. Ouvrir le [modèle de retour testeur](../field-test-feedback-template.md).
+4. Ouvrir le [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 5. Identifier les champs utilisés pour documenter une erreur de documentation.
 6. Inventer un scénario fictif : une page imaginaire contient une information inexacte.
 7. Remplir le modèle de retour pour ce scénario fictif en appliquant la procédure documentation erronée.
@@ -204,7 +204,7 @@ Le ticket est validé si :
 
 ## 15. Retour d'expérience attendu
 
-Le testeur doit répondre au [modèle de retour testeur](../field-test-feedback-template.md).
+Le testeur doit répondre au [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 Points obligatoires :
 

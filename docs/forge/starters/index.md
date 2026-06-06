@@ -8,36 +8,74 @@
 
 ## Principe
 
-Un **starter** Forge est un exemple applicatif générable avec `forge starter:build`. Il fournit un point de départ fonctionnel pour comprendre les mécaniques du framework, construire une base métier ou produire rapidement une démonstration.
+Un **starter** Forge est un exemple applicatif générable avec `forge starter:build`.
+Il fournit un point de départ fonctionnel pour comprendre une mécanique du
+framework. Un starter n'est pas un profil — voir
+[Différence entre profil et starter](#difference-entre-profil-et-starter).
 
-Un starter n'est pas un profil. Voir [Différence entre profil et starter](#difference-entre-profil-et-starter).
+Profils recommandés selon le starter : `minimal` ou `standard` pour les paliers
+avec base de données, aucun profil pour les paliers sans base.
 
-## Tableau de synthèse
+## Catalogue
 
-| Starter | Statut | Profil associé | Usage recommandé |
-|---|---|---|---|
-| [Bonjour Forge — premier pas](welcome/index.md) | Entrée sans BDD | Aucun (fonctionne sans db:init) | Premier contact minimal avec Forge — `Response.text(...)` et `request.param(...)`, deux routes, aucune vue HTML, aucune base de données |
-| [Paramètres d'URL](query-params/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 2 de la progression — lire une valeur d'URL avec `request.param("name", default=...)`, deux routes, aucune vue HTML, aucune base de données |
-| [Première vue HTML](first-html-view/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 3 de la progression — rendre une page HTML avec `BaseController.render(...)`, une route, une vue, aucune base de données |
-| [Route dynamique](dynamic-route/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 4 de la progression — lire un paramètre de route avec `request.route_param("id")`, une route `/dynamic-route/articles/{id}`, aucune vue HTML, aucune base de données |
-| [Inspecter une requête](request-debug/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 5 de la progression — explorer `request.data` avec `Response.debug(...)`, une route `/request-debug`, aucune vue HTML, aucune base de données |
-| [Premier formulaire POST](form-post/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 6 de la progression — afficher un formulaire HTML minimal (avec CSRF), envoyer un POST, lire la valeur avec `request.form("name", ...)`, aucune base de données |
-| [Validation serveur](server-validation/index.md) | Pédagogique sans BDD | Aucun (fonctionne sans db:init) | Palier 7 de la progression — refuser une valeur vide avec `Response.text(..., status=422)`, contrôle minimum côté serveur, aucune base de données |
-| [Première base SQL](first-sql/index.md) | Pédagogique avec BDD | `minimal` / `standard` | Palier 8 de la progression — table SQL minimale + migration visible, lecture avec `core.database.db.fetch_one`, SQL visible, aucun CRUD |
-| [1 — Contacts](01-contact-simple/index.md) | Officiel simple | `minimal` / `standard` | **Palier 9** de la progression — synthèse avancée du CRUD officiel ; suppose les 8 paliers précédents acquis |
-| [2 — Utilisateurs / Auth](02-utilisateurs-auth/index.md) | Auth minimale moderne | `standard` | Comprendre une authentification minimale avec `core.auth` |
-| [3 — Carnet de contacts](03-carnet-contacts/index.md) | Officiel relationnel | `standard` | Comprendre les relations entre entités (`many_to_one`, JOIN SQL) |
-| [4 — Suivi pédagogique](04-suivi-comportement-eleves/index.md) | Historique / legacy | Aucun profil principal | Consulter un exemple métier historique, non recommandé comme base moderne |
-| [5 — Communes & Séjours](communes-sejours/index.md) | Démonstrateur avancé principal | `standard` | Voir une application démonstratrice couvrant les briques modernes de Forge |
-| [6 — Auth MFA](auth-mfa/index.md) | Démonstrateur MFA (Alpha) | `auth-mfa` | Ajouter un challenge TOTP au flux de connexion avec `forge-mvc-mfa` (publié sur PyPI depuis `1.0.0-beta.9`) |
-| [Bonjour IoT](welcome-iot/index.md) | Entrée IoT sans broker | Aucun (fonctionne sans db:init ni broker MQTT) | Premier contact avec le module opt-in `forge-mvc-iot` — quatre routes (`/welcome-iot`, `/welcome-iot/inspect`, `/welcome-iot/events`, `/welcome-iot/device/{site}/{device_id}`), inspect masque le mot de passe, lecture pédagogique des événements `iot_events` |
+La progression cœur `welcome-forge` enseigne les fondamentaux ; chaque opt-in a
+sa propre progression `welcome-<module>` (débutant → avancé). La liste exhaustive
+est aussi disponible via `forge starter:list`.
+
+### Bonjour Forge — progression cœur (`welcome-forge`)
+
+*Débutant — 11 paliers* — [Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/) · [Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/) · [Première vue HTML](/docs/forge/starters/welcome-forge/debutant/first-html-view/) · [Route dynamique](/docs/forge/starters/welcome-forge/debutant/dynamic-route/) · [Inspecter une requête](/docs/forge/starters/welcome-forge/debutant/request-debug/) · [Réponse JSON](/docs/forge/starters/welcome-forge/debutant/json-response/) · [Le jeton CSRF](/docs/forge/starters/welcome-forge/debutant/csrf/) · [Premier formulaire POST](/docs/forge/starters/welcome-forge/debutant/form-post/) · [Validation serveur](/docs/forge/starters/welcome-forge/debutant/server-validation/) · [Première base SQL](/docs/forge/starters/welcome-forge/debutant/first-sql/) · [Écrire en base](/docs/forge/starters/welcome-forge/debutant/first-sql-write/)
+
+*Intermédiaire* — [Lister des enregistrements](/docs/forge/starters/welcome-forge/intermediaire/list-records/) · [Rechercher / filtrer](/docs/forge/starters/welcome-forge/intermediaire/filter-list/) · [Paginer une liste](/docs/forge/starters/welcome-forge/intermediaire/pagination/) · [Héritage de gabarit](/docs/forge/starters/welcome-forge/intermediaire/layout-template/) · [Modifier un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/update-record/) · [Supprimer un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/delete-record/) · [Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/) · [Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/)
+
+*Avancé* — [Relations entre tables](/docs/forge/starters/welcome-forge/avance/relations/) · [Téléverser un fichier](/docs/forge/starters/welcome-forge/avance/file-upload/) · [API JSON protégée](/docs/forge/starters/welcome-forge/avance/json-api/) · [Écritures transactionnelles](/docs/forge/starters/welcome-forge/avance/db-transaction/)
+
+### IoT (opt-in `forge-mvc-iot`)
+
+[Bonjour Forge IoT](/docs/forge/starters/welcome-iot/debutant/iot-welcome/) · [Lire les événements IoT](/docs/forge/starters/welcome-iot/debutant/iot-events/) · [Les événements d'un capteur](/docs/forge/starters/welcome-iot/debutant/iot-device/) · [Simuler une mesure IoT](/docs/forge/starters/welcome-iot/intermediaire/iot-simulate/) · [Exposer l'API IoT](/docs/forge/starters/welcome-iot/intermediaire/iot-api/) · [Tableau de bord IoT](/docs/forge/starters/welcome-iot/intermediaire/iot-dashboard/) · [Valider un message IoT](/docs/forge/starters/welcome-iot/avance/iot-contract/) · [Le subscriber MQTT](/docs/forge/starters/welcome-iot/avance/iot-subscriber/) · [Diagnostiquer le module IoT](/docs/forge/starters/welcome-iot/avance/iot-doctor/)
+
+### Vidéo (opt-in `forge-mvc-video`)
+
+[Bonjour Forge Vidéo](/docs/forge/starters/welcome-video/debutant/video-welcome/) · [Lister les vidéos](/docs/forge/starters/welcome-video/debutant/video-list/) · [Le détail d'une vidéo](/docs/forge/starters/welcome-video/debutant/video-detail/) · [Téléverser une vidéo](/docs/forge/starters/welcome-video/intermediaire/video-upload/) · [Lire une vidéo](/docs/forge/starters/welcome-video/intermediaire/video-playback/) · [Suivre l'état d'une vidéo](/docs/forge/starters/welcome-video/intermediaire/video-status/) · [Sonder une vidéo](/docs/forge/starters/welcome-video/avance/video-probe/) · [Transcoder une vidéo](/docs/forge/starters/welcome-video/avance/video-transcode/) · [Diagnostiquer le module Vidéo](/docs/forge/starters/welcome-video/avance/video-doctor/)
+
+### Images (opt-in `forge-mvc-images`)
+
+[Bonjour Forge Images](/docs/forge/starters/welcome-images/debutant/images-welcome/) · [Téléverser une image](/docs/forge/starters/welcome-images/debutant/image-upload/) · [Miniatures et variantes](/docs/forge/starters/welcome-images/debutant/image-variants/) · [Rattacher une image à une entité](/docs/forge/starters/welcome-images/intermediaire/image-attach/) · [Afficher la galerie](/docs/forge/starters/welcome-images/intermediaire/image-gallery/) · [Texte alternatif et ordre](/docs/forge/starters/welcome-images/intermediaire/image-alt-order/) · [Image de couverture](/docs/forge/starters/welcome-images/avance/image-cover/) · [Supprimer proprement](/docs/forge/starters/welcome-images/avance/image-delete/) · [Garde de sécurité à l'upload](/docs/forge/starters/welcome-images/avance/image-safety/)
+
+### Fichiers (opt-in `forge-mvc-files`)
+
+[Bonjour Forge Files](/docs/forge/starters/welcome-files/debutant/files-welcome/) · [Stocker un document](/docs/forge/starters/welcome-files/debutant/file-store/) · [Servir un fichier](/docs/forge/starters/welcome-files/debutant/file-serve/) · [Valider un upload](/docs/forge/starters/welcome-files/intermediaire/file-validate/) · [Limiter les uploads](/docs/forge/starters/welcome-files/intermediaire/file-rate-limit/) · [Supprimer un fichier](/docs/forge/starters/welcome-files/intermediaire/file-delete/) · [Assainir un nom de fichier](/docs/forge/starters/welcome-files/avance/file-safe-name/) · [Chemin anti-traversal](/docs/forge/starters/welcome-files/avance/file-safe-path/) · [Écrire des octets générés](/docs/forge/starters/welcome-files/avance/file-bytes/)
+
+### Audio (opt-in `forge-mvc-audio`)
+
+[Bonjour Forge Audio](/docs/forge/starters/welcome-audio/debutant/audio-welcome/) · [Téléverser un audio](/docs/forge/starters/welcome-audio/debutant/audio-upload/) · [Lire un audio](/docs/forge/starters/welcome-audio/debutant/audio-play/) · [Sonder un audio](/docs/forge/starters/welcome-audio/avance/audio-probe/) · [Transcoder en MP3](/docs/forge/starters/welcome-audio/avance/audio-transcode/) · [Diagnostiquer le module Audio](/docs/forge/starters/welcome-audio/avance/audio-doctor/)
+
+### MFA (opt-in `forge-mvc-mfa`)
+
+[Bonjour Forge MFA](/docs/forge/starters/welcome-mfa/debutant/mfa-welcome/) · [Secret TOTP et QR](/docs/forge/starters/welcome-mfa/debutant/mfa-secret/) · [Vérifier un code TOTP](/docs/forge/starters/welcome-mfa/debutant/mfa-verify/) · [Enrôler un facteur TOTP](/docs/forge/starters/welcome-mfa/intermediaire/mfa-enroll/) · [Challenge de connexion](/docs/forge/starters/welcome-mfa/intermediaire/mfa-challenge/) · [Codes de récupération](/docs/forge/starters/welcome-mfa/intermediaire/mfa-recovery/) · [Revalidation (step-up)](/docs/forge/starters/welcome-mfa/avance/mfa-revalidation/) · [Anti-rejeu TOTP](/docs/forge/starters/welcome-mfa/avance/mfa-replay/) · [Secret chiffré au repos](/docs/forge/starters/welcome-mfa/avance/mfa-crypto/)
+
+### RBAC (opt-in `forge-mvc-rbac`)
+
+[Bonjour Forge RBAC](/docs/forge/starters/welcome-rbac/debutant/rbac-welcome/) · [Code de permission](/docs/forge/starters/welcome-rbac/debutant/rbac-permission/) · [Rôle et slug](/docs/forge/starters/welcome-rbac/debutant/rbac-role/) · [Vérifier une permission](/docs/forge/starters/welcome-rbac/intermediaire/rbac-check/) · [Protéger une route](/docs/forge/starters/welcome-rbac/intermediaire/rbac-guard/) · [Permission dans un template](/docs/forge/starters/welcome-rbac/intermediaire/rbac-template/) · [Associer un rôle à un utilisateur](/docs/forge/starters/welcome-rbac/avance/rbac-user-role/) · [Résoudre les permissions](/docs/forge/starters/welcome-rbac/avance/rbac-resolve/) · [Rôles de la requête](/docs/forge/starters/welcome-rbac/avance/rbac-request-roles/)
+
+### Workflow (opt-in `forge-mvc-workflow`)
+
+[Bonjour Forge Workflow](/docs/forge/starters/welcome-workflow/debutant/workflow-welcome/) · [Nom de statut](/docs/forge/starters/welcome-workflow/debutant/workflow-status/) · [Retrouver un statut](/docs/forge/starters/welcome-workflow/debutant/workflow-find/) · [Déclarer les transitions](/docs/forge/starters/welcome-workflow/intermediaire/workflow-transition/) · [Vérifier une transition](/docs/forge/starters/welcome-workflow/intermediaire/workflow-check/) · [Transitions disponibles](/docs/forge/starters/welcome-workflow/intermediaire/workflow-available/) · [Badge de statut](/docs/forge/starters/welcome-workflow/avance/workflow-badge/) · [Couleur, libellé, classe](/docs/forge/starters/welcome-workflow/avance/workflow-color/) · [Helpers Workflow dans Jinja](/docs/forge/starters/welcome-workflow/avance/workflow-jinja/)
+
+### Stats (opt-in `forge-mvc-stats`)
+
+[Bonjour Forge Stats](/docs/forge/starters/welcome-stats/debutant/stats-welcome/) · [Nom d'événement](/docs/forge/starters/welcome-stats/debutant/stats-event/) · [Le schéma SQL](/docs/forge/starters/welcome-stats/debutant/stats-schema/) · [Le SQL d'insertion](/docs/forge/starters/welcome-stats/intermediaire/stats-track-sql/) · [Enregistrer un événement](/docs/forge/starters/welcome-stats/intermediaire/stats-track/) · [Valider un événement](/docs/forge/starters/welcome-stats/intermediaire/stats-validate/) · [Le SQL de consultation](/docs/forge/starters/welcome-stats/avance/stats-admin-sql/) · [Lister les événements](/docs/forge/starters/welcome-stats/avance/stats-list/) · [Normaliser une ligne](/docs/forge/starters/welcome-stats/avance/stats-normalize/)
+
+### Mail (opt-in `forge-mvc-mail`)
+
+[Bonjour Forge Mail](/docs/forge/starters/welcome-mail/debutant/mail-welcome/) · [Composer un message](/docs/forge/starters/welcome-mail/debutant/mail-message/) · [Choisir un transport](/docs/forge/starters/welcome-mail/intermediaire/mail-transport/) · [Rendre un template](/docs/forge/starters/welcome-mail/intermediaire/mail-template/) · [Configurer l'envoi](/docs/forge/starters/welcome-mail/avance/mail-config/) · [Diagnostiquer le module Mail](/docs/forge/starters/welcome-mail/avance/mail-doctor/)
 
 ## Progression recommandée
 
 Le starter `Bonjour Forge` est volontairement minimal (deux routes texte,
-zéro vue HTML, zéro base de données). **Ne sautez pas directement au
-starter Contacts CRUD** : plusieurs notions intermédiaires permettent
-d'aborder le CRUD sereinement. La progression officielle est :
+zéro vue HTML, zéro base de données). **Ne sautez pas directement aux
+notions SQL** : plusieurs paliers intermédiaires permettent d'aborder
+l'accès base sereinement. La progression officielle est :
 
 1. **Bonjour Forge** — afficher une réponse texte avec `Response.text(...)`.
    *(livré — starter `welcome`)*
@@ -49,268 +87,46 @@ d'aborder le CRUD sereinement. La progression officielle est :
    *(livré — starter `dynamic-route`, ticket `STARTER-DYNAMIC-ROUTE-001`)*
 5. **Inspecter une requête** — explorer `request.data` avec `Response.debug(...)` en développement.
    *(livré — starter `request-debug`, ticket `STARTER-REQUEST-DEBUG-001`)*
-6. **Premier formulaire POST** — envoyer des données depuis un formulaire HTML.
+6. **Réponse JSON** — retourner des données structurées avec `Response.json(...)`.
+   *(livré — starter `json-response`, ticket `STARTER-JSON-RESPONSE-001`)*
+7. **Le jeton CSRF** — comprendre la protection CSRF des formulaires.
+   *(livré — starter `csrf`, ticket `STARTER-CSRF-001`)*
+8. **Premier formulaire POST** — envoyer des données depuis un formulaire HTML.
    *(livré — starter `form-post`, ticket `STARTER-FORM-POST-001`)*
-7. **Validation serveur** — refuser ou accepter les données reçues.
+9. **Validation serveur** — refuser ou accepter les données reçues.
    *(livré — starter `server-validation`, ticket `STARTER-SERVER-VALIDATION-001`)*
-8. **Première base SQL** — comprendre MariaDB, les migrations et le SQL visible.
+10. **Première base SQL** — lire une donnée : MariaDB, migrations et SQL visible.
    *(livré — starter `first-sql`, ticket `STARTER-FIRST-SQL-001`)*
-9. **Premier CRUD** — utiliser le starter Contacts quand les bases précédentes sont acquises.
-   *(livré — starter `01-contact-simple` ; synthèse avancée, repositionnement pédagogique formalisé par `STARTER-CONTACTS-CRUD-REPOSITION-001`)*
+11. **Écrire en base** — insérer une ligne depuis un formulaire avec `db.insert(...)`.
+   *(livré — starter `first-sql-write`, ticket `STARTER-FIRST-SQL-WRITE-001`)*
 
-!!! warning "Saut Bonjour Forge → Contacts CRUD"
-    Tant que les starters 2 à 8 ne sont pas livrés, un utilisateur qui
-    enchaîne directement `welcome` → `01-contact-simple` rencontre
-    plusieurs notions (vue Jinja2, route dynamique, formulaire,
-    validation, SQL, migrations) sans transition. Le ticket
-    `STARTER-ROADMAP-PROGRESSION-001` formalise cette dette
-    pédagogique ; les tickets `STARTER-*-001` listés ci-dessus la
-    soldent étape par étape.
+Une fois ces **11 paliers** acquis, vous avez terminé le starter de
+découverte *Bonjour Forge*. Vous pouvez ensuite explorer les progressions
+opt-in dédiées (IoT, vidéo, images, fichiers, audio, MFA, RBAC, workflow,
+stats), chacune autonome et présentée par niveau dans le catalogue ci-dessus.
 
 Le tableau de synthèse plus haut reste utile comme catalogue exhaustif
 des starters disponibles aujourd'hui, mais l'ordre d'apprentissage
-recommandé est celui des 9 paliers ci-dessus.
-
-## Starter d'entrée (sans base de données)
-
-### Bonjour Forge — premier pas
-
-Le starter d'entrée minimal de Forge. Aucune base de données, aucune
-vue HTML, aucun moteur Jinja2. Deux routes texte qui montrent le
-chemin le plus court entre une requête et une réponse.
-
-Ce starter est référencé en interne comme `Bienvenue dans Forge` (alias
-historique conservé).
-
-Profil recommandé : aucun — fonctionne sans `forge db:init`.
-
-- `GET /welcome` → `Response.text("Bonjour Forge")` ;
-- `GET /welcome/greet?name=Roger` → `Response.text("Bonjour Roger")` ;
-- introduction à `request.param(key, default=...)` ;
-- déclaration des routes dans `mvc/routes.py`.
-
-**Usage :**
-
-```bash
-forge new mon-projet --starter welcome
-# alias acceptés : bonjour, bonjour-forge, bienvenue, 7
-# ou dans un projet existant :
-forge starter:build 7
-```
-
-[Présentation](welcome/index.md)
-
-## Starters officiels simples
-
-### Starter 1 — Contacts
-
-Le starter officiel simple de Forge. Une seule entité `Contact`, un CRUD généré, des routes câblées manuellement.
-
-Profil recommandé : `minimal` ou `standard`.
-
-- **palier 9** de la progression pédagogique officielle — synthèse avancée ;
-- aucune relation, aucune authentification ;
-- suppose acquis les 8 paliers pédagogiques précédents
-  (routes, contrôleurs, vues HTML, paramètres d'URL, route dynamique,
-  formulaires POST avec CSRF, validation serveur, migrations SQL).
-
-Pour le **premier** contact avec Forge, démarrer par
-[Bonjour Forge](welcome/index.md) (palier 1, sans BDD), pas par ce
-starter.
-
-[Présentation](01-contact-simple/index.md) · [Reconstruction](01-contact-simple/rebuild.md)
-
-### Starter 3 — Carnet de contacts
-
-Le starter officiel relationnel de Forge. Deux entités (`Ville` et `Contact`), une relation `many_to_one`, un `LEFT JOIN` SQL visible.
-
-Profil recommandé : `standard`.
-
-- idéal pour comprendre les relations entre entités ;
-- montre `relations.json`, la clé étrangère et la requête JOIN.
-
-[Présentation](03-carnet-contacts/index.md) · [Reconstruction](03-carnet-contacts/rebuild.md)
-
-## Starter Auth minimal moderne
-
-### Starter 2 — Utilisateurs / Auth
-
-Un exemple d'authentification minimale alignée sur le socle `core.auth` de Forge.
-
-Profil recommandé : `standard`.
-
-- login / logout avec sessions CSRF ;
-- `@login_required`, `login_user`, `logout_user`, `verify_password` depuis `core.auth` ;
-- dashboard protégé, page profil.
-
-!!! info "Limites du starter 2"
-    Ce starter ne démontre pas MFA, OIDC, RBAC avancé, reset password complet ou administration utilisateurs.
-
-[Présentation](02-utilisateurs-auth/index.md) · [Reconstruction](02-utilisateurs-auth/rebuild.md)
-
-## Démonstrateur historique
-
-### Starter 4 — Suivi pédagogique
-
-Un exemple pédagogique historique conservé comme référence. Il montre une application métier plus riche : plusieurs entités, relations, seed et un flux d'authentification ancien.
-
-!!! warning "Statut legacy"
-    Ce starter n'est plus recommandé comme base pour un nouveau projet. Son implémentation auth est antérieure au socle `core.auth`. Il reste disponible comme trace pédagogique.
-
-[Présentation](04-suivi-comportement-eleves/index.md) · [Reconstruction](04-suivi-comportement-eleves/rebuild.md)
-
-## Démonstrateur avancé principal
-
-### Starter 5 — Communes & Séjours
-
-Le démonstrateur avancé principal de Forge. Il couvre les briques modernes du framework dans une application cohérente.
-
-Ce starter démontre :
-
-- entités et relations ;
-- pages publiques (`make:public-page`, `make:public-list`, `make:public-show`, `make:public-form`, `make:public-contact`) ;
-- formulaire de contact avec mail ;
-- internationalisation (i18n) ;
-- seed JSON ;
-- médias et fichiers.
-
-[Présentation](communes-sejours/index.md) · [Reconstruction](communes-sejours/rebuild.md)
-
-## Démonstrateur MFA (Alpha)
-
-### Starter 6 — Auth MFA
-
-Un skeleton d'authentification multi-facteurs TOTP basé sur le module opt-in
-`forge-mvc-mfa`. Remplace deux contrôleurs dans un projet déjà initialisé avec
-le profil `auth-mfa`.
-
-Profil recommandé : `auth-mfa`.
-
-- challenge TOTP intercalé entre password et session (`/login/mfa`) ;
-- état temporaire de challenge avec expiration 10 min ;
-- rate-limit et audit des événements MFA inclus.
-
-!!! info "Module Alpha — publié sur PyPI depuis 1.0.0-beta.9"
-    `forge-mvc-mfa` est un opt-in officiel publié sur PyPI au statut
-    **Alpha**. Le secret TOTP est **chiffré au repos** via Fernet
-    (`FORGE_MFA_SECRET_KEY` obligatoire au démarrage,
-    `SEC-MFA-SECRET-ENCRYPTION-001`). Installation :
-
-    ```bash
-    pip install --pre forge-mvc-mfa
-    ```
-
-    Le passage Alpha → Beta reste un ticket futur, voir
-    `packages/forge-mvc-mfa/README.md`.
-
-[Présentation](auth-mfa/index.md) · [Reconstruction](auth-mfa/rebuild.md)
-
-## Démonstrateur IoT (sans broker requis)
-
-### Bonjour IoT
-
-Premier contact avec le module opt-in `forge-mvc-iot`. Fonctionne
-**sans broker MQTT** et **sans table créée** — les routes de lecture
-détectent et signalent pédagogiquement quand `iot_events` n'est pas
-encore disponible (HTTP 503 avec message clair, pas une trace
-technique).
-
-Aucun profil requis. Identifiant : `welcome-iot` (alias `bonjour-iot`
-/ `iot` / `15`).
-
-- `GET /welcome-iot` → `Response.text("Bonjour Forge IoT")` ;
-- `GET /welcome-iot/inspect` → JSON de la configuration IoT, mot de
-  passe masqué (`"***"` ou `null`) ;
-- `GET /welcome-iot/events` → derniers événements via
-  `IotEventRepository.list_recent`, ou message `iot_storage_not_ready`
-  si la table n'existe pas ;
-- `GET /welcome-iot/device/{site}/{device_id}` → événements d'un
-  capteur précis ;
-- en parallèle, l'API HTTP officielle `/api/iot/...` est branchée via
-  `register_iot_routes(router)`.
-
-Aucun subscriber MQTT n'est lancé par le starter — c'est de la lecture
-seule côté HTTP. Avant de tester, lancer `forge iot:doctor` pour
-vérifier que le package, la configuration, la migration et l'API HTTP
-sont en place.
-
-[Présentation](welcome-iot/index.md)
+recommandé est celui des 11 paliers ci-dessus, suivi des progressions
+opt-in de votre choix.
 
 ## Différence entre profil et starter
 
-Un **profil** définit la base technique d'un projet créé avec `forge new`. Il détermine les composants inclus dans l'environnement de départ.
+Un **profil** définit la base technique d'un projet créé avec `forge new`
+(`forge new MonProjet --profile standard`). Un **starter** fournit un exemple
+applicatif générable *après* la création du projet. Ils sont indépendants : un
+profil ne remplace pas un starter, un starter ne modifie pas le profil, et un
+starter peut illustrer un ou plusieurs profils.
+
+Pour choisir un profil : [Profils de projet](/docs/forge/features/profiles/).
+
+## Utiliser un starter
 
 ```bash
-forge new MonProjet --profile standard
+forge starter:list                 # catalogue complet depuis la CLI
+forge starter:build <identifiant>  # ex. : forge starter:build welcome
 ```
 
-Un **starter** fournit un exemple applicatif générable après la création du projet.
-
-```bash
-forge starter:build 5
-```
-
-Les profils et les starters sont indépendants :
-
-- un profil ne remplace pas un starter ;
-- un starter ne modifie pas le profil du projet ;
-- un starter peut illustrer un ou plusieurs profils ;
-- Communes & Séjours est une vitrine avancée, pas un profil.
-
-Pour choisir un profil : [Profils de projet](../profiles.md).
-
-## Génération automatique
-
-```bash
-forge new mon-projet --starter welcome       # Bienvenue (sans BDD) — via forge new
-forge starter:build 1        # Contacts
-forge starter:build 2        # Utilisateurs / Auth
-forge starter:build 3        # Carnet de contacts
-forge starter:build 4        # Suivi pédagogique
-forge starter:build 5        # Communes & Séjours
-forge starter:build 6        # Auth MFA (Alpha)
-forge starter:build 7        # Bienvenue dans Forge (sans BDD)
-```
-
-Pour le starter pédagogique `query-params` (palier 2 de la progression),
-voir la page dédiée [Paramètres d'URL](query-params/index.md) — il
-s'applique par son identifiant public, pas par un numéro.
-
-Les alias `contacts`, `auth`, `carnet`, `suivi`, `communes-sejours`, `query-params` et leurs variantes sont également supportés.
-
-`forge starter:list` affiche la liste complète depuis la CLI.
-
-## Démarrer un starter
-
-```bash
-forge new MonProjet
-cd MonProjet
-source .venv/bin/activate
-forge doctor
-forge db:init
-forge starter:build 1        # remplacer 1 par le numéro souhaité
-```
-
-Chaque page de starter liste les commandes exactes, le modèle de données et les étapes de reconstruction.
-
-## Fichiers de reconstruction
-
-| Starter | Présentation | Reconstruction |
-|---|---|---|
-| Contacts | [Présentation](01-contact-simple/index.md) | [rebuild.md](01-contact-simple/rebuild.md) |
-| Utilisateurs / Auth | [Présentation](02-utilisateurs-auth/index.md) | [rebuild.md](02-utilisateurs-auth/rebuild.md) |
-| Carnet de contacts | [Présentation](03-carnet-contacts/index.md) | [rebuild.md](03-carnet-contacts/rebuild.md) |
-| Suivi pédagogique | [Présentation](04-suivi-comportement-eleves/index.md) | [rebuild.md](04-suivi-comportement-eleves/rebuild.md) |
-| Communes & Séjours | [Présentation](communes-sejours/index.md) | [rebuild.md](communes-sejours/rebuild.md) |
-| Auth MFA | [Présentation](auth-mfa/index.md) | [rebuild.md](auth-mfa/rebuild.md) |
-
-## Statut officiel des starters
-
-| Starter | Statut |
-|---|---|
-| 1 — Contacts | Starter officiel simple |
-| 2 — Utilisateurs / Auth | Auth minimale moderne (`core.auth`) |
-| 3 — Carnet de contacts | Starter officiel relationnel |
-| 4 — Suivi pédagogique | Exemple pédagogique historique / legacy |
-| 5 — Communes & Séjours | Démonstrateur avancé principal |
-| 6 — Auth MFA | Démonstrateur MFA (Alpha) |
+Un starter se génère par son **identifiant public** (`welcome`, `query-params`,
+`iot-welcome`…), pas par un numéro. Chaque page de starter liste les commandes
+exactes, le modèle de données et les étapes de reconstruction.

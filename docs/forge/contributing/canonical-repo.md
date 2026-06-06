@@ -222,11 +222,11 @@ Pendant une récupération, **jamais** :
 
 ## 6. Pour aller plus loin
 
-- [Conventions internes de Forge](conventions.md) — patterns
+- [Conventions internes de Forge](/docs/forge/contributing/conventions/) — patterns
   opérationnels (audit avant action, tests, code, doc).
-- [Vue d'ensemble du contributeur](../contributing.md) — préparation
+- [Vue d'ensemble du contributeur](/docs/forge/philosophy/contributing/) — préparation
   de l'environnement, sélection du ticket, validations canoniques.
-- [Procédure de release](../release.md) — pour les tags officiels,
+- [Procédure de release](/docs/forge/release/release/) — pour les tags officiels,
   qui ne sont **jamais** créés depuis un dépôt secondaire.
 - `CLAUDE.md` (racine du dépôt) — briefing IA, mentionne cette page
   comme étape 0 obligatoire avant tout ticket.

@@ -11,8 +11,8 @@
 - Préfixe : `FT`
 - Un ticket terrain teste une action principale observable.
 - Un ticket terrain ne corrige pas Forge.
-- Chaque ticket détaillé doit respecter le [modèle de ticket FT](../testing/field-test-ticket-template.md).
-- Chaque retour doit respecter le [modèle de retour testeur](../testing/field-test-feedback-template.md).
+- Chaque ticket détaillé doit respecter le [modèle de ticket FT](/docs/forge/testing/field-test-ticket-template/).
+- Chaque retour doit respecter le [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 ---
 

@@ -6,14 +6,14 @@ Guide complet d'installation de Forge sur un poste Windows 11 via
 **WSL2 + Ubuntu 24.04 + VS Code Remote WSL**. À la fin de cette page,
 l'utilisateur dispose d'un projet Forge fonctionnel, lancé par
 `forge run`, avec MariaDB opérationnel et le starter
-[Bonjour Forge](../bonjour-forge.md) répondant sur
+[Bonjour Forge](/docs/forge/guide/bonjour-forge/) répondant sur
 `https://localhost:8000/welcome`.
 
 !!! tip "Public visé"
     Développeur Windows 11 qui souhaite utiliser Forge **comme un
     framework Python installé** (parcours `pipx`). Ce guide ne couvre
     pas la contribution au cœur Forge — pour cela, voir
-    [Mode développement](core-dev.md).
+    [Mode développement](/docs/forge/install/core-dev/).
 
 ---
 
@@ -180,7 +180,7 @@ Vérifier :
 
 ```bash
 forge --version
-# Forge 1.0.0b12
+# Forge 1.0.0b13
 ```
 
 Si la commande `forge` n'est pas trouvée :
@@ -197,7 +197,7 @@ pipx inject forge-mvc --pip-args="--pre" forge-mvc-workflow
 # …
 ```
 
-Voir [Installation — vue d'ensemble](index.md) pour les
+Voir [Installation — vue d'ensemble](/docs/forge/install/) pour les
 détails.
 
 !!! tip "Mettre à jour Forge plus tard"
@@ -206,7 +206,7 @@ détails.
     commande pip à exécuter. `forge update --pre` met à jour Forge
     dans l'environnement courant (`.venv`) — pour une install pipx,
     la commande affichera le bon `pipx upgrade forge-mvc` à lancer.
-    Voir [`forge update`](../reference/cli-commands.md#forge-update).
+    Voir [`forge update`](/docs/forge/reference/cli-commands/#forge-update).
 
 ---
 
@@ -249,7 +249,7 @@ WSL ne démarre pas les services automatiquement au boot. Penser à
 relancer `sudo service mariadb start` après un redémarrage de WSL
 (ou utiliser `systemd` via `/etc/wsl.conf` si vous activez ce mode).
 
-Détails complets : [Préparer MariaDB](mariadb.md).
+Détails complets : [Préparer MariaDB](/docs/forge/install/mariadb/).
 
 !!! warning "Ne pas utiliser `root` MariaDB comme compte admin Forge"
     Sous Ubuntu 24.04 / WSL, le compte `root` MariaDB est généralement
@@ -271,7 +271,7 @@ Détails complets : [Préparer MariaDB](mariadb.md).
     problèmes de permissions/Git/MariaDB liés au montage `/mnt/c`.
 
 Pour suivre la progression pédagogique de la documentation Forge,
-ce guide cible explicitement le starter [Bonjour Forge](../bonjour-forge.md).
+ce guide cible explicitement le starter [Bonjour Forge](/docs/forge/guide/bonjour-forge/).
 Créer un nouveau projet avec ce starter pré-appliqué :
 
 ```bash
@@ -454,7 +454,7 @@ navigateur au premier accès).
 
 En production, `forge run` refuse explicitement de démarrer le
 serveur intégré et affiche la stratégie WSGI à suivre. Voir
-[Déploiement WSGI minimal](../wsgi-deployment.md).
+[Déploiement WSGI minimal](/docs/forge/deployment/wsgi-deployment/).
 
 ---
 
@@ -465,13 +465,11 @@ Depuis Windows, ouvrir le navigateur sur :
 | URL | Réponse attendue |
 |---|---|
 | `https://localhost:8000/welcome` | Texte brut : `Bonjour Forge` |
-| `https://localhost:8000/welcome/greet` | Texte brut : `Bonjour Forge` |
-| `https://localhost:8000/welcome/greet?name=Roger` | Texte brut : `Bonjour Roger` |
 | `https://localhost:8000/` | Page d'accueil par défaut du squelette (HomeController) |
 
 Si une route renvoie 404, vérifier que le starter `welcome` a bien
 été appliqué : `cat mvc/routes.py | grep welcome`. Détails dans
-[Bonjour Forge — starter](../starters/welcome/index.md).
+[Bonjour Forge — starter](/docs/forge/starters/welcome-forge/debutant/welcome/).
 
 ---
 
@@ -571,7 +569,7 @@ Si une route renvoie 404, vérifier que le starter `welcome` a bien
 | `forge db:init` | OK |
 | `forge doctor` | OK |
 | `forge run` actif (autoreload) | OK |
-| Routes `/welcome`, `/welcome/greet` | OK |
+| Route `/welcome` | OK |
 
 > **Forge est installé. Le projet répond. Vous pouvez maintenant
 > créer votre application.**
@@ -582,19 +580,19 @@ Si une route renvoie 404, vérifier que le starter `welcome` a bien
 
 | Étape suivante | Ressource |
 |---|---|
-| Comprendre le parcours Bonjour Forge | [Bonjour Forge](../bonjour-forge.md) |
-| Démarrer un vrai projet | [Démarrer avec Forge](../getting-started.md) |
-| Première application complète | [Application complète](../app-complete-tutorial.md) |
-| Catalogue des starters | [Vue d'ensemble des starters](../starters/index.md) |
-| Référence HTTP | [Convention HTTP inspectable](../reference/http.md) |
-| Toutes les commandes CLI | [Commandes CLI](../reference/cli-commands.md) |
+| Comprendre le parcours Bonjour Forge | [Bonjour Forge](/docs/forge/guide/bonjour-forge/) |
+| Démarrer un vrai projet | [Démarrer avec Forge](/docs/forge/guide/getting-started/) |
+| Première application complète | [Application complète](/docs/forge/guide/app-complete-tutorial/) |
+| Catalogue des starters | [Vue d'ensemble des starters](/docs/forge/starters/) |
+| Référence HTTP | [Convention HTTP inspectable](/docs/forge/reference/http/) |
+| Toutes les commandes CLI | [Commandes CLI](/docs/forge/reference/cli-commands/) |
 
 ---
 
 ## Voir aussi
 
-- [Installation — vue d'ensemble](index.md)
-- [Installation avec pipx](pipx.md)
-- [Installation Windows (page courte historique)](windows.md)
-- [Préparer MariaDB](mariadb.md)
-- [Roadmap Forge](../roadmap/forge-roadmap.md) — ticket `INSTALL-WSL-DOCS-001`
+- [Installation — vue d'ensemble](/docs/forge/install/)
+- [Installation avec pipx](/docs/forge/install/pipx/)
+- [Installation Windows (page courte historique)](/docs/forge/install/windows/)
+- [Préparer MariaDB](/docs/forge/install/mariadb/)
+- [Roadmap Forge](/docs/forge/roadmap/forge-roadmap/) — ticket `INSTALL-WSL-DOCS-001`

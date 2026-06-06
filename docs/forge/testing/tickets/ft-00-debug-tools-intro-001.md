@@ -42,7 +42,7 @@ Ce ticket vérifie que :
 
 ### Inclus
 
-- lecture de la page [Outils de diagnostic](../field-test-debug-tools.md) ;
+- lecture de la page [Outils de diagnostic](/docs/forge/testing/field-test-debug-tools/) ;
 - exécution de `forge doctor` ;
 - exécution de `forge project:check` ;
 - exécution de `forge routes:list` (si un projet Forge est disponible) ;
@@ -173,7 +173,7 @@ Pour ce ticket, transposer avec la sortie réelle obtenue sur l'environnement de
 
 ## 10. Procédure de test
 
-1. Lire la page [Outils de diagnostic](../field-test-debug-tools.md) en entier.
+1. Lire la page [Outils de diagnostic](/docs/forge/testing/field-test-debug-tools/) en entier.
 2. Ouvrir un terminal dans le répertoire d'un projet Forge (ou n'importe quel répertoire pour `forge doctor`).
 3. Exécuter `forge doctor`. Copier la sortie complète.
 4. Depuis la racine d'un projet Forge, exécuter `forge project:check`. Copier la sortie.
@@ -242,7 +242,7 @@ Ajouter si utile :
 
 ## 15. Retour d'expérience attendu
 
-Le testeur doit répondre au [modèle de retour testeur](../field-test-feedback-template.md).
+Le testeur doit répondre au [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 Points obligatoires :
 

@@ -44,6 +44,15 @@ WHITELISTED_SUBDIRS: tuple[str, ...] = (
     # publiés à partir de 1.0.0-beta.12.
     "iot",
     "architecture",
+    # Réorganisation de la documentation en 1.0.0-beta.13
+    # (docs/guide/, features/, philosophy/, release/, deployment/) plus
+    # l'opt-in `forge-mvc-video` (docs/video/).
+    "deployment",
+    "features",
+    "guide",
+    "philosophy",
+    "release",
+    "video",
 )
 
 # Extensions de fichiers autorisées.
@@ -178,12 +187,12 @@ def copy_whitelisted_tree(
 # Substitutions statiques des macros normalement injectées par le hook
 # ``tools/mkdocs_version_hook.py`` de Forge core. Le hook n'est pas porté
 # dans Forge-official-site ; on remplace donc ces placeholders à l'import.
-# Source de vérité : pyproject.toml de Forge core (1.0.0b12 au 2026-05-29).
+# Source de vérité : pyproject.toml de Forge core (1.0.0b13 au 2026-06-06).
 FORGE_MACROS: dict[str, str] = {
-    "{{forge_version}}": "1.0.0b12",
-    "{{ forge_version }}": "1.0.0b12",
-    "{{forge_tag}}": "v1.0.0-beta.12",
-    "{{ forge_tag }}": "v1.0.0-beta.12",
+    "{{forge_version}}": "1.0.0b13",
+    "{{ forge_version }}": "1.0.0b13",
+    "{{forge_tag}}": "v1.0.0-beta.13",
+    "{{ forge_tag }}": "v1.0.0-beta.13",
     "{{python_min}}": "3.12",
     "{{ python_min }}": "3.12",
 }
@@ -198,10 +207,57 @@ def sanitize_imported_markdown(dest: Path) -> int:
     """
     import re
 
+    import posixpath
+
     # Rewrites only the URL part of Markdown links and HTML hrefs that
     # *end with* ``index.html`` (preserving any relative prefix).
     md_link_re = re.compile(r"(\]\()([^)\s]*?)(index\.html)([)#?])")
     html_href_re = re.compile(r"((?:href|src)=[\"'])([^\"']*?)(index\.html)([\"'#?])")
+
+    # MkDocs ne réécrit pas certains liens Markdown relatifs vers d'autres
+    # pages/assets — notamment dans les grandes cellules de tableau du roadmap
+    # et de l'historique (liens dont le texte est du code inline, ou liens
+    # internes que le treeprocessor de chemins relatifs laisse « tels quels »).
+    # La cible `.md`/asset reste alors brute dans le HTML et, à cause des URLs
+    # en répertoire, pointe un niveau trop bas → lien cassé signalé par
+    # check_local_links. On pré-résout donc, à l'import, *tout* lien relatif
+    # interne en URL absolue `/docs/forge/…` — uniquement si la cible existe
+    # réellement (garde-fou : on ne touche jamais un lien qui ne résout pas, et
+    # MkDocs laisse intacte une URL absolue qui ne finit pas par `.md`).
+    md_rel_link_re = re.compile(
+        r"(!?\]\()"                 # 1: ]( ou ![…](
+        r"([^)\s#]+)"              # 2: cible (chemin)
+        r"(#[^)\s]*)?"             # 3: ancre éventuelle
+        r"(\))"                     # 4: )
+    )
+    rewritable_suffixes = tuple(ALLOWED_EXTENSIONS)
+
+    def absolute_doc_url(source_rel_dir: str, target: str) -> str | None:
+        """Convertit une cible relative interne en URL absolue `/docs/forge/…`.
+
+        Retourne ``None`` (lien laissé intact) si la cible est externe/absolue,
+        n'a pas une extension connue, s'échappe de ``forge/``, ou n'existe pas
+        sur le disque sous la destination importée.
+        """
+        if target.startswith(("/", "http://", "https://", "mailto:", "tel:")):
+            return None
+        if not target.lower().endswith(rewritable_suffixes):
+            return None
+        resolved = posixpath.normpath(posixpath.join(source_rel_dir, target))
+        if not resolved.startswith("forge/") and resolved != "forge":
+            return None
+        # Vérifie l'existence réelle (dest == docs/forge).
+        fs_target = dest / resolved[len("forge/") :]
+        if not fs_target.exists():
+            return None
+        if resolved.endswith("/index.md"):
+            return "/docs/" + resolved[: -len("index.md")]
+        if resolved == "forge/index.md":
+            return "/docs/forge/"
+        if resolved.endswith(".md"):
+            return "/docs/" + resolved[: -len(".md")] + "/"
+        # Asset (image, .ino, …) : URL directe vers le fichier, extension gardée.
+        return "/docs/" + resolved
 
     changed = 0
     for md in dest.rglob("*.md"):
@@ -212,6 +268,20 @@ def sanitize_imported_markdown(dest: Path) -> int:
         rewritten = html_href_re.sub(
             lambda m: f"{m.group(1)}{m.group(2)}index.md{m.group(4)}", rewritten
         )
+
+        rel = md.relative_to(dest)
+        rel_dir = rel.parent.as_posix()
+        source_rel_dir = "forge" if rel_dir == "." else f"forge/{rel_dir}"
+
+        def _rewrite_link(m: "re.Match[str]") -> str:
+            url = absolute_doc_url(source_rel_dir, m.group(2))
+            if url is None:
+                return m.group(0)
+            anchor = m.group(3) or ""
+            return f"{m.group(1)}{url}{anchor}{m.group(4)}"
+
+        rewritten = md_rel_link_re.sub(_rewrite_link, rewritten)
+
         # Substitution des macros Forge core (version, tag, python_min).
         for placeholder, value in FORGE_MACROS.items():
             rewritten = rewritten.replace(placeholder, value)

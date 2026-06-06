@@ -52,7 +52,7 @@ La commande officielle de diagnostic reste :
 python forge.py entity:validate
 ```
 
-Voir [Autocomplétion VS Code](vscode-json-schema.md) pour la configuration
+Voir [Autocomplétion VS Code](/docs/forge/entities/vscode-json-schema/) pour la configuration
 détaillée de l'aide à la saisie.
 
 ---
@@ -100,7 +100,7 @@ comme fonctionnalité complète. C'est une limite assumée, pas un oubli.
 ## Mapping SQL : limites actuelles
 
 Le mapping des types Forge vers MariaDB est documenté dans
-[Types Forge vers MariaDB](types-forge-mariadb.md). Certaines limites sont
+[Types Forge vers MariaDB](/docs/forge/entities/types-forge-mariadb/). Certaines limites sont
 assumées :
 
 | Propriété | Comportement actuel |

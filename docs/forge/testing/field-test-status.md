@@ -2,7 +2,7 @@
 
 [Accueil](../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
-Cette page donne une vue synthétique de l'avancement de la campagne de tests terrain Forge. Elle ne remplace pas la [roadmap complète](../roadmap/forge-field-test-roadmap.md) ni le [détail des tickets disponibles](tickets/index.md).
+Cette page donne une vue synthétique de l'avancement de la campagne de tests terrain Forge. Elle ne remplace pas la [roadmap complète](/docs/forge/roadmap/forge-field-test-roadmap/) ni le [détail des tickets disponibles](/docs/forge/testing/tickets/).
 
 ---
 
@@ -90,10 +90,10 @@ Cette page donne une vue synthétique de l'avancement de la campagne de tests te
 
 **Tickets FT rédigés :**
 
-- [FT-00-TEST-CHARTER-001](tickets/ft-00-test-charter-001.md) — lire et valider la charte de campagne
-- [FT-00-FEEDBACK-TEMPLATE-001](tickets/ft-00-feedback-template-001.md) — remplir un retour d'expérience à blanc
-- [FT-00-DOC-ERROR-PROTOCOL-001](tickets/ft-00-doc-error-protocol-001.md) — appliquer la procédure documentation erronée
-- [FT-00-DEBUG-TOOLS-INTRO-001](tickets/ft-00-debug-tools-intro-001.md) — découvrir les outils de diagnostic Forge
+- [FT-00-TEST-CHARTER-001](/docs/forge/testing/tickets/ft-00-test-charter-001/) — lire et valider la charte de campagne
+- [FT-00-FEEDBACK-TEMPLATE-001](/docs/forge/testing/tickets/ft-00-feedback-template-001/) — remplir un retour d'expérience à blanc
+- [FT-00-DOC-ERROR-PROTOCOL-001](/docs/forge/testing/tickets/ft-00-doc-error-protocol-001/) — appliquer la procédure documentation erronée
+- [FT-00-DEBUG-TOOLS-INTRO-001](/docs/forge/testing/tickets/ft-00-debug-tools-intro-001/) — découvrir les outils de diagnostic Forge
 
 **Tickets FT restant à rédiger :** FT-00-SEVERITY-SCALE-001, FT-00-GUIDANCE-LEVELS-001, FT-00-HELP-LEVELS-001, FT-00-TICKET-FORMAT-001, FT-00-TRIAGE-RULES-001, FT-00-ENV-MATRIX-001
 
@@ -111,8 +111,8 @@ Cette page donne une vue synthétique de l'avancement de la campagne de tests te
 
 **Tickets FT rédigés :**
 
-- [FT-01-INSTALL-PIPX-001](tickets/ft-01-install-pipx-001.md) — installer Forge via pipx
-- [FT-01-INSTALL-VERSION-CHECK-001](tickets/ft-01-install-version-check-001.md) — vérifier la version installée
+- [FT-01-INSTALL-PIPX-001](/docs/forge/testing/tickets/ft-01-install-pipx-001/) — installer Forge via pipx
+- [FT-01-INSTALL-VERSION-CHECK-001](/docs/forge/testing/tickets/ft-01-install-version-check-001/) — vérifier la version installée
 
 **Tickets FT restant à rédiger :** FT-01-INSTALL-VENV-001, FT-01-INSTALL-GITHUB-001, FT-01-INSTALL-DEV-EDITABLE-001, FT-01-INSTALL-WINDOWS-WSL-001, FT-01-INSTALL-DEBIAN-VM-001, FT-01-INSTALL-UNINSTALL-001, FT-01-PHASE-REVIEW-001
 

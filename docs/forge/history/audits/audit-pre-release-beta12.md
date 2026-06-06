@@ -12,7 +12,7 @@
     les ~41 échecs introduits par les chantiers IoT/opt-ins ont été
     corrigés (allow-lists `forge_mvc_iot`/`optins`, `importorskip` dans
     les tests IoT, `release-local.md` starter 15, classifier PyPI
-    `forge-mvc-iot`, version `1.0.0b12` dans `doctor.md`), et la
+    `forge-mvc-iot`, version `1.0.0b13` dans `doctor.md`), et la
     baseline pré-existante (migration `forgemvc.com`, README simplifié) a
     été traitée en alignant les garde-fous stale sur l'état canonique
     (sans les supprimer). La voie est libre pour `RELEASE-BETA12-001`.
@@ -61,12 +61,12 @@ bloc IoT. Les commits IoT et opt-ins sont bien présents.
 ## Tickets livrés depuis beta.11
 
 - **Forge IoT** : `IOT-ARCHITECTURE-001` → `IOT-CLI-COMMANDS-DOCS-REFERENCE-001`
-  + `IOT-CLOSING-AUDIT-001` (voir [audit de clôture IoT](audit-iot-closing.md)).
+  + `IOT-CLOSING-AUDIT-001` (voir [audit de clôture IoT](/docs/forge/history/audits/audit-iot-closing/)).
 - **Opt-ins projet** : `OPTINS-PROJECT-STRUCTURE-001`,
   `OPTINS-IOT-PROJECT-BRIDGE-001`, `OPTINS-CLI-ENABLE-AUDIT-001`,
   `OPTINS-CLI-ENABLE-IOT-001`, `OPTINS-CLI-ENABLE-ROUTES-APPLY-001`,
   `OPTINS-CLI-LIST-001`, `OPTINS-CLOSING-AUDIT-001` (voir
-  [audit de clôture opt-ins](audit-optins-closing.md)).
+  [audit de clôture opt-ins](/docs/forge/history/audits/audit-optins-closing/)).
 
 ## Bloc Forge IoT
 

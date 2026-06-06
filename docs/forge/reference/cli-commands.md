@@ -158,11 +158,8 @@ forge new <NomProjet> --profile <profil>
 
 | Profil | Description |
 |---|---|
-| `contact-simple` | CRUD simple de contacts |
+| `first-crud-generated` | CRUD généré sur une entité neutre |
 | `utilisateurs-auth` | Login, sessions, routes protégées, CSRF |
-| `carnet-contacts` | Carnet relationnel avec relations SQL |
-| `suivi-comportement-eleves` | Auth, dashboard, entités liées |
-| `communes-sejours` | Pages publiques, formulaire, mail |
 | `auth-mfa` | Auth + MFA TOTP (nécessite forge-mvc-mfa) |
 
 **Exemple :**
@@ -172,7 +169,7 @@ forge new GestionVentes
 forge new MonAppli --profile auth-mfa
 ```
 
-**Voir aussi :** [Profils de projet](profils.md)
+**Voir aussi :** [Profils de projet](/docs/forge/reference/profils/)
 
 </details>
 
@@ -222,8 +219,8 @@ forge run --no-reload
 live reload navigateur ni de WebSocket ; ne lance pas Gunicorn
 automatiquement en prod.
 
-**Voir aussi :** [Déploiement WSGI minimal](../wsgi-deployment.md),
-[Limites de production](../production-limits.md).
+**Voir aussi :** [Déploiement WSGI minimal](/docs/forge/deployment/wsgi-deployment/),
+[Limites de production](/docs/forge/deployment/production-limits/).
 
 **Statut :** core.
 
@@ -555,7 +552,7 @@ Génère une page de contact publique.
 forge make:public-contact <NomPage>
 ```
 
-**Voir aussi :** [Pages publiques](pages-publiques.md)
+**Voir aussi :** [Pages publiques](/docs/forge/reference/pages-publiques/)
 
 </details>
 
@@ -603,8 +600,12 @@ forge migration:status
 Applique les migrations SQL en attente dans `mvc/migrations/`.
 
 ```bash
-forge migration:apply
+forge migration:apply              # applique réellement en base
+forge migration:apply --dry-run    # liste + imprime le SQL, sans rien écrire
 ```
+
+`--dry-run` affiche les migrations PENDING et leur SQL **sans rien appliquer
+ni écrire en base** ; relancer sans `--dry-run` pour appliquer réellement.
 
 </details>
 
@@ -716,7 +717,7 @@ forge auth:init
 Crée les fichiers SQL (`users.sql`, `sessions.sql`, etc.), les contrôleurs
 et les formulaires d'authentification.
 
-**Voir aussi :** [Auth](../auth.md)
+**Voir aussi :** [Auth](/docs/forge/features/auth/)
 
 </details>
 
@@ -1086,7 +1087,7 @@ n'apparaissent pas dans `forge --help`).
 | Workflow — statuts, transitions | `forge-mvc-workflow` | aucune commande CLI dédiée — usage applicatif |
 | Stats — agrégats et événements | `forge-mvc-stats` | aucune commande CLI dédiée — usage applicatif |
 | MFA — TOTP, codes de récupération | `forge-mvc-mfa` | aucune commande CLI dédiée — voir profil `auth-mfa` dans [`forge new`](#forge-new) |
-| Media — helpers applicatifs upload | `forge-mvc-media` | aucune commande CLI dédiée — usage applicatif |
+| Images (traitement Pillow + couche médias applicative) | `forge-mvc-images` | aucune commande CLI dédiée, usage applicatif |
 | IoT — ingestion MQTT → SQL | `forge-mvc-iot` | [`iot:doctor`](#forge-iotdoctor), [`iot:init`](#forge-iotinit), [`iot:listen`](#forge-iotlisten), [`iot:simulate`](#forge-iotsimulate) |
 
 Installation type (depuis `1.0.0-beta.9`, tous publiés sur PyPI) :
@@ -1096,11 +1097,11 @@ pip install --pre forge-mvc-rbac
 pip install --pre forge-mvc-workflow
 pip install --pre forge-mvc-stats
 pip install --pre forge-mvc-mfa
-pip install --pre forge-mvc-media
 pip install --pre forge-mvc-iot
+pip install --pre forge-mvc-images
 ```
 
-Voir [Installation — Contrat d'installation des opt-ins](../install/index.md#contrat-dinstallation-des-opt-ins).
+Voir [Installation — Contrat d'installation des opt-ins](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
 <details markdown="1" id="forge-rbacvalidate">
 <summary><code>forge rbac:validate</code> - Valide mvc/security/rbac.json avec le schéma RBAC Forge</summary>
@@ -1156,7 +1157,7 @@ défaut** : `--db` ajoute l'accès à `iot_events` (et la conformité du
 schéma), `--mqtt` ajoute une connexion brève au broker (TLS si
 `FORGE_IOT_MQTT_TLS_ENABLED=true`).
 
-**Voir aussi :** [Diagnostic Forge IoT](../iot/doctor.md)
+**Voir aussi :** [Diagnostic Forge IoT](/docs/forge/iot/doctor/)
 
 </details>
 
@@ -1177,7 +1178,7 @@ identique, ne réécrit jamais une copie modifiée).
 
 **Étape suivante :** `forge migration:apply`.
 
-**Voir aussi :** [forge iot:init](../iot/init-command.md)
+**Voir aussi :** [forge iot:init](/docs/forge/iot/init-command/)
 
 </details>
 
@@ -1196,7 +1197,7 @@ production (pas de retry/backoff, pas de batch). `Ctrl+C` arrête
 proprement (déconnexion garantie) puis affiche un résumé de session
 (mesures reçues / stockées / erreurs de contrat / erreurs de stockage).
 
-**Voir aussi :** [forge iot:listen](../iot/listen-command.md)
+**Voir aussi :** [forge iot:listen](/docs/forge/iot/listen-command/)
 
 </details>
 
@@ -1216,7 +1217,7 @@ Options : `--profile temperature|humidity|presence|energy` (défauts prêts
 `--count` (1..1000), `--interval` (0..60 s). **Ne lance pas** le
 subscriber et **ne touche pas** la base : publie uniquement sur MQTT.
 
-**Voir aussi :** [Simulateur Forge IoT](../iot/simulator.md)
+**Voir aussi :** [Simulateur Forge IoT](/docs/forge/iot/simulator/)
 
 </details>
 
@@ -1232,72 +1233,209 @@ forge iot:listen                                       # 6. écouter et stocker 
 forge iot:simulate --profile temperature --count 3 --interval 1   # 7. publier (autre terminal)
 ```
 
-## Opt-ins (branchement projet)
+## Vidéo (opt-in `forge-mvc-video`)
 
-Commandes de **branchement local** des opt-ins dans un projet
-(convention [`optins/`](../architecture/optins-project-structure.md)).
-Elles ne déplacent ni n'installent les paquets ; elles câblent l'opt-in
-dans le projet, de façon explicite.
+<details markdown="1" id="forge-videodoctor">
+<summary><code>forge video:doctor</code> - Diagnostic du module vidéo (statique : package, config, ffmpeg/ffprobe)</summary>
 
-<details markdown="1" id="forge-optinenable">
-<summary><code>forge optin:enable</code> - Branche un opt-in dans le projet (optins/) — dry-run par défaut</summary>
-
-Crée la couche `optins/` qui branche un opt-in dans le projet courant.
-Premier opt-in supporté : `iot` (paquet `forge-mvc-iot`).
+Diagnostic du module opt-in `forge-mvc-video`. **Statique** : ne lance aucun
+`ffmpeg`, n'ouvre aucun fichier vidéo et ne touche à aucune base.
 
 ```bash
-forge optin:enable iot              # dry-run : montre ce qui serait créé
-forge optin:enable iot --apply      # crée réellement optins/iot/
-forge optin:enable iot --dry-run    # dry-run explicite
+forge video:doctor        # diagnostic statique du module vidéo
 ```
 
-**Dry-run par défaut** : sans `--apply`, rien n'est écrit. `--apply` crée
-les fichiers absents (`optins/__init__.py`, `optins/registry.py`,
-`optins/iot/__init__.py`, `optins/iot/routes.py`, `optins/iot/README.md`,
-`optins/iot/migrations/README.md`). La commande est **idempotente** : un
-fichier déjà présent et identique → `[OK] déjà présent` ; présent mais
-différent → `[WARN]`, **aucune écriture**.
-
-**Branchement `mvc/routes.py`** (depuis `OPTINS-CLI-ENABLE-ROUTES-APPLY-001`) :
-avec `--apply`, la commande peut brancher `mvc/routes.py` **uniquement si
-sa structure est reconnue** (présence de `router = Router()`) — elle
-ajoute alors l'import `from optins.registry import register_optins` et
-l'appel `register_optins(router)`. Si le fichier a déjà l'appel → `[OK]
-déjà branché` (idempotent, pas de doublon). Si la structure est
-**ambiguë** (ou le fichier absent) → `[WARN]` + **aucune modification**,
-l'instruction manuelle est affichée. En dry-run, le branchement est
-seulement annoncé. Pas de marqueurs, pas de découverte automatique.
-
-Le branchement reste **explicite**, sans découverte automatique ; Forge
-Core ne dépend pas des opt-ins. Le paquet doit être installé
-(`pip install --pre forge-mvc-iot`), sinon `[ERREUR]` + exit 1. Voir
-[structure des opt-ins](../architecture/optins-project-structure.md) et
-l'[audit `forge optin:enable`](../architecture/optins-cli-enable-audit.md).
+Vérifie que le package `forge-mvc-video` est importable (et sa version), que
+la configuration `load_video_config()` (`FORGE_VIDEO_*`) est chargeable, que
+les binaires `ffprobe` (validation + métadonnées) et `ffmpeg` (transcodage
+MP4) sont présents dans le PATH, et que `register_video_routes` est exposée.
+Code de sortie `1` si une vérification échoue (par ex. `ffmpeg`/`ffprobe`
+absent du PATH).
 
 </details>
 
-<details markdown="1" id="forge-optinlist">
-<summary><code>forge optin:list</code> - Affiche l'état local des opt-ins connus (lecture seule)</summary>
+<details markdown="1" id="forge-videoinit">
+<summary><code>forge video:init</code> - Copie la migration vidéo vers mvc/migrations/ (idempotent, sans appliquer)</summary>
 
-Affiche l'état local des opt-ins connus dans un projet Forge.
-**Commande lecture seule : elle ne crée, ne modifie et n'installe rien.**
+Copie la migration SQL packagée (`*_create_videos.sql`) du module
+`forge-mvc-video` vers `mvc/migrations/` du projet. **N'exécute aucun SQL** et
+ne touche à aucune base : prépare seulement le fichier.
 
 ```bash
-forge optin:list
+forge video:init          # copie la migration
+forge migration:apply     # crée ensuite la table videos
 ```
 
-Elle inspecte seulement le texte de quelques fichiers du projet
-(`optins/iot/routes.py`, `optins/registry.py`, `mvc/routes.py`) — sans
-importer `forge_mvc_iot`, sans découverte automatique. États détectés
-pour `iot` :
+Idempotent (une migration déjà copiée à l'identique est laissée telle quelle)
+et sans écrasement silencieux (un fichier existant qui diffère → `WARN`).
+Code de sortie `1` si le dossier `mvc/` est absent (pas un projet Forge).
 
-- `absent` : `optins/iot/` n'existe pas ;
-- `partiel` : `optins/iot/` présent, mais `register_optins(router)` absent
-  de `mvc/routes.py` (conseil : `forge optin:enable iot --apply`) ;
-- `activé` : `optins/iot/` présent **et** `register_optins(router)` présent.
+</details>
 
-Complément lecture seule de [`forge optin:enable`](#forge-optinenable).
-Seul l'opt-in `iot` est analysé dans cette version.
+<details markdown="1" id="forge-videoupload">
+<summary><code>forge video:upload</code> - Upload une vidéo source (valide, stocke, statut <code>uploaded</code>)</summary>
+
+Entrée d'upload officielle : valide (taille, extension), stocke la source à un
+emplacement **uuid-based** (anti-traversal) et insère une ligne `videos` au
+statut `uploaded`. N'exécute **aucun** `ffmpeg` — relancer `forge video:process`
+ensuite pour générer le MP4 et le poster.
+
+```bash
+forge video:upload film.mp4
+forge video:upload film.mp4 --title "Conférence 2026"
+```
+
+Code de sortie `1` si l'upload est refusé (taille, extension, fichier vide),
+`2` si le fichier est manquant ou introuvable.
+
+</details>
+
+<details markdown="1" id="forge-videoprocess">
+<summary><code>forge video:process</code> - Traite une vidéo (probe + poster + transcodage MP4)</summary>
+
+Worker de traitement : sonde la source (`ffprobe`), génère un poster et
+transcode en **MP4 H.264/AAC** (`ffmpeg`), puis passe la vidéo en `ready`. Le
+travail lourd se fait ici, **jamais pendant une requête HTTP** (modèle
+worker CLI → base).
+
+```bash
+forge video:process <id>        # traite une vidéo
+forge video:process --pending   # traite toutes les vidéos `uploaded`
+```
+
+`ffmpeg`/`ffprobe` sont requis (vérifier avec `forge video:doctor`). Une vidéo
+dont le traitement échoue passe en `failed` (avec message) sans interrompre
+les autres. Code de sortie `1` si au moins une vidéo échoue ou est introuvable,
+`2` en cas d'usage invalide.
+
+</details>
+
+<details markdown="1" id="forge-videocleanup">
+<summary><code>forge video:cleanup</code> - Purge les vidéos <code>failed</code> et les fichiers orphelins (dry-run par défaut)</summary>
+
+Purge sûre du module vidéo. **dry-run par défaut** : liste ce qui *serait*
+supprimé sans rien toucher ; `--apply` exécute réellement.
+
+```bash
+forge video:cleanup --failed                  # dry-run : vidéos failed
+forge video:cleanup --orphan-files            # dry-run : fichiers non référencés
+forge video:cleanup --failed --apply          # supprime réellement
+```
+
+- `--failed` — supprime les vidéos en statut `failed` (ligne `videos` + fichiers
+  original/mp4/poster) ;
+- `--orphan-files` — supprime les fichiers du stockage non référencés en base ;
+- `--apply` — exécute les suppressions (sinon dry-run).
+
+Aucune suppression hors de `storage_root` (anti-traversal). Code de sortie `2`
+si aucune cible (`--failed` / `--orphan-files`) n'est fournie.
+
+</details>
+
+## Audio (opt-in `forge-mvc-audio`)
+
+<details markdown="1" id="forge-audiodoctor">
+<summary><code>forge audio:doctor</code> - Diagnostic du module audio (statique : package, config, ffmpeg/ffprobe)</summary>
+
+Diagnostic du module opt-in `forge-mvc-audio`. **Statique** : ne lance aucun
+`ffmpeg`, n'ouvre aucun fichier audio et ne touche à aucune base (le module est
+**sans état**).
+
+```bash
+forge audio:doctor        # diagnostic statique du module audio
+```
+
+Vérifie que le package `forge-mvc-audio` est importable (et sa version), que la
+configuration `load_audio_config()` (`FORGE_AUDIO_*`) est chargeable, que les
+binaires `ffprobe` (sondage/métadonnées) et `ffmpeg` (transcodage MP3) sont
+présents dans le PATH, et que `register_audio_routes` est exposée. Code de
+sortie `0` si tout est OK, `1` si une vérification échoue.
+
+</details>
+
+## Opt-ins (branchement projet)
+
+Commandes de **branchement local** des opt-ins dans un projet
+(convention [`optins/`](/docs/forge/architecture/optins-project-structure/)).
+Elles ne déplacent ni n'installent les paquets ; elles câblent l'opt-in
+dans le projet, de façon explicite.
+
+Depuis [ADR-016](/docs/forge/adr/016-opt-in-unification/), les noms canoniques sont
+préfixés `opt-in:`. Les anciennes commandes `optin:*` (sans tiret) ont été
+retirées (palier 3c).
+
+<details markdown="1" id="forge-opt-ininstall">
+<summary><code>forge opt-in:install</code> - Affiche la commande d'installation du package d'un opt-in officiel</summary>
+
+Affiche la commande d'installation du **package** d'un opt-in officiel
+(`pip install --pre forge-mvc-<name>`, ou `pipx inject forge-mvc …` si Forge
+tourne depuis pipx). **N'exécute rien** : la présence du package reste un
+geste explicite de l'utilisateur (ADR-016).
+
+```bash
+forge opt-in:install iot            # affiche la commande pour forge-mvc-iot
+```
+
+Opt-ins officiels : `mfa`, `rbac`, `workflow`, `stats`, `media`, `iot`.
+
+</details>
+
+<details markdown="1" id="forge-opt-inremove">
+<summary><code>forge opt-in:remove</code> - Affiche la commande de désinstallation du package d'un opt-in officiel</summary>
+
+Axe présence (−), miroir d'`opt-in:install`. Affiche la commande de
+désinstallation du **package** (`pip uninstall …` ou `pipx uninject …`).
+**N'exécute rien.** Pour seulement débrancher sans désinstaller, voir
+`opt-in:disable`.
+
+```bash
+forge opt-in:remove iot
+```
+
+</details>
+
+<details markdown="1" id="forge-opt-inenable">
+<summary><code>forge opt-in:enable</code> - Branche un opt-in dans le projet (optins/) — dry-run par défaut</summary>
+
+Nom canonique du branchement (ADR-016). Crée la couche `optins/` qui branche
+un opt-in dans le projet courant.
+
+```bash
+forge opt-in:enable iot             # dry-run : montre ce qui serait créé
+forge opt-in:enable iot --apply     # crée réellement optins/iot/
+```
+
+**Dry-run par défaut** : sans `--apply`, rien n'est écrit. Le paquet doit être
+présent — voir `forge opt-in:install`.
+
+</details>
+
+<details markdown="1" id="forge-opt-indisable">
+<summary><code>forge opt-in:disable</code> - Débranche un opt-in du projet (retire optins/) — dry-run par défaut</summary>
+
+Axe activation (−), inverse exact d'`opt-in:enable`. Retire la couche
+`optins/<name>/` et débranche `register_optins(router)` de `mvc/routes.py`.
+**Laisse le package installé** (voir `opt-in:remove`).
+
+```bash
+forge opt-in:disable iot            # dry-run : montre ce qui serait retiré
+forge opt-in:disable iot --apply    # retire optins/iot/ et débranche
+```
+
+**Garde §9** : un fichier `optins/` modifié à la main est conservé, jamais
+supprimé en silence. Limité à `iot` jusqu'à l'adaptateur (ticket 4).
+
+</details>
+
+<details markdown="1" id="forge-opt-inlist">
+<summary><code>forge opt-in:list</code> - Affiche les opt-ins officiels et leur état (lecture seule)</summary>
+
+Nom canonique de la liste (ADR-016). Affiche les opt-ins officiels et leur
+état local. **Commande lecture seule.**
+
+```bash
+forge opt-in:list
+```
 
 </details>
 
@@ -1310,7 +1448,7 @@ Affiche la version courante de Forge.
 
 ```bash
 $ forge --version
-Forge 1.0.0b12
+Forge 1.0.0b13
 ```
 
 </details>

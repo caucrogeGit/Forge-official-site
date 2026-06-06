@@ -185,7 +185,7 @@ visuels de votre projet.
 ### Import
 
 ```python
-from core.pivot_advanced import (
+from forge_mvc_pivot import (
     PivotAdvancedService,
     PivotFieldConstraint,
     PivotConstraintError,
@@ -193,6 +193,9 @@ from core.pivot_advanced import (
     pivot_error_to_form_error,
 )
 ```
+
+Le pivot avancé est un opt-in extrait du core (ADR-021). Installez le paquet
+avant usage : `pip install --pre forge-mvc-pivot`.
 
 ### Instanciation (sans contraintes — API simple)
 
@@ -415,4 +418,4 @@ python forge.py routes:list
 - L'accès par `id_field` est optionnel et doit être configuré explicitement.
 
 Pour la documentation des tables pivot simples (sans attributs métier),
-voir [Tables pivot many-to-many](pivots-many-to-many.md).
+voir [Tables pivot many-to-many](/docs/forge/entities/pivots-many-to-many/).

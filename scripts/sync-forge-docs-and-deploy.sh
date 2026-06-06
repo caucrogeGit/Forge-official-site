@@ -32,8 +32,9 @@ KEY_PAGES=(
   "index.html"
   "docs/index.html"
   "docs/forge/index.html"
-  "docs/forge/starters/query-params/index.html"
-  "docs/forge/starters/server-validation/index.html"
+  "docs/forge/starters/welcome-forge/debutant/query-params/index.html"
+  "docs/forge/starters/welcome-forge/debutant/server-validation/index.html"
+  "docs/forge/entities/slugs/index.html"
 )
 
 # ── Lock anti-concurrence ─────────────────────────────────────────────────────

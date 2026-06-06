@@ -28,7 +28,7 @@ ESP32  →  MQTT  →  Mosquitto  →  forge iot:listen  →  iot_events  →  /
 - la bibliothèque **PubSubClient** (Nick O'Leary) installée via le
   gestionnaire de bibliothèques ;
 - un **broker Mosquitto** joignable sur le réseau local — voir
-  [Mosquitto local](mosquitto-local.md) ;
+  [Mosquitto local](/docs/forge/iot/mosquitto-local/) ;
 - un projet **Forge** avec `forge-mvc-iot` installé.
 
 ## Contrat MQTT Forge IoT
@@ -61,7 +61,7 @@ Le `timestamp` est en **UTC**, suffixe `Z` — l'exemple l'obtient par NTP.
 ## Code ESP32 minimal
 
 Le sketch complet est ici :
-[`esp32_mqtt_temperature.ino`](examples/esp32_mqtt_temperature.ino).
+[`esp32_mqtt_temperature.ino`](/docs/forge/iot/examples/esp32_mqtt_temperature.ino).
 
 Extrait — les paramètres à adapter et la publication :
 
@@ -108,7 +108,7 @@ sudo systemctl status mosquitto
 forge iot:doctor --mqtt
 ```
 
-Détail : [Mosquitto local](mosquitto-local.md).
+Détail : [Mosquitto local](/docs/forge/iot/mosquitto-local/).
 
 ## Lancer Forge IoT
 
@@ -143,7 +143,7 @@ mosquitto_sub -h localhost -t 'forge/+/+/telemetry' -v
   que le réseau est en 2,4 GHz (l'ESP32 ne gère pas le 5 GHz) ;
 - **Pas de connexion MQTT** : `MQTT_HOST` pointe sur `localhost` au lieu
   de l'IP du PC, ou Mosquitto n'écoute pas (voir
-  [Mosquitto local](mosquitto-local.md)) ;
+  [Mosquitto local](/docs/forge/iot/mosquitto-local/)) ;
 - **Message rejeté par Forge** : topic hors format
   `forge/{site}/{device_id}/telemetry`, ou payload incomplet
   (`kind`/`value`/`unit`/`timestamp` obligatoires) ;
@@ -160,5 +160,5 @@ Cet exemple reste volontairement simple. Sont **hors périmètre** :
   pas une dépendance de Forge ;
 - **Arduino R4 n'est pas couvert ici** (hors périmètre) — ce ticket
   cible l'ESP32, la cible la plus simple et la plus standard pour MQTT.
-  Voir l'[évaluation Arduino R4](arduino-r4-assessment.md) pour l'état de
+  Voir l'[évaluation Arduino R4](/docs/forge/iot/arduino-r4-assessment/) pour l'état de
   cette piste.

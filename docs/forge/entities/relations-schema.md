@@ -123,7 +123,7 @@ La table pivot est définie dans le bloc `pivot` d'une relation `many_to_many`.
 
 `pivot.id` et `pivot.unique_pair` sont contraints à `true` dans le schéma (`const: true`). Ces deux propriétés ne sont pas optionnelles — elles doivent être déclarées et valoir exactement `true`.
 
-`pivot.fields` peut contenir des champs métier contrôlés (voir [Le JSON canonique](json-canonique.md) pour les exemples). Les noms `id`, `from_key` et `to_key` sont réservés et interdits dans `pivot.fields`.
+`pivot.fields` peut contenir des champs métier contrôlés (voir [Le JSON canonique](/docs/forge/entities/json-canonique/) pour les exemples). Les noms `id`, `from_key` et `to_key` sont réservés et interdits dans `pivot.fields`.
 
 ---
 

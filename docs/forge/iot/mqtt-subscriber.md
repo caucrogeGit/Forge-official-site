@@ -10,7 +10,7 @@
 
 Brancher Forge sur un broker MQTT pour recevoir les messages des
 capteurs, **strictement selon le contrat figé** par
-[IOT-MQTT-CONTRACT-001](mqtt-contract.md), et délivrer chaque mesure
+[IOT-MQTT-CONTRACT-001](/docs/forge/iot/mqtt-contract/), et délivrer chaque mesure
 valide à un callback applicatif.
 
 ## Architecture du module
@@ -83,7 +83,7 @@ Exception levée pour toute violation du contrat. Porte un attribut
 | `CODE_PAYLOAD_VALUE_FORMAT` | `"PAYLOAD_VALUE_FORMAT"` |
 
 Ces codes sont identiques à ceux documentés dans
-[Contrat MQTT — Erreurs](mqtt-contract.md#erreurs-de-contrat-taxonomie).
+[Contrat MQTT — Erreurs](/docs/forge/iot/mqtt-contract/#erreurs-de-contrat-taxonomie).
 
 ```python
 from forge_mvc_iot.mqtt.contract import ContractError, parse_message
@@ -263,5 +263,5 @@ politique de reconnexion personnalisée) sera abordé dans
 - pas de TLS / ACL Mosquitto ;
 - pas de downlink Forge → capteur.
 
-Voir [Architecture Forge IoT](architecture.md#tickets-suivants) pour la
+Voir [Architecture Forge IoT](/docs/forge/iot/architecture/#tickets-suivants) pour la
 liste complète des jalons.

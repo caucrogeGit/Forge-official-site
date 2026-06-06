@@ -1,6 +1,6 @@
 # Roadmap post-2.0 Forge — archivée
 
-[Accueil](../index.md) · [Roadmap Forge officielle](../roadmap/forge-roadmap.md)
+[Accueil](../index.md) · [Roadmap Forge officielle](/docs/forge/roadmap/forge-roadmap/)
 
 ---
 
@@ -8,7 +8,7 @@ Cette page n'est plus la source officielle des priorités Forge.
 
 La roadmap Forge officielle et unifiée est désormais :
 
-**[docs/roadmap/../roadmap/forge-roadmap.md](../roadmap/forge-roadmap.md)**
+**[docs/roadmap/../roadmap/forge-roadmap.md](/docs/forge/roadmap/forge-roadmap/)**
 
 ---
 
@@ -39,11 +39,11 @@ Il a été remplacé par la roadmap unifiée dans le cadre du ticket `ROADMAP-UN
 - Phase 10 post-2.0 — API JSON légère
 - Bloc post-Phase 10 (LANDING-POST-2.2-REFRESH-001, ROADMAP-UNIFIED-001)
 
-Tous ces tickets sont désormais listés dans la [roadmap officielle](../roadmap/forge-roadmap.md).
+Tous ces tickets sont désormais listés dans la [roadmap officielle](/docs/forge/roadmap/forge-roadmap/).
 
 ---
 
 ## Voir aussi
 
-- [Roadmap Forge officielle](../roadmap/forge-roadmap.md) — source unique de priorité
-- [Historique Forge 1.5.0→2.0](forge-roadmap-history-2.0.md) — historique de la migration
+- [Roadmap Forge officielle](/docs/forge/roadmap/forge-roadmap/) — source unique de priorité
+- [Historique Forge 1.5.0→2.0](/docs/forge/history/forge-roadmap-history-2.0/) — historique de la migration

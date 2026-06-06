@@ -2,7 +2,7 @@
 
 > **Statut** : itération 1 — contrat de configuration sans connexion
 > broker. Aucun subscriber MQTT n'est encore instancié à partir de cet
-> objet ; voir [Architecture Forge IoT](architecture.md) et le ticket
+> objet ; voir [Architecture Forge IoT](/docs/forge/iot/architecture/) et le ticket
 > `IOT-MQTT-SUBSCRIBER-001` pour la suite.
 
 ## Objectif
@@ -26,15 +26,15 @@ questions « comment se connecter au broker ? ».
 | `FORGE_IOT_MQTT_TLS_ENABLED` | `false` | oui (= `false`) | `bool` |
 | `FORGE_IOT_MQTT_TLS_CA_FILE` | `None` | oui (= `None`) | `str | None` |
 
-`FORGE_IOT_API_TOKEN` protège l'[API HTTP](http-api.md#protection-par-bearer-token) :
+`FORGE_IOT_API_TOKEN` protège l'[API HTTP](/docs/forge/iot/http-api/#protection-par-bearer-token) :
 **absent ou vide** → API ouverte (parcours local) ; **défini** →
 `Authorization: Bearer <token>` exigé sur les routes `/api/iot/*`. Comme
 le mot de passe MQTT, il est **masqué** dans `repr(IotConfig)`.
 
 Les valeurs par défaut sont **locales et pédagogiques** : un
-[Mosquitto](architecture.md#role-de-mosquitto) installé sur la même
+[Mosquitto](/docs/forge/iot/architecture/#role-de-mosquitto) installé sur la même
 machine (`localhost:1883`) écoute sur tous les topics compatibles avec
-le [contrat MQTT](mqtt-contract.md).
+le [contrat MQTT](/docs/forge/iot/mqtt-contract/).
 
 Le topic par défaut `forge/+/+/telemetry` utilise les wildcards MQTT
 `+` (single-level) pour s'abonner à *toutes* les paires
@@ -55,7 +55,7 @@ Règles :
 
 - **Pour un Mosquitto local pédagogique, TLS reste désactivé** (`false`,
   le défaut) : on continue d'utiliser `localhost:1883` en clair. Voir
-  [Mosquitto local](mosquitto-local.md).
+  [Mosquitto local](/docs/forge/iot/mosquitto-local/).
 - **Pour un broker exposé sur le réseau, TLS doit être préparé** :
   `FORGE_IOT_MQTT_TLS_ENABLED=true`, un `FORGE_IOT_MQTT_TLS_CA_FILE`
   pointant vers le CA du broker, et le port `8883`.
@@ -263,5 +263,5 @@ Ce contrat de configuration débloque :
   (via le helper `forge_mvc_iot.mqtt.tls.configure_tls` → `client.tls_set`,
   appelé avant `connect`).
 
-Voir [Architecture Forge IoT](architecture.md#tickets-suivants) pour
+Voir [Architecture Forge IoT](/docs/forge/iot/architecture/#tickets-suivants) pour
 la liste complète des jalons.

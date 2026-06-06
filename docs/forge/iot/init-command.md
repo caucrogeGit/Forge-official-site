@@ -8,7 +8,7 @@
 ## Objectif
 
 Boucler le parcours du starter
-[Bonjour IoT](../starters/welcome-iot/index.md) : passer de la
+Bonjour IoT : passer de la
 réponse pédagogique
 
 ```json
@@ -49,7 +49,7 @@ Avec ce parcours :
 - `forge migration:apply` (commande Forge Core existante) crée la
   table.
 - `forge run` démarre le serveur — les routes
-  `/welcome-iot/events` et `/api/iot/events` peuvent maintenant
+  `/welcome-optin-iot/events` et `/api/iot/events` peuvent maintenant
   retourner des données réelles.
 
 ## Comportement
@@ -112,7 +112,7 @@ embarquées dans le package Python — fonctionne **identiquement** en
 install éditable (depuis le monorepo) et en install PyPI réelle.
 
 Le ticket
-[IOT-PACKAGE-DATA-MIGRATIONS-001](storage-events.md#schema-sql-cible)
+[IOT-PACKAGE-DATA-MIGRATIONS-001](/docs/forge/iot/storage-events/#schema-sql-cible)
 a embarqué les `.sql` via
 `[tool.setuptools.package-data]` dans `pyproject.toml`, garantissant
 que `forge iot:init` trouve toujours sa source quelle que soit
@@ -145,7 +145,6 @@ côté dispatcher (`forge.py`).
 
 ## Voir aussi
 
-- [Architecture Forge IoT](architecture.md)
-- [Diagnostic — `forge iot:doctor`](doctor.md)
-- [Stockage des événements](storage-events.md)
-- [Starter Bonjour IoT](../starters/welcome-iot/index.md)
+- [Architecture Forge IoT](/docs/forge/iot/architecture/)
+- [Diagnostic — `forge iot:doctor`](/docs/forge/iot/doctor/)
+- [Stockage des événements](/docs/forge/iot/storage-events/)

@@ -135,13 +135,13 @@ Le testeur devra produire un exemple similaire pour ce ticket après lecture.
 
 ## 10. Procédure de test
 
-1. Ouvrir la [charte de campagne](../field-test-charter.md).
+1. Ouvrir la [charte de campagne](/docs/forge/testing/field-test-charter/).
 2. Lire intégralement le document.
 3. Identifier et noter les niveaux de guidage G0 à G3.
 4. Identifier et noter les niveaux d'aide A0 à A5.
 5. Identifier et noter les gravités S0 à S5.
 6. Identifier et noter les statuts finaux possibles.
-7. Lire le [modèle de retour testeur](../field-test-feedback-template.md).
+7. Lire le [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 8. Identifier les champs obligatoires du retour.
 9. Produire un retour à blanc pour ce ticket.
 
@@ -187,7 +187,7 @@ Le ticket est validé si :
 
 ## 15. Retour d'expérience attendu
 
-Le testeur doit répondre au [modèle de retour testeur](../field-test-feedback-template.md).
+Le testeur doit répondre au [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 Points obligatoires :
 

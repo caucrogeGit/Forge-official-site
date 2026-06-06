@@ -54,12 +54,12 @@ Le référent Forge transforme ensuite le retour en ticket documentaire séparé
 
 | Document | Rôle |
 |---|---|
-| [État des parcours](field-test-status.md) | Matrice de suivi : quels parcours sont prêts, en test, validés |
-| [Roadmap des tests terrain](../roadmap/forge-field-test-roadmap.md) | Phases et tickets FT-* progressifs (vue complète) |
-| [Charte de campagne](field-test-charter.md) | Règles, niveaux de guidage, gravité, statuts, gestion des écarts |
-| [Modèle de ticket FT](field-test-ticket-template.md) | Structure obligatoire d'un ticket terrain exploitable |
-| [Outils de diagnostic pour testeurs](field-test-debug-tools.md) | Quoi lancer, quoi copier, quoi ne pas publier quand un ticket échoue |
-| [Modèle de retour testeur](field-test-feedback-template.md) | Formulaire à remplir après chaque ticket FT-* |
+| [État des parcours](/docs/forge/testing/field-test-status/) | Matrice de suivi : quels parcours sont prêts, en test, validés |
+| [Roadmap des tests terrain](/docs/forge/roadmap/forge-field-test-roadmap/) | Phases et tickets FT-* progressifs (vue complète) |
+| [Charte de campagne](/docs/forge/testing/field-test-charter/) | Règles, niveaux de guidage, gravité, statuts, gestion des écarts |
+| [Modèle de ticket FT](/docs/forge/testing/field-test-ticket-template/) | Structure obligatoire d'un ticket terrain exploitable |
+| [Outils de diagnostic pour testeurs](/docs/forge/testing/field-test-debug-tools/) | Quoi lancer, quoi copier, quoi ne pas publier quand un ticket échoue |
+| [Modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/) | Formulaire à remplir après chaque ticket FT-* |
 | [Formulaire GitHub Issue](https://github.com/caucrogeGit/Forge/issues/new?template=field-test-feedback.yml) | Soumettre un retour directement sur GitHub (recommandé) |
-| [Triage et stabilisation](field-test-triage.md) | Grille de décision bêta / stable |
-| [Conversion en tutoriel](field-test-to-tutorial.md) | Règles de transformation d'un ticket FT validé en tutoriel |
+| [Triage et stabilisation](/docs/forge/testing/field-test-triage/) | Grille de décision bêta / stable |
+| [Conversion en tutoriel](/docs/forge/testing/field-test-to-tutorial/) | Règles de transformation d'un ticket FT validé en tutoriel |

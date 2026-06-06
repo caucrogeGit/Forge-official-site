@@ -63,7 +63,7 @@ Résumé :
 ```
 
 Chaque ligne `[OK]` correspond à une mesure validée par le
-[contrat MQTT](mqtt-contract.md) **et** insérée dans `iot_events`.
+[contrat MQTT](/docs/forge/iot/mqtt-contract/) **et** insérée dans `iot_events`.
 
 ### Arrêt propre
 
@@ -85,7 +85,7 @@ Résumé :
   erreurs de stockage  : 0
 ```
 
-- **mesures reçues** : messages conformes au [contrat MQTT](mqtt-contract.md) ;
+- **mesures reçues** : messages conformes au [contrat MQTT](/docs/forge/iot/mqtt-contract/) ;
 - **mesures stockées** : insertions réussies dans `iot_events` ;
 - **erreurs de contrat** : messages MQTT ignorés (payload ou topic invalide) ;
 - **erreurs de stockage** : échecs d'insertion en base.
@@ -101,7 +101,7 @@ manquant, type incorrect…) est **ignoré sans arrêter l'écoute** :
 
 Le code affiché (`TOPIC_PATTERN`, `PAYLOAD_PARSE`,
 `PAYLOAD_FIELD_MISSING`, `PAYLOAD_FIELD_TYPE`, `PAYLOAD_VALUE_FORMAT`)
-vient de la taxonomie du [contrat MQTT](mqtt-contract.md). Le compteur
+vient de la taxonomie du [contrat MQTT](/docs/forge/iot/mqtt-contract/). Le compteur
 `erreurs de contrat` est incrémenté. Contrairement à une erreur base, un
 message invalide **ne fait pas tomber** la commande : on continue
 d'écouter.
@@ -127,7 +127,7 @@ forge iot:simulate --count 3 --interval 1
 ```
 
 Les mesures apparaissent dans le terminal `forge iot:listen` (`[OK] …`),
-puis sont lisibles via l'[API HTTP](http-api.md) :
+puis sont lisibles via l'[API HTTP](/docs/forge/iot/http-api/) :
 
 ```bash
 curl http://localhost:8000/api/iot/events
@@ -141,7 +141,7 @@ curl http://localhost:8000/api/iot/events
 [ERREUR] Configuration IoT invalide : FORGE_IOT_MQTT_HOST ne peut pas être vide
 ```
 
-Exit code 1. Voir [Configuration Forge IoT](configuration.md).
+Exit code 1. Voir [Configuration Forge IoT](/docs/forge/iot/configuration/).
 
 ### Broker inaccessible
 
@@ -151,7 +151,7 @@ Exit code 1. Voir [Configuration Forge IoT](configuration.md).
 
 Exit code 1. Le broker n'est pas démarré ou l'hôte/port est faux —
 diagnostique avec `forge iot:doctor --mqtt`. Pour installer et lancer un
-broker local, voir [Mosquitto local](mosquitto-local.md).
+broker local, voir [Mosquitto local](/docs/forge/iot/mosquitto-local/).
 
 ### Erreurs base
 
@@ -201,8 +201,8 @@ forge iot:listen
 ```
 
 Sans TLS (défaut), la connexion reste en clair — adapté au
-[Mosquitto local](mosquitto-local.md). Détails :
-[Configuration — TLS MQTT](configuration.md#tls-mqtt-preparation).
+[Mosquitto local](/docs/forge/iot/mosquitto-local/). Détails :
+[Configuration — TLS MQTT](/docs/forge/iot/configuration/#tls-mqtt-preparation).
 
 ## Limites
 
@@ -213,9 +213,9 @@ pédagogie**, pas pour la production. Sont **hors périmètre** :
 - pas de file d'attente, de retry/backoff, ni de batch insert ;
 - pas de stockage multi-thread ;
 - pas de TLS ni d'authentification avancée ;
-- ne lance pas le simulateur (voir [`forge iot:simulate`](simulator.md)) ;
-- ne modifie ni l'[API HTTP](http-api.md) ni le
-  [contrat MQTT](mqtt-contract.md).
+- ne lance pas le simulateur (voir [`forge iot:simulate`](/docs/forge/iot/simulator/)) ;
+- ne modifie ni l'[API HTTP](/docs/forge/iot/http-api/) ni le
+  [contrat MQTT](/docs/forge/iot/mqtt-contract/).
 
 Pour un déploiement réel, on brancherait `MqttSubscriber` dans un
 processus supervisé de l'application — ce qui dépasse ce ticket.

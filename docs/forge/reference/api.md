@@ -24,6 +24,7 @@ Chaque entrée ci-dessous est repliée par défaut. Ouvrez uniquement la partie 
 | `sql_dir` | `mvc/models/sql` | Dossier des requêtes SQL |
 | `upload_root` | `storage/uploads` | Racine des uploads |
 | `upload_max_size` | `5242880` | Taille maximale d'un fichier |
+| `upload_max_image_pixels` | `24000000` | Surface max d'une image (anti-décompression-bomb) |
 | `upload_allowed_extensions` | `["jpg", "jpeg", "png", "webp", "pdf"]` | Extensions autorisées |
 | `upload_allowed_mime_types` | `["image/jpeg", "image/png", "image/webp", "application/pdf"]` | MIME autorisés |
 | `mail_host` | `""` | Hôte SMTP |
@@ -78,7 +79,7 @@ print(get("app_name"))
 ### `Request`
 
 > Convention d'inspection (`.data`, accesseurs, masquage des champs sensibles)
-> détaillée dans [Convention HTTP inspectable](http.md).
+> détaillée dans [Convention HTTP inspectable](/docs/forge/reference/http/).
 
 Attributs principaux :
 
@@ -121,7 +122,7 @@ Notes :
 
 > Constructeurs nommés (`Response.text`, `Response.html`, `Response.json`,
 > `Response.debug`) et vue d'inspection (`.data`, `.cookies`) :
-> [Convention HTTP inspectable](http.md).
+> [Convention HTTP inspectable](/docs/forge/reference/http/).
 
 ### Classe
 
@@ -377,7 +378,7 @@ Le décorateur s'applique directement sur la fonction handler. Il n'interfère p
 </details>
 
 <details markdown="1" id="coreapiroutesloader">
-<summary><code>core.api_routes_loader</code> - Chargement optionnel des routes API</summary>
+<summary><code>core.app.api_routes_loader</code> - Chargement optionnel des routes API</summary>
 
 ### Fonction
 
@@ -397,7 +398,7 @@ Comportement :
 ### Exemple
 
 ```python
-from core.api_routes_loader import load_api_routes
+from core.app.api_routes_loader import load_api_routes
 from core.http.router import Router
 
 router = Router()
@@ -462,7 +463,7 @@ Une route `POST`, `PUT`, `PATCH` ou `DELETE` est protégée par CSRF par défaut
 </details>
 
 <details markdown="1" id="coreapplication">
-<summary><code>core.application</code> - Dispatch applicatif</summary>
+<summary><code>core.app.application</code> - Dispatch applicatif</summary>
 
 ### Classe
 
@@ -540,7 +541,7 @@ template_manager.register(Jinja2Renderer(get("views_dir")))
 <details markdown="1" id="coresecurity">
 <summary><code>core.security</code> - Sessions, auth, CSRF et mots de passe</summary>
 
-Pour l'authentification des nouveaux projets, utiliser `core.auth`. Les modules `core.security` historiques restent présents pour les briques transversales officielles (`core.security.session`, `core.security.csrf`). Le RBAC (`Role`, `Permission`, `require_permission`) est disponible via `forge-mvc-rbac`. Voir [docs/auth.md — Frontière API](../auth.md#api-officielle-et-compatibilite-legacy).
+Pour l'authentification des nouveaux projets, utiliser `core.auth`. Les modules `core.security` historiques restent présents pour les briques transversales officielles (`core.security.session`, `core.security.csrf`). Le RBAC (`Role`, `Permission`, `require_permission`) est disponible via `forge-mvc-rbac`. Voir [docs/auth.md — Frontière API](/docs/forge/features/auth/#api-officielle-et-compatibilite-legacy).
 
 ### Sessions mémoire
 
@@ -558,7 +559,7 @@ Pour l'authentification des nouveaux projets, utiliser `core.auth`. Les modules 
 | `set_flash(session_id, message, level="success")` | Stocke un message flash. |
 | `get_flash(session_id)` | Lit et consomme le flash. |
 
-Le stockage de session délègue au backend actif via `core.sessions.get_session_store()`. Le backend par défaut est `MemorySessionStore` (dict Python en mémoire, thread-safe). Il convient au développement et aux petites applications mono-processus derrière Nginx. Les sessions sont perdues au redémarrage, ne sont pas partagées entre workers et ne conviennent pas au scaling horizontal. Voir [ADR-002 — Stratégie de session](../adr/002-session-strategy.md) et la [section sessions mémoire du guide de déploiement](../deployment.md#9-limite-importante-sessions-memoire).
+Le stockage de session délègue au backend actif via `core.sessions.get_session_store()`. Le backend par défaut est `MemorySessionStore` (dict Python en mémoire, thread-safe). Il convient au développement et aux petites applications mono-processus derrière Nginx. Les sessions sont perdues au redémarrage, ne sont pas partagées entre workers et ne conviennent pas au scaling horizontal. Voir [ADR-002 — Stratégie de session](/docs/forge/adr/002-session-strategy/) et la [section sessions mémoire du guide de déploiement](/docs/forge/deployment/deployment/#9-limite-importante-sessions-memoire).
 
 Le package `core.sessions` expose le contrat de backend :
 
@@ -1026,7 +1027,7 @@ Elle stocke la version, le nom, le fichier, le checksum, la date d'application
 et le temps d'exécution d'une migration. Les migrations restent des fichiers SQL
 lisibles dans `mvc/migrations/`.
 
-Le workflow complet est documenté dans [Migrations SQL](../migrations.md).
+Le workflow complet est documenté dans [Migrations SQL](/docs/forge/features/migrations/).
 
 ### `forge migration:status`
 
@@ -1081,12 +1082,18 @@ npm run build:css
 Node.js/npm est nécessaire uniquement pour recompiler le CSS, pas pour exécuter
 le serveur Python Forge lorsque `static/tailwind.css` existe déjà.
 
-Voir aussi : [Front et CSS](../front.md).
+Voir aussi : [Front et CSS](/docs/forge/features/front/).
 
 </details>
 
 <details markdown="1" id="coreuploads">
-<summary><code>core.uploads</code> - Uploads et stockage</summary>
+<summary><code>forge_mvc_files</code> - Uploads et stockage (opt-in)</summary>
+
+> **ADR-019** : l'upload générique a été **extrait du core** vers l'opt-in
+> `forge-mvc-files` (`pip install forge-mvc-files`). Importer depuis
+> `forge_mvc_files`. La **validation pure** de fichier (extension/MIME/taille,
+> `UploadError`) reste dans le core (`core.forms.upload_validation` /
+> `upload_exceptions`).
 
 ### Gestionnaire
 
@@ -1094,14 +1101,15 @@ Voir aussi : [Front et CSS](../front.md).
 |---|---|
 | `SavedUpload` | Résultat d'un upload sauvegardé. |
 | `upload_root()` | Racine des fichiers uploadés. |
-| `save_upload(file, category="documents", variants=False)` | Valide puis sauvegarde un fichier. |
+| `save_upload(file, category="documents")` | Valide puis sauvegarde un fichier (générique, sans traitement image). |
+| `save_image_upload(file, category="images", variants=True)` | Upload image-aware (opt-in `forge-mvc-images`) : vérifie le contenu et génère les variantes. |
 | `delete_media_file(path, variants=False)` | Supprime un fichier média relatif, et ses variantes si demandé. |
 | `serve_media_file(path)` | Retourne une réponse HTTP pour un fichier média relatif sûr. |
 | `delete_upload(path_or_saved_upload)` | Supprime un fichier. |
 | `get_upload_path(relative_path)` | Résout un chemin d'upload. |
 | `normalize_media_path(path)` | Normalise un chemin média relatif à `storage/uploads`. |
 | `media_path_to_storage_path(path, root=...)` | Résout un chemin média relatif sous la racine d'upload. |
-| `generate_image_variants(path, root=...)` | Génère les variantes `medium` et `thumbnail` d'une image. |
+| `generate_image_variants(path, root=...)` | Génère les variantes `medium` et `thumbnail` d'une image (opt-in `forge-mvc-images`, `from forge_mvc_images import generate_image_variants`). |
 
 ### Stockage
 
@@ -1129,7 +1137,7 @@ Voir aussi : [Front et CSS](../front.md).
 ### Exemple
 
 ```python
-from core.uploads.manager import save_upload
+from forge_mvc_files import save_upload
 
 def upload_avatar(request):
     file = request.files.get("avatar")
@@ -1144,10 +1152,11 @@ def upload_avatar(request):
     })
 ```
 
-Pour une image, les variantes restent optionnelles :
+Pour une image, le chemin image-aware (vérification + variantes) est fourni par
+l'opt-in `forge-mvc-images` (`from forge_mvc_images import save_image_upload`) :
 
 ```python
-saved = save_upload(file, category="images", variants=True)
+saved = save_image_upload(file, category="images", variants=True)
 
 saved.path
 # "images/photo.png"
@@ -1165,7 +1174,7 @@ ne génère que le fichier original. L'option est réservée à `category="image
 Supprimer un fichier média :
 
 ```python
-from core.uploads import delete_media_file
+from forge_mvc_files import delete_media_file
 
 delete_media_file("images/photo.png", variants=True)
 # {
@@ -1195,7 +1204,7 @@ la bibliothèque standard `mimetypes`, avec fallback `application/octet-stream`.
 Créer et lister des métadonnées `Media` :
 
 ```python
-from forge_mvc_media import create_media_record, list_media_for_entity
+from forge_mvc_images import create_media_record, list_media_for_entity
 
 media_id = create_media_record(
     entity_name="hebergement",
@@ -1218,7 +1227,7 @@ par `role`, et trie par `position ASC`, puis `id ASC`.
 Supprimer un média complet :
 
 ```python
-from forge_mvc_media import delete_media
+from forge_mvc_images import delete_media
 
 result = delete_media(
     media_id,
@@ -1235,7 +1244,7 @@ accidentelle.
 Récupérer une galerie ordonnée :
 
 ```python
-from forge_mvc_media import get_media_gallery
+from forge_mvc_images import get_media_gallery
 
 gallery = get_media_gallery("hebergement", 12)
 ```
@@ -1248,7 +1257,7 @@ Forge ne génère pas de galerie HTML dans cette API.
 Récupérer l'image de couverture :
 
 ```python
-from forge_mvc_media import get_cover_media
+from forge_mvc_images import get_cover_media
 
 cover = get_cover_media("hebergement", 12)
 ```
@@ -1281,11 +1290,12 @@ Ce qui reste hors périmètre :
 
 ### Rate limiting upload (SECURITY-UPLOAD-RATE-LIMIT-001)
 
-`core.uploads.rate_limit` fournit une fenêtre glissante en mémoire, thread-safe,
-distincte du rate limiting de connexion (`core.security.hashing`).
+`forge_mvc_files.rate_limit` (opt-in, ADR-019) fournit une fenêtre glissante en
+mémoire, thread-safe, distincte du rate limiting de connexion
+(`core.security.hashing`).
 
 ```python
-from core.uploads.rate_limit import is_upload_rate_limited, record_upload_attempt
+from forge_mvc_files.rate_limit import is_upload_rate_limited, record_upload_attempt
 
 def upload_avatar(request):
     if is_upload_rate_limited(request.ip):
@@ -1351,10 +1361,10 @@ et `webp`. Les chemins retournés restent relatifs à `storage/uploads`.
 
 L'intégration CRUD complète (formulaires, upload, remplacement, suppression, preview) est disponible via la clé `"media"` dans `entity.json` — voir la section *Génération CRUD media* ci-dessous. Les galeries `multiple=true` et les permissions média restent à venir.
 
-Dans le flux d'upload générique, `save_upload(file, category="images",
-variants=True)` génère `medium` et `thumbnail` explicitement. Le chemin
-`saved.path` reste celui de l'original ; `saved.variants` contient uniquement
-les variantes redimensionnées.
+Dans le flux image-aware, `save_image_upload(file, category="images",
+variants=True)` (opt-in `forge-mvc-images`) génère `medium` et `thumbnail`
+explicitement. Le chemin `saved.path` reste celui de l'original ;
+`saved.variants` contient uniquement les variantes redimensionnées.
 
 `delete_media_file("images/photo.png", variants=True)` supprime l'original et
 les variantes fichier si elles existent. Une variante absente retourne `False`
@@ -1366,25 +1376,25 @@ directement le système de fichiers. Exemple : `Media.path = "images/photo.png"`
 devient `/media/images/photo.png`. Les variantes sont accessibles si elles
 existent, par exemple `/media/images/medium/photo.png`.
 
-Les métadonnées SQL sont manipulées avec l'API `forge_mvc_media` :
+Les métadonnées SQL sont manipulées avec l'API `forge_mvc_images` :
 `create_media_record()`, `get_media_record()`, `list_media_for_entity()` et
 `delete_media_record()`. La suppression SQL ne supprime pas les fichiers physiques ;
 utiliser `delete_media_file()` (core) séparément lorsque c'est voulu.
 
-`attach_media_to_entity()` (dans `forge_mvc_media`) relie un `SavedUpload` à une
+`attach_media_to_entity()` (dans `forge_mvc_images`) relie un `SavedUpload` à une
 entité métier en créant une ligne `media`. Elle ne déplace pas le fichier, ne
 régénère pas les variantes et ne déclenche aucune suppression automatique.
 
-`delete_media(media_id, delete_files=True, variants=True)` (dans `forge_mvc_media`)
+`delete_media(media_id, delete_files=True, variants=True)` (dans `forge_mvc_images`)
 supprime d'abord les fichiers demandés, puis la ligne SQL. Si le chemin stocké est
 dangereux, la suppression est refusée et la ligne SQL n'est pas supprimée silencieusement.
 
-`get_media_gallery("hebergement", 12)` (dans `forge_mvc_media`) retourne les médias
+`get_media_gallery("hebergement", 12)` (dans `forge_mvc_images`) retourne les médias
 `role="gallery"` triés par `position`, puis `id`, avec les URLs locales `/media/...`.
 Les images reçoivent aussi les URLs `medium` et `thumbnail` ; les documents non-image
 n'ont pas de variantes inventées.
 
-`get_cover_media("hebergement", 12)` (dans `forge_mvc_media`) retourne le premier
+`get_cover_media("hebergement", 12)` (dans `forge_mvc_images`) retourne le premier
 média `role="cover"` trié par `position`, puis `id`. Le fallback vers la galerie est
 optionnel via `fallback_to_gallery=True` et reste une aide de lecture, sans génération
 HTML ni modification des enregistrements.
@@ -1414,19 +1424,21 @@ Les variantes d'images (`thumbnail`, `medium`), l'intégration `FileField` / `Im
 
 </details>
 
-<details markdown="1" id="forgemvcmedia">
-<summary><code>forge_mvc_media</code> - Helpers applicatifs médias (opt-in)</summary>
+<details markdown="1" id="forgemvcimages">
+<summary><code>forge_mvc_images</code> - Helpers applicatifs médias (opt-in)</summary>
 
-`forge_mvc_media` est un module opt-in (`forge-mvc-media`) qui fournit les
+`forge_mvc_images` est un module opt-in (`forge-mvc-images`) qui fournit les
 helpers applicatifs liés à la table `media`. Il est publié sur PyPI depuis
-`1.0.0-beta.9` :
+`1.0.0-beta.13` :
 
 ```bash
-pip install --pre forge-mvc-media
+pip install --pre forge-mvc-images
 ```
 
-Le module reste opt-in : le core Forge ne dépend pas de `forge-mvc-media`.
-L'API applicative reste bêta — voir [Limites](../production-limits.md).
+Pour le développement depuis les sources : `pip install -e packages/forge-mvc-images/`.
+
+Le module reste opt-in : le core Forge ne dépend pas de `forge-mvc-images`.
+L'API applicative reste bêta, voir [Limites](/docs/forge/deployment/production-limits/).
 
 Les nouveaux fichiers générés par `forge make:crud --media` importent depuis ce module.
 
@@ -1455,7 +1467,7 @@ Les nouveaux fichiers générés par `forge make:crud --media` importent depuis 
 
 Les anciens imports `from core.uploads import attach_media_to_entity` ne sont
 plus supportés depuis `MEDIA-SHIMS-REMOVE-001`. L'import correct est
-`from forge_mvc_media import ...`.
+`from forge_mvc_images import ...`.
 
 </details>
 
@@ -1646,9 +1658,9 @@ Les noms d'entités et de champs (`Contact`, `nom`, `email`…) **ne sont pas tr
 </details>
 
 <details markdown="1" id="coremail">
-<summary><code>core.mail</code> - Mail SMTP minimal</summary>
+<summary><code>forge_mvc_mail</code> - Mail SMTP minimal (opt-in)</summary>
 
-`core.mail` fournit une brique mail générique avec transports interchangeables, rendu de templates et journalisation optionnelle. Elle ne contient pas de logique métier.
+`forge_mvc_mail` (opt-in forge-mvc-mail) fournit une brique mail générique avec transports interchangeables, rendu de templates et journalisation optionnelle. Elle ne contient pas de logique métier.
 
 ### API
 
@@ -1663,13 +1675,13 @@ Les noms d'entités et de champs (`Contact`, `nom`, `email`…) **ne sont pas tr
 | `MailConfigurationError` | Configuration incomplète ou incohérente. |
 | `MailSendError` | Erreur SMTP pendant l'envoi. `Mailer.send()` l'intercepte en `TransportResult(success=False)`. |
 
-> `SMTPMailer` (`core/mail/smtp.py`) est conservé provisoirement pour compatibilité.
-> Le système recommandé depuis Forge 1.2 est `Mailer + SmtpTransport`.
+> `SMTPMailer` (`forge_mvc_mail/smtp.py`) est conservé provisoirement pour compatibilité.
+> Le système recommandé est `Mailer + SmtpTransport`.
 
 ### Exemple
 
 ```python
-from core.mail import Mailer, MailMessage
+from forge_mvc_mail import Mailer, MailMessage
 
 message = MailMessage(
     subject="Bienvenue",
@@ -1728,7 +1740,7 @@ Les fichiers générés `*_base.py` peuvent utiliser ces décorateurs. La classe
 <details markdown="1" id="forge-cli">
 <summary><code>forge</code> CLI - Commandes officielles</summary>
 
-L'interface officielle est la commande `forge`. La version actuelle est `2.5.0`.
+L'interface officielle est la commande `forge`.
 
 ### Commandes
 
@@ -1950,7 +1962,7 @@ forge routes:list
 <details markdown="1" id="forgeclieentities">
 <summary><code>forge_cli.entities</code> - Génération et validation des entités</summary>
 
-Cette partie suit la doctrine décrite dans l'[architecture des entités](../entity_architecture.md).
+Cette partie suit la doctrine décrite dans l'[architecture des entités](/docs/forge/features/entity_architecture/).
 
 ### Doctrine générée
 
@@ -2159,7 +2171,7 @@ aucune colonne supplémentaire.
 | `field: file`, `multiple: true` | liste de liens |
 
 Le contrôleur appelle `get_cover_media` pour les éléments uniques et
-`list_media_for_entity` pour les galeries. Les imports `forge_mvc_media` sont
+`list_media_for_entity` pour les galeries. Les imports `forge_mvc_images` sont
 ajoutés automatiquement pour les helpers applicatifs. La génération est non destructive : un
 contrôleur existant est complété, jamais écrasé.
 
@@ -2959,7 +2971,7 @@ Les médias sont stockés dans la table `media` distincte via `media.entity_name
 | `required` | non | `bool` | `false` |
 | `label` | non | chaîne | — |
 
-**Règles** : `variants=true` est autorisé uniquement avec `field="image"`. Les doublons `name` et `role` dans une même entité sont refusés à la validation. Voir [docs/media.md](../media.md) pour les détails et la convention de rôles.
+**Règles** : `variants=true` est autorisé uniquement avec `field="image"`. Les doublons `name` et `role` dans une même entité sont refusés à la validation. Voir [docs/media.md](/docs/forge/features/media/) pour les détails et la convention de rôles.
 
 ### Génération CRUD media (`make:crud` + `media`)
 
@@ -2968,10 +2980,10 @@ Quand une entité déclare des médias, `make:crud` génère :
 - **Formulaire** : un `ImageField` ou `FileField` par entrée `media`, avec label et `required` issus de la déclaration.
 - **Vue formulaire** : `enctype="multipart/form-data"` sur le `<form>`, `<input type="file">` avec `accept="image/*"` pour les images.
 - **Contrôleur `create`** :
-  - Import de `save_upload` depuis `core.uploads` (primitive générique) et `attach_media_to_entity`, `delete_media`, `list_media_for_entity` depuis `forge_mvc_media` (helpers applicatifs).
+  - Import de `save_upload` depuis `forge_mvc_files` (upload générique, fichiers non-image — opt-in, ADR-019) et de `save_image_upload`, `attach_media_to_entity`, `delete_media`, `list_media_for_entity` depuis `forge_mvc_images` (chemin image-aware + helpers applicatifs).
   - Exclusion des clés média de `form.cleaned_data` avant l'insert SQL.
   - Capture de l'identifiant créé (`cursor.lastrowid`).
-  - Pour chaque média soumis : `save_upload(file, category, variants=...)` puis `attach_media_to_entity(saved, entity_name=..., entity_id=created_id, role=..., position=0)`.
+  - Pour chaque média soumis : `save_image_upload(file, "images", variants=...)` (image) ou `save_upload(file, "documents")` (fichier), puis `attach_media_to_entity(saved, entity_name=..., entity_id=created_id, role=..., position=0)`.
 - **Contrôleur `update`** (pour `multiple=false`) :
   - Si un nouveau fichier est soumis : `list_media_for_entity` pour trouver l'ancien, `delete_media(..., delete_files=True)` pour le supprimer, puis `save_upload` + `attach_media_to_entity` pour attacher le nouveau.
   - Si `_delete_media_<name>` est coché (sans nouveau fichier) : `delete_media` uniquement, pas d'upload.
@@ -3004,34 +3016,35 @@ La clé optionnelle `"rbac"` dans `entity.json` déclare les permissions requise
 
 Actions acceptées : `index`, `show`, `create` (→ méthode `new`), `store` (→ méthode `create`), `edit`, `update`, `delete` (→ méthode `destroy`). Toute action inconnue déclenche une erreur à la génération. Sans clé `rbac`, le contrôleur est identique à celui généré sans RBAC.
 
-Documentation complète : [RBAC — Contrôle d'accès](../rbac.md).
+Documentation complète : [RBAC — Contrôle d'accès](/docs/forge/features/rbac/).
 
 </details>
 
 ---
 
-## Modules officiels (opt-in)
+## Opt-ins officiels
 
-Forge sépare le **core minimal** des **modules officiels** distribués
+Forge sépare le **core minimal** des **opt-ins officiels** distribués
 séparément. Le core couvre les primitives générales (HTTP, routing, sessions,
-mots de passe Argon2id, CSRF, uploads, SQL explicite). Les modules officiels
+mots de passe Argon2id, CSRF, uploads, SQL explicite). Les opt-ins officiels
 ajoutent des fonctionnalités spécialisées installables via les extras pip.
 
-Chaque module est livré comme paquet PyPI distinct sous le namespace
+Chaque opt-in est livré comme package PyPI distinct sous le namespace
 `forge-mvc-*` et expose son API depuis le namespace Python `forge_mvc_*`.
 
-| Module | Package PyPI | Extra pip | Documentation détaillée |
+| Opt-in | Package PyPI | Extra pip | Documentation détaillée |
 |---|---|---|---|
-| MFA / TOTP | `forge-mvc-mfa` | — (installer directement) | [auth-mfa.md](auth-mfa.md) |
-| RBAC | `forge-mvc-rbac` | `[rbac]` | [rbac.md](../rbac.md) |
-| Workflow | `forge-mvc-workflow` | `[workflow]` | [workflow.md](workflow.md) |
-| Statistiques | `forge-mvc-stats` | `[stats]` | [stats.md](stats.md) |
-| Médias applicatifs | `forge-mvc-media` | — (installer directement) | [media.md](../media.md) |
+| MFA / TOTP | `forge-mvc-mfa` | — (installer directement) | [auth-mfa.md](/docs/forge/reference/auth-mfa/) |
+| RBAC | `forge-mvc-rbac` | `[rbac]` | [rbac.md](/docs/forge/features/rbac/) |
+| Workflow | `forge-mvc-workflow` | `[workflow]` | [workflow.md](/docs/forge/reference/workflow/) |
+| Statistiques | `forge-mvc-stats` | `[stats]` | [stats.md](/docs/forge/reference/stats/) |
+| Médias applicatifs | `forge-mvc-images` | — (installer directement) | [media.md](/docs/forge/features/media/) |
 
-Tous les opt-ins officiels sont publiés sur PyPI depuis `1.0.0-beta.9`.
-`forge-mvc[mfa]` et `forge-mvc[media]` ne sont pas définis comme extras du
-core — installer les paquets directement avec `pip install --pre forge-mvc-mfa`
-ou `pip install --pre forge-mvc-media`.
+La plupart des opt-ins officiels sont publiés sur PyPI depuis `1.0.0-beta.9`
+(`forge-mvc-images` cible la release beta.13). `forge-mvc[mfa]` et
+`forge-mvc[images]` ne sont pas définis comme extras du core — installer les
+paquets directement avec `pip install --pre forge-mvc-mfa`, ou depuis les
+sources avec `pip install -e packages/forge-mvc-images/`.
 
 ### MFA — `forge-mvc-mfa`
 
@@ -3044,9 +3057,9 @@ pip install --pre forge-mvc-mfa
 
 > Publié sur PyPI depuis `1.0.0-beta.9` au statut **Alpha**. MFA reste opt-in :
 > le core Forge ne dépend pas de `forge-mvc-mfa`.
-> Voir [contrat d'installation](../install/index.md#contrat-dinstallation-des-opt-ins).
+> Voir [contrat d'installation](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
-Référence détaillée : [auth-mfa.md](auth-mfa.md).
+Référence détaillée : [auth-mfa.md](/docs/forge/reference/auth-mfa/).
 
 ### RBAC — `forge-mvc-rbac`
 
@@ -3054,9 +3067,9 @@ Rôles, permissions, décorateur `@require_permission`, helpers Jinja
 `has_permission()` et politique d'attribution.
 
 > Disponible sur PyPI depuis `1.0.0-beta.5` (publication coordonnée des opt-ins `rbac`, `workflow`, `stats`).
-> Voir [contrat d'installation](../install/index.md#contrat-dinstallation-des-opt-ins).
+> Voir [contrat d'installation](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
-Référence détaillée : [rbac.md](../rbac.md).
+Référence détaillée : [rbac.md](/docs/forge/features/rbac/).
 
 ### Workflow — `forge-mvc-workflow`
 
@@ -3064,9 +3077,9 @@ Référence détaillée : [rbac.md](../rbac.md).
 fonctions de validation, helpers Jinja2. Aucun callback automatique.
 
 > Disponible sur PyPI depuis `1.0.0-beta.5` (publication coordonnée des opt-ins `rbac`, `workflow`, `stats`).
-> Voir [contrat d'installation](../install/index.md#contrat-dinstallation-des-opt-ins).
+> Voir [contrat d'installation](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
-Référence détaillée : [workflow.md](workflow.md).
+Référence détaillée : [workflow.md](/docs/forge/reference/workflow/).
 
 ### Statistiques — `forge-mvc-stats`
 
@@ -3074,22 +3087,22 @@ Collecte d'événements métier, schéma SQL associé, agrégats et indicateurs
 calculés à la demande.
 
 > Disponible sur PyPI depuis `1.0.0-beta.5` (publication coordonnée des opt-ins `rbac`, `workflow`, `stats`).
-> Voir [contrat d'installation](../install/index.md#contrat-dinstallation-des-opt-ins).
+> Voir [contrat d'installation](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
-Référence détaillée : [stats.md](stats.md).
+Référence détaillée : [stats.md](/docs/forge/reference/stats/).
 
-### Médias applicatifs — `forge-mvc-media`
+### Médias applicatifs — `forge-mvc-images`
 
 Repository, galerie et helpers applicatifs liés à la table `media`.
 
 ```bash
-pip install --pre forge-mvc-media
+pip install --pre forge-mvc-images
 ```
 
-> Publié sur PyPI depuis `1.0.0-beta.9` (API encore bêta — voir
-> [Limites](../production-limits.md)). Les générateurs `make:crud --media` et
+> Publié sur PyPI depuis `1.0.0-beta.13` (API encore bêta, voir
+> [Limites](/docs/forge/deployment/production-limits/)). Les générateurs `make:crud --media` et
 > `make:public:list` importent depuis ce module.
-> Voir [contrat d'installation](../install/index.md#contrat-dinstallation-des-opt-ins).
+> Voir [contrat d'installation](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
 
-Référence détaillée : [media.md](../media.md).
+Référence détaillée : [media.md](/docs/forge/features/media/).
 

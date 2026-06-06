@@ -111,7 +111,7 @@ packages/forge-mvc-iot/forge_mvc_iot/
 | `forge iot:listen` | écoute MQTT et insère via `IotEventRepository` (dev/pédagogie) | — |
 | `forge iot:simulate` | publie des mesures factices conformes au contrat | `--profile temperature\|humidity\|presence\|energy`, `--site`, `--device`, `--kind`, `--value`, `--unit`, `--count`, `--interval` |
 
-Documentées dans [référence CLI](../../reference/cli-commands.md#commandes-forge-iot)
+Documentées dans [référence CLI](/docs/forge/reference/cli-commands/#commandes-forge-iot)
 (garde-fou `test_forge_help_coverage_001`).
 
 ## API HTTP disponible
@@ -180,7 +180,7 @@ Pages présentes sous `docs/iot/` :
 `esp32-example.md`, `arduino-r4-assessment.md`.
 
 Référence CLI : section « Commandes Forge IoT » dans
-[`docs/reference/cli-commands.md`](../../reference/cli-commands.md).
+[`docs/reference/cli-commands.md`](/docs/forge/reference/cli-commands/).
 
 ## Tests et validations
 

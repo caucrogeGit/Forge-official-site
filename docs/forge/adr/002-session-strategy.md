@@ -8,8 +8,8 @@
 
     Pour l'état actuel, consulter :
 
-    - [`docs/auth.md`](../auth.md) — documentation utilisateur d'authentification
-    - [ADR-004 — Périmètre du noyau](004-core-perimeter.md) — séparation core/modules opt-in
+    - [`docs/auth.md`](/docs/forge/features/auth/) — documentation utilisateur d'authentification
+    - [ADR-004 — Périmètre du noyau](/docs/forge/adr/004-core-perimeter/) — séparation core/modules opt-in
 
 ## Statut
 

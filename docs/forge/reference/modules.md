@@ -599,7 +599,7 @@ Briques livrées :
 - intégration CRUD : boutons de transition dans les vues `show` et `list` ;
 - pas de callbacks automatiques — les hooks sont à écrire dans le contrôleur.
 
-La documentation complète est dans la section [Workflow](workflow.md) de cette référence.
+La documentation complète est dans la section [Workflow](/docs/forge/reference/workflow/) de cette référence.
 
 ### Statistiques — Socle livré
 
@@ -613,7 +613,7 @@ Briques livrées :
 - helpers Jinja pour afficher les indicateurs dans les templates ;
 - pas de dashboard généré automatiquement — les vues sont à créer dans le contrôleur.
 
-La documentation complète est dans la section [Statistiques](stats.md) de cette référence.
+La documentation complète est dans la section [Statistiques](/docs/forge/reference/stats/) de cette référence.
 
 ### Modules — Socle livré
 

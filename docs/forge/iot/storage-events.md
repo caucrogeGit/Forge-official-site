@@ -364,7 +364,7 @@ de Forge) et la table `iot_events`.
   downsampling, pas d'alertes.
 
 Ces points feront chacun l'objet d'un ticket dédié — voir
-[Architecture Forge IoT](architecture.md#tickets-suivants).
+[Architecture Forge IoT](/docs/forge/iot/architecture/#tickets-suivants).
 
 ## Découpage rappelé
 

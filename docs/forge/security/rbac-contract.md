@@ -1,7 +1,7 @@
 # Contrat RBAC Forge
 
 > **Usage applicatif** : pour le workflow complet (validation, audit, helpers Python,
-> guards opt-in), voir [RBAC opt-in — Guide d'usage applicatif](rbac-usage.md).
+> guards opt-in), voir [RBAC opt-in — Guide d'usage applicatif](/docs/forge/security/rbac-usage/).
 
 ## Rôle
 
@@ -9,7 +9,7 @@ Le contrat RBAC Forge définit les rôles et permissions d'accès dans un projet
 Il est **séparé du schéma d'entité** (`entity.schema.json`) : le schéma d'entité
 décrit la structure de données, le contrat RBAC décrit les règles d'autorisation.
 
-Cette séparation est décidée dans [ADR-014](../adr/014-rbac-contract-location.md).
+Cette séparation est décidée dans [ADR-014](/docs/forge/adr/014-rbac-contract-location/).
 
 ## Emplacement
 
@@ -243,7 +243,7 @@ Ce contrat est non branché au runtime Forge Core (décision RBAC-CONTRACT-004).
 - Aucun guard RBAC n'est généré automatiquement par Forge Core depuis `mvc/security/rbac.json`.
 - La protection des routes est opt-in — à appliquer explicitement via `forge-mvc-rbac`.
 
-Voir [les limites détaillées](rbac-usage.md#limites-actuelles) dans le guide d'usage.
+Voir [les limites détaillées](/docs/forge/security/rbac-usage/#limites-actuelles) dans le guide d'usage.
 
 ## Relation avec entity.schema.json
 

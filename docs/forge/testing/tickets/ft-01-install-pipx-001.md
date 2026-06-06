@@ -234,7 +234,7 @@ Ajouter si utile :
 
 ## 15. Retour d'expérience attendu
 
-Le testeur doit répondre au [modèle de retour testeur](../field-test-feedback-template.md).
+Le testeur doit répondre au [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 Points obligatoires :
 

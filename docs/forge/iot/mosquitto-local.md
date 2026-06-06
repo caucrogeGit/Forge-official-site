@@ -27,7 +27,7 @@ iot_events                  # stockage
 
 Cette page cible un poste **Linux / WSL / Debian / Ubuntu**. Pour
 dérouler ce flux d'un coup, voir le
-[smoke test local](local-smoke-test.md).
+[smoke test local](/docs/forge/iot/local-smoke-test/).
 
 ## Installer Mosquitto
 
@@ -75,7 +75,7 @@ Quand Mosquitto tourne :
   [OK]    broker MQTT — connexion réussie à localhost:1883
 ```
 
-Détail : [Diagnostic Forge IoT](doctor.md).
+Détail : [Diagnostic Forge IoT](/docs/forge/iot/doctor/).
 
 ## Initialiser la table IoT
 
@@ -88,7 +88,7 @@ forge migration:apply     # crée la table iot_events en base
 forge iot:doctor --db     # confirme que la table est lisible
 ```
 
-Détail : [Initialisation (iot:init)](init-command.md).
+Détail : [Initialisation (iot:init)](/docs/forge/iot/init-command/).
 
 ## Lancer l'écoute Forge
 
@@ -99,7 +99,7 @@ forge iot:listen
 ```
 
 Forge s'abonne au topic configuré et insère chaque mesure reçue.
-Détail : [Écoute (iot:listen)](listen-command.md).
+Détail : [Écoute (iot:listen)](/docs/forge/iot/listen-command/).
 
 ## Publier une mesure simulée
 
@@ -110,7 +110,7 @@ forge iot:simulate --count 3 --interval 1
 ```
 
 Trois lignes `[OK]` doivent apparaître dans le terminal `forge iot:listen`.
-Détail : [Simulateur (iot:simulate)](simulator.md).
+Détail : [Simulateur (iot:simulate)](/docs/forge/iot/simulator/).
 
 ## Lire les événements via l'API HTTP
 
@@ -121,7 +121,7 @@ Dans un **troisième terminal** (l'application Forge tournant via
 curl http://localhost:8000/api/iot/events
 ```
 
-Détail : [API HTTP IoT](http-api.md).
+Détail : [API HTTP IoT](/docs/forge/iot/http-api/).
 
 ## Tester avec `mosquitto_sub`
 
@@ -149,7 +149,7 @@ mosquitto_pub -h localhost \
 
 Le message doit apparaître dans `mosquitto_sub` **et**, si
 `forge iot:listen` tourne, être inséré dans `iot_events`. Pour publier
-depuis un vrai microcontrôleur, voir l'[exemple ESP32](esp32-example.md).
+depuis un vrai microcontrôleur, voir l'[exemple ESP32](/docs/forge/iot/esp32-example/).
 
 ## Erreurs fréquentes
 
@@ -204,7 +204,7 @@ Exemple **correct** :
 forge/atelier/esp32-001/telemetry
 ```
 
-Voir le [contrat MQTT](mqtt-contract.md).
+Voir le [contrat MQTT](/docs/forge/iot/mqtt-contract/).
 
 ### Payload invalide
 
@@ -230,4 +230,4 @@ de tickets ultérieurs :
 
 Le broker décrit ici écoute en clair sur `localhost:1883`, sans TLS ni auth ni cloud — adapté à un atelier local, pas à une mise en production.
 
-Cette page reste **volontairement sans TLS ni authentification** : le chiffrement TLS et son certificat CA sont **hors périmètre** ici, et restent désactivés par défaut côté Forge ; pour un broker exposé, voir [Configuration Forge IoT — TLS MQTT](configuration.md#tls-mqtt-preparation).
+Cette page reste **volontairement sans TLS ni authentification** : le chiffrement TLS et son certificat CA sont **hors périmètre** ici, et restent désactivés par défaut côté Forge ; pour un broker exposé, voir [Configuration Forge IoT — TLS MQTT](/docs/forge/iot/configuration/#tls-mqtt-preparation).

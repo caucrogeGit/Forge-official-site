@@ -4,7 +4,7 @@
 > protection **optionnelle** par Bearer token (voir
 > [Protection par Bearer token](#protection-par-bearer-token)). L'API
 > d'ingestion (POST) et le dashboard restent **hors périmètre** — voir
-> [Architecture Forge IoT](architecture.md#tickets-suivants).
+> [Architecture Forge IoT](/docs/forge/iot/architecture/#tickets-suivants).
 
 ## Routes
 

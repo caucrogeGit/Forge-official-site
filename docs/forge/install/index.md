@@ -3,7 +3,7 @@
 [Accueil](../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
 Forge s'installe différemment selon votre intention. Choisissez d'abord votre
-parcours, puis enchaînez avec le [guide de démarrage](../guide.md).
+parcours, puis enchaînez avec le [guide de démarrage](/docs/forge/guide/guide/).
 
 ## Utilisateur du framework ou développeur du core ?
 
@@ -15,27 +15,27 @@ Deux parcours **distincts**, qui ne se mélangent pas :
 | Installation | `pipx install --pip-args="--pre" forge-mvc` | `git clone` du dépôt + `pip install -e .` |
 | Point d'entrée | `forge new mon-app` | `cd Forge` (le dépôt cloné) |
 | Lancement | `forge run` dans le projet généré | `python -m pytest` + outils de dev |
-| Référence | [Installation avec pipx](pipx.md) | [Développement du core](core-dev.md) |
+| Référence | [Installation avec pipx](/docs/forge/install/pipx/) | [Développement du core](/docs/forge/install/core-dev/) |
 
 ## Choisir son parcours
 
 | Usage | Parcours |
 |---|---|
-| Windows 11 (poste de travail) | [Windows + WSL — parcours complet](windows-wsl.md) |
-| Utilisateur du framework — Linux / macOS | [Installation avec pipx](pipx.md) |
-| Préparer une machine Debian vierge | [Installation sur une VM Debian vierge](vm-debian.md) |
-| Créer un projet depuis une version stable | [Installation depuis GitHub](github.md) |
-| Windows (résumé court historique) | [Installation Windows](windows.md) |
-| Contribuer au framework Forge | [Développement du core](core-dev.md) |
-| Préparer la base locale | [Préparer MariaDB](mariadb.md) |
-| Déploiement encadré | [Production](production.md) |
+| Windows 11 (poste de travail) | [Windows + WSL — parcours complet](/docs/forge/install/windows-wsl/) |
+| Utilisateur du framework — Linux / macOS | [Installation avec pipx](/docs/forge/install/pipx/) |
+| Préparer une machine Debian vierge | [Installation sur une VM Debian vierge](/docs/forge/install/vm-debian/) |
+| Créer un projet depuis une version stable | [Installation depuis GitHub](/docs/forge/install/github/) |
+| Windows (résumé court historique) | [Installation Windows](/docs/forge/install/windows/) |
+| Contribuer au framework Forge | [Développement du core](/docs/forge/install/core-dev/) |
+| Préparer la base locale | [Préparer MariaDB](/docs/forge/install/mariadb/) |
+| Déploiement encadré | [Production](/docs/forge/install/production/) |
 
 ## Modèle de packages
 
 Depuis `1.0.0-beta.9`, Forge distribue le **core** et **tous les opt-ins officiels**
 sur [PyPI](https://pypi.org/project/forge-mvc/) (bêta publique — `--pre` requis).
 Les opt-ins restent optionnels : le core Forge ne dépend pas d'eux.
-Voir [Politique de release](../release-policy.md#publication-pypi).
+Voir [Politique de release](/docs/forge/release/release-policy/#publication-pypi).
 
 | Package (monorepo) | Contenu | Statut |
 |---|---|---|
@@ -44,12 +44,18 @@ Voir [Politique de release](../release-policy.md#publication-pypi).
 | `forge-mvc-workflow` | Brique workflow — statuts et transitions | Bêta — publié PyPI |
 | `forge-mvc-stats` | Brique statistiques — agrégations | Bêta — publié PyPI |
 | `forge-mvc-mfa` | Brique MFA — TOTP, codes de récupération | **Alpha** — publié PyPI depuis `1.0.0-beta.9` |
-| `forge-mvc-media` | Brique media — helpers applicatifs upload | **Alpha** — publié PyPI depuis `1.0.0-beta.9` (API encore bêta, voir [Limites](../production-limits.md)) |
+| `forge-mvc-files` | Brique upload générique (écriture sécurisée, storage, service HTTP Range) | **Alpha** : publié PyPI depuis `1.0.0-beta.13` |
+| `forge-mvc-images` | Brique images : traitement d'image (Pillow) + couche médias applicative ; dépend de `forge-mvc-files` | **Alpha** : publié PyPI depuis `1.0.0-beta.13` (API encore bêta, voir [Limites](/docs/forge/deployment/production-limits/)) |
+| `forge-mvc-audio` | Brique audio (upload, sondage, transcodage MP3, lecture HTTP Range) | **Beta** : publié PyPI depuis `1.0.0-beta.13` |
+| `forge-mvc-iot` | Brique IoT (subscriber MQTT, stockage `iot_events`, API HTTP) | **Alpha** : publié PyPI depuis `1.0.0-beta.12` |
+| `forge-mvc-video` | Brique vidéo (upload, transcodage MP4, lecture HTTP Range) | **Beta** : publié PyPI depuis `1.0.0-beta.13` |
+| `forge-mvc-pivot` | Brique pivot : associations `many_to_many` enrichies + `make:pivot-crud` | **Beta** : publié PyPI depuis `1.0.0-beta.13` |
+| `forge-mvc-mail` | Brique mail (composition, transports, templates Jinja, CLI `mail:*`) | **Beta** : publié PyPI depuis `1.0.0-beta.13` |
 
 Pour installer Forge avec toutes les briques opt-in :
 
 ```bash
-git clone --branch v1.0.0-beta.12 https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.13 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -59,24 +65,33 @@ python -m pip install -r requirements-dev.txt
 ```
 
 `pip install -e .` installe le core en mode éditable.
-`requirements-dev.txt` installe ensuite les 4 modules opt-in
+`requirements-dev.txt` installe ensuite les 11 modules opt-in
 (également en éditable) et les outils de développement. Voir
-[Installation depuis GitHub](github.md) pour les détails.
+[Installation depuis GitHub](/docs/forge/install/github/) pour les détails.
 
 ## Contrat d'installation des opt-ins
 
-Depuis `1.0.0-beta.9`, le core `forge-mvc` et les cinq opt-ins officiels
+Le core `forge-mvc` et les onze opt-ins officiels
 (`forge-mvc-rbac`, `forge-mvc-workflow`, `forge-mvc-stats`, `forge-mvc-mfa`,
-`forge-mvc-media`) sont publiés sur PyPI.
+`forge-mvc-files`, `forge-mvc-images`, `forge-mvc-audio`, `forge-mvc-iot`,
+`forge-mvc-video`, `forge-mvc-pivot`, `forge-mvc-mail`) sont publiés sur PyPI
+(rbac/workflow/stats/mfa depuis `1.0.0-beta.9`, `forge-mvc-iot` depuis
+`1.0.0-beta.12`, et les six derniers depuis `1.0.0-beta.13`).
 
-Installation directe d'un opt-in (méthode recommandée — disponible pour tous) :
+Installation directe d'un opt-in (méthode recommandée, disponible pour tous) :
 
 ```bash
 pip install --pre forge-mvc-rbac
 pip install --pre forge-mvc-workflow
 pip install --pre forge-mvc-stats
 pip install --pre forge-mvc-mfa
-pip install --pre forge-mvc-media
+pip install --pre forge-mvc-files
+pip install --pre forge-mvc-images
+pip install --pre forge-mvc-audio
+pip install --pre forge-mvc-iot
+pip install --pre forge-mvc-video
+pip install --pre forge-mvc-pivot
+pip install --pre forge-mvc-mail
 ```
 
 Le core fournit également les extras `forge-mvc[rbac]`, `forge-mvc[workflow]`,
@@ -90,16 +105,16 @@ pip install --pre "forge-mvc[stats]"
 pip install --pre "forge-mvc[all]"
 ```
 
-`forge-mvc[mfa]` et `forge-mvc[media]` ne sont pas définis comme extras du core —
-installer `forge-mvc-mfa` ou `forge-mvc-media` directement comme ci-dessus. MFA
-est officiellement publié au statut **Alpha** (secret TOTP chiffré au repos via
-Fernet) ; l'API de `forge-mvc-media` reste bêta — voir
-[Limites](../production-limits.md).
+`forge-mvc[mfa]` et `forge-mvc[images]` ne sont pas définis comme extras du core :
+installer `forge-mvc-mfa` ou `forge-mvc-images` directement comme ci-dessus
+(tous deux publiés sur PyPI). MFA est publié au statut **Alpha**
+(secret TOTP chiffré au repos via Fernet) ; l'API de `forge-mvc-images` reste
+bêta, voir [Limites](/docs/forge/deployment/production-limits/).
 
 Pour installer en mode éditable depuis les sources (contribution Forge) :
 
 ```bash
-git clone --branch v1.0.0-beta.12 https://github.com/caucrogeGit/Forge.git
+git clone --branch v1.0.0-beta.13 https://github.com/caucrogeGit/Forge.git
 cd Forge
 python -m venv .venv
 source .venv/bin/activate
@@ -107,13 +122,13 @@ python -m pip install -e .
 python -m pip install -r requirements-dev.txt
 ```
 
-`requirements-dev.txt` installe les cinq opt-ins en mode éditable.
+`requirements-dev.txt` installe les onze opt-ins en mode éditable.
 
 ---
 
 ## Version stable
 
-Forge 1.0.0b12 utilise la référence stable `v1.0.0-beta.12` par défaut.
+Forge 1.0.0b13 utilise la référence stable `v1.0.0-beta.13` par défaut.
 
 ```bash
 forge --version

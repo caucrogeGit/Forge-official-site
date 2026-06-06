@@ -7,8 +7,8 @@ Chaque fichier représente un instantané à un moment donné — il n'est pas u
 active et peut contenir des informations obsolètes par rapport à l'état courant du
 framework. Pour le statut actuel, consulter :
 
-- [Roadmap courante](../../roadmap/forge-roadmap.md)
-- [Politique de dépréciation](../../deprecation-policy.md)
+- [Roadmap courante](/docs/forge/roadmap/forge-roadmap/)
+- [Politique de dépréciation](/docs/forge/release/deprecation-policy/)
 - `CHANGELOG.md` à la racine du dépôt
 
 ## Catégories
@@ -23,4 +23,4 @@ framework. Pour le statut actuel, consulter :
 
 Ces documents sont archivés en consultation uniquement et ne font pas l'objet de
 mises à jour. Si un audit révèle une dette toujours applicable, créer un ticket dans
-la [roadmap active](../../roadmap/forge-roadmap.md).
+la [roadmap active](/docs/forge/roadmap/forge-roadmap/).

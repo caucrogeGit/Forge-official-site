@@ -294,7 +294,7 @@ terrain. La règle reste celle de la charte : **tester avant d'élargir**.
 
 ## 8. Voir aussi
 
-- [API Forge complète](api.md)
-- [API JSON légère](../api-json.md)
-- [Sessions](sessions.md)
-- [ADR-008 — Audit Auth (architecture du logging)](../adr/008-auth-audit-architecture.md)
+- [API Forge complète](/docs/forge/reference/api/)
+- [API JSON légère](/docs/forge/reference/api-json/)
+- [Sessions](/docs/forge/reference/sessions/)
+- [ADR-008 — Audit Auth (architecture du logging)](/docs/forge/adr/008-auth-audit-architecture/)

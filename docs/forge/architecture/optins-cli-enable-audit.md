@@ -1,9 +1,16 @@
 # Audit `forge optin:enable`
 
+!!! note "Renommage CLI (ADR-016)"
+    La commande s'appelle désormais **`forge opt-in:enable`** (avec tiret), au
+    sein de la famille `forge opt-in:install/remove/enable/disable/list`. Ce
+    document de **conception** conserve le nom d'époque `optin:enable`. Voir le
+    [glossaire opt-in](/docs/forge/reference/vocabulaire-opt-in/) et
+    [ADR-016](/docs/forge/adr/016-opt-in-unification/).
+
 > Ticket : `OPTINS-CLI-ENABLE-AUDIT-001`. **Audit de conception** — ce
 > document **cadre** la future commande `forge optin:enable` sans
 > l'implémenter. Aucun code fonctionnel n'est ajouté : pas de
-> modification de `forge.py`, `forge_cli/`, du starter `welcome-iot`, ni
+> modification de `forge.py`, `forge_cli/`, du starter `welcome-optin-iot`, ni
 > du paquet `forge-mvc-iot`. L'implémentation fera l'objet du ticket
 > `OPTINS-CLI-ENABLE-IOT-001`, **après validation de ce contrat**.
 
@@ -17,7 +24,7 @@
     structure ambiguë ou fichier absent → `[WARN]` + instruction
     manuelle, aucune écriture. Ce document reste la **référence de
     conception** ; voir la
-    [référence CLI](../reference/cli-commands.md#opt-ins-branchement-projet).
+    [référence CLI](/docs/forge/reference/cli-commands/#opt-ins-branchement-projet).
     Les autres opt-ins (`rbac`, `media`…) restent à venir.
 
 ## Objectif
@@ -25,7 +32,7 @@
 Définir précisément ce qu'une commande `forge optin:enable <name>` aura
 le droit de faire pour **brancher localement** un opt-in dans un projet
 Forge, en respectant la convention figée par
-[la structure des opt-ins](optins-project-structure.md) :
+[la structure des opt-ins](/docs/forge/architecture/optins-project-structure/) :
 
 - quels fichiers elle peut **créer** ;
 - quels fichiers elle peut **modifier** (et avec quelle prudence) ;
@@ -76,7 +83,7 @@ auditer séparément si besoin).
 ## Modèle de branchement
 
 La commande **n'invente rien** : elle matérialise le modèle déjà
-documenté, identique à celui généré par le starter `welcome-iot`.
+documenté, identique à celui généré par le starter `welcome-optin-iot`.
 
 ```python
 # mvc/routes.py
@@ -229,7 +236,7 @@ sans exécuter le SQL) et `forge update --dry-run`.
 ## Cas Forge IoT
 
 `forge optin:enable iot` produira exactement la structure que le starter
-[`welcome-iot`](../starters/welcome-iot/index.md) génère déjà
+`welcome-iot` génère déjà
 (`OPTINS-IOT-PROJECT-BRIDGE-001`) :
 
 1. crée `optins/` + `optins/iot/` (write-if-new) ;
@@ -238,7 +245,7 @@ sans exécuter le SQL) et `forge update --dry-run`.
    `register_optins(router)` dans `mvc/routes.py` ;
 4. rappelle `forge iot:init` + `forge migration:apply` pour la table
    `iot_events` ;
-5. renvoie vers la [doc IoT officielle](../iot/http-api.md).
+5. renvoie vers la [doc IoT officielle](/docs/forge/iot/http-api/).
 
 La commande et le starter doivent rester **cohérents** : même structure,
 même branchement explicite, mêmes fichiers. La commande est l'équivalent
@@ -253,7 +260,7 @@ Ce ticket **ne fait que cadrer**. Ne sont **pas** réalisés ici :
 - pas de modification de `forge.py` ni de `forge_cli/` ;
 - pas de génération automatique de fichiers ;
 - pas de modification de `mvc/routes.py` ;
-- pas de modification du starter `welcome-iot` ;
+- pas de modification du starter `welcome-optin-iot` ;
 - pas de modification du paquet `forge-mvc-iot` ;
 - pas de support `rbac` / `media` / `workflow` / `stats` / `mfa`.
 

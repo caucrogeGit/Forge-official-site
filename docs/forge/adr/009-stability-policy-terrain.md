@@ -128,10 +128,10 @@ pas le T0.
 ## Références
 
 - Tracker officiel des constats d'audit :
-  [`docs/history/audits/findings-tracker.md`](../history/audits/findings-tracker.md)
+  [`docs/history/audits/findings-tracker.md`](/docs/forge/history/audits/findings-tracker/)
 - Baseline d'audit :
-  [`docs/history/audits/audit-baseline-2026-05-15.md`](../history/audits/audit-baseline-2026-05-15.md)
+  [`docs/history/audits/audit-baseline-2026-05-15.md`](/docs/forge/history/audits/audit-baseline-2026-05-15/)
 - Charte philosophique v2 (principe 6 — tester avant d'élargir) :
   `CHARTE_DOC.md` à la racine du dépôt
 - ADR-005 Packaging :
-  [`docs/adr/005-packaging.md`](005-packaging.md)
+  [`docs/adr/005-packaging.md`](/docs/forge/adr/005-packaging/)

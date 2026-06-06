@@ -67,7 +67,7 @@ Le doctor exit 0 dès qu'aucun `fail` n'est remonté — un `warn` ou un
 ```text
 Forge IoT doctor
 
-  [OK]    package forge-mvc-iot — installé (version 1.0.0b12)
+  [OK]    package forge-mvc-iot — installé (version 1.0.0b13)
   [OK]    configuration IoT — chargée
            mqtt_host       : localhost
            mqtt_port       : 1883
@@ -237,13 +237,13 @@ forge iot:doctor --mqtt
 
 Sans `FORGE_IOT_MQTT_TLS_CA_FILE`, paho utilise les certificats système.
 Le chemin du CA n'apparaît jamais dans la sortie. Détails :
-[Configuration — TLS MQTT](configuration.md#tls-mqtt-preparation).
+[Configuration — TLS MQTT](/docs/forge/iot/configuration/#tls-mqtt-preparation).
 
 > **Astuce ateliers** : si Mosquitto n'est pas lancé, `forge iot:doctor
 > --mqtt` sort légitimement en `[FAIL]` avec un message clair — c'est le
 > signal attendu avant de démarrer un subscriber ou un simulateur. Pour
 > installer et lancer un broker local, voir
-> [Mosquitto local](mosquitto-local.md).
+> [Mosquitto local](/docs/forge/iot/mosquitto-local/).
 
 ## Parcours recommandé
 
@@ -269,7 +269,7 @@ Avec un username/password configurés :
 ```
 
 Le mot de passe est **toujours masqué** par `***` — c'est le contrat
-de [`IotConfig.__repr__`](configuration.md#masquage-du-mot-de-passe)
+de [`IotConfig.__repr__`](/docs/forge/iot/configuration/#masquage-du-mot-de-passe)
 appliqué uniformément dans le doctor.
 
 ## Cas d'erreur typiques
@@ -283,7 +283,7 @@ Si `FORGE_IOT_MQTT_HOST` est défini mais vide, par exemple :
 ```
 
 Idem pour un port hors plage, un topic vide, etc. Voir
-[Configuration Forge IoT — erreurs](configuration.md#erreurs-levees).
+[Configuration Forge IoT — erreurs](/docs/forge/iot/configuration/#erreurs-levees).
 
 ### Migration manquante
 
@@ -307,7 +307,7 @@ Solution : réinstaller le package (`pip install -e packages/forge-mvc-iot`
 ou `pip install --force-reinstall forge-mvc-iot`).
 
 Pour **copier ensuite** la migration dans le projet, voir
-[`forge iot:init`](init-command.md) — copie idempotente vers
+[`forge iot:init`](/docs/forge/iot/init-command/) — copie idempotente vers
 `mvc/migrations/`, sans exécuter le SQL.
 
 ### Module non installé
@@ -338,7 +338,7 @@ Sont volontairement **hors périmètre**, y compris pour `--mqtt` :
   client (mTLS). Le **TLS est désormais pris en charge** : si
   `FORGE_IOT_MQTT_TLS_ENABLED=true`, `--mqtt` se connecte en TLS
   (`client.tls_set`, `ca_certs` = `FORGE_IOT_MQTT_TLS_CA_FILE` si fourni)
-  — voir [Configuration — TLS MQTT](configuration.md#tls-mqtt-preparation).
+  — voir [Configuration — TLS MQTT](/docs/forge/iot/configuration/#tls-mqtt-preparation).
   Sinon, la connexion reste en clair (comportement par défaut).
 
 Côté `--db` et contrôle de schéma, sont aussi **hors périmètre** :

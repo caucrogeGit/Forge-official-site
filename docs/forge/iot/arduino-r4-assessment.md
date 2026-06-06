@@ -16,7 +16,7 @@ selon la variante de carte.
 
 ## Pourquoi ESP32 reste la cible de référence
 
-L'[exemple ESP32](esp32-example.md) reste la **cible de référence** Forge
+L'[exemple ESP32](/docs/forge/iot/esp32-example/) reste la **cible de référence** Forge
 IoT pour MQTT :
 
 - Wi-Fi **intégré** et mature ;

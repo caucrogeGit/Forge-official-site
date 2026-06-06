@@ -139,7 +139,7 @@ Pour ce ticket, inventer un scénario différent (un autre numéro de ticket fic
 
 ## 10. Procédure de test
 
-1. Ouvrir le [modèle de retour testeur](../field-test-feedback-template.md).
+1. Ouvrir le [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 2. Lire intégralement le modèle.
 3. Identifier tous les champs obligatoires.
 4. Inventer un scénario fictif simple (un ticket imaginaire, par exemple `FT-99-DEMO-001`).
@@ -193,7 +193,7 @@ Le ticket est validé si :
 
 ## 15. Retour d'expérience attendu
 
-Le testeur doit répondre au [modèle de retour testeur](../field-test-feedback-template.md).
+Le testeur doit répondre au [modèle de retour testeur](/docs/forge/testing/field-test-feedback-template/).
 
 Points obligatoires :
 

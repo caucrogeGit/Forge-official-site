@@ -313,9 +313,9 @@ référencent plus d'anciennes colonnes supprimées (ex. l'ancienne PK renommée
 
 ## Références
 
-- Format canonique : [Le JSON canonique](json-canonique.md)
-- Schéma des entités : [Schéma des entités](entity-schema.md)
-- Schéma des relations : [Schéma des relations](relations-schema.md)
-- Types Forge : [Types Forge vers MariaDB](types-forge-mariadb.md)
-- Tables pivot : [Tables pivot many-to-many](pivots-many-to-many.md)
+- Format canonique : [Le JSON canonique](/docs/forge/entities/json-canonique/)
+- Schéma des entités : [Schéma des entités](/docs/forge/entities/entity-schema/)
+- Schéma des relations : [Schéma des relations](/docs/forge/entities/relations-schema/)
+- Types Forge : [Types Forge vers MariaDB](/docs/forge/entities/types-forge-mariadb/)
+- Tables pivot : [Tables pivot many-to-many](/docs/forge/entities/pivots-many-to-many/)
 - Politique de dépréciation : ADR-012 `docs/adr/012-legacy-format-deprecation-policy.md`

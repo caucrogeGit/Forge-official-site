@@ -38,7 +38,7 @@ Les deux audits suivants servent de base aux constats à solder :
 | Date | 2026-05-09 |
 | Version auditée | Forge 2.0.0 (branche `main`, commit `435ffa9`) |
 | Périmètre | Architecture, sécurité, tests, CLI, documentation |
-| Fichier | [`docs/history/audits/audit-claude.md`](audit-claude.md) |
+| Fichier | [`docs/history/audits/audit-claude.md`](/docs/forge/history/audits/audit-claude/) |
 
 **Constats principaux identifiés** :
 
@@ -55,7 +55,7 @@ Les deux audits suivants servent de base aux constats à solder :
 | Version auditée | Forge 3.0.2 (tag `v3.0.2`) |
 | Périmètre | Environnement core-only, API docs, versions, angles morts, CLI, packaging |
 | Suite de tests | 9 651 passés, 2 skippés |
-| Fichier | [`docs/history/audits/audit-renforce-3.0.2-001.md`](audit-renforce-3.0.2-001.md) |
+| Fichier | [`docs/history/audits/audit-renforce-3.0.2-001.md`](/docs/forge/history/audits/audit-renforce-3.0.2-001/) |
 
 **Constats principaux identifiés** :
 

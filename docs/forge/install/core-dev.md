@@ -21,7 +21,7 @@ Deux parcours **distincts**, qui ne se mélangent pas :
 | Point d'entrée projet | `forge new mon-app` | `cd Forge` (le dépôt cloné) |
 | Fichiers modifiés | `mvc/`, `env/`, `mvc/entities/...` | `core/`, `forge_cli/`, `tests/`, `docs/`, `packages/` |
 | Lancement | `forge run` dans le projet généré | `python -m pytest` + outils de dev |
-| Référence | [Installation avec pipx](pipx.md) | cette page + [Contribuer](../contributing.md) |
+| Référence | [Installation avec pipx](/docs/forge/install/pipx/) | cette page + [Contribuer](/docs/forge/philosophy/contributing/) |
 
 !!! warning "Ne pas utiliser `pipx` pour développer le core"
     `pipx` installe Forge dans un environnement isolé, en lecture seule
@@ -33,7 +33,7 @@ Deux parcours **distincts**, qui ne se mélangent pas :
 
 ## Prérequis
 
-- Python 3.12+ ([ADR-006](../adr/006-python-version.md))
+- Python 3.12+ ([ADR-006](/docs/forge/adr/006-python-version/))
 - Git, `make` (optionnel), `openssl`
 - MariaDB local — uniquement pour les tests E2E
   (`tests/test_e2e_mariadb.py`), pas pour la suite par défaut
@@ -77,14 +77,17 @@ python -m pip install -r requirements-dev.txt
 
 `requirements-dev.txt` fait deux choses simultanément :
 
-1. inclut `requirements.txt` (les 5 dépendances runtime `mariadb`,
-   `python-dotenv`, `jinja2`, `Pillow`, `argon2-cffi`) ;
+1. inclut `requirements.txt` (les dépendances runtime du core : `mariadb`,
+   `python-dotenv`, `jinja2`, `argon2-cffi`, `jsonschema` — Pillow a quitté le
+   core, il est désormais déclaré par l'opt-in `forge-mvc-images`, ADR-018) ;
 2. installe les outils de développement (`pytest`, `build`,
    `setuptools`, `twine`, `mkdocs`, `mkdocs-material`,
    `pymdown-extensions`, `pip-audit`, `ruff`) ;
-3. installe les **5 modules opt-in** Forge en mode éditable depuis
+3. installe les **11 modules opt-in** Forge en mode éditable depuis
    le monorepo (`forge-mvc-mfa`, `forge-mvc-rbac`,
-   `forge-mvc-workflow`, `forge-mvc-stats`, `forge-mvc-media`).
+   `forge-mvc-workflow`, `forge-mvc-stats`, `forge-mvc-files`,
+   `forge-mvc-images`, `forge-mvc-audio`, `forge-mvc-iot`,
+   `forge-mvc-video`, `forge-mvc-pivot`, `forge-mvc-mail`).
 
 !!! note "Sans `requirements-dev.txt`, pytest casse"
     Environ 46 fichiers de tests importent les modules opt-in
@@ -139,7 +142,7 @@ Pour les tests E2E MariaDB (optionnels, désactivés par défaut) :
 FORGE_E2E_MARIADB=1 python -m pytest tests/test_e2e_mariadb.py
 ```
 
-Voir [Contribuer à Forge](../contributing.md) pour le processus complet
+Voir [Contribuer à Forge](/docs/forge/philosophy/contributing/) pour le processus complet
 (branche, message de commit, PR, checklist).
 
 ---
@@ -199,7 +202,7 @@ Ce mode n'est **pas** utile pour :
 
 ## 7. Travailler sur les opt-ins (packages/)
 
-Les 5 modules opt-in vivent dans `packages/` :
+Les 11 modules opt-in vivent dans `packages/` :
 
 ```text
 packages/
@@ -207,7 +210,13 @@ packages/
 ├── forge-mvc-rbac/       Rôles et permissions
 ├── forge-mvc-workflow/   Statuts et transitions
 ├── forge-mvc-stats/      Agrégats statistiques
-└── forge-mvc-media/      Helpers applicatifs upload
+├── forge-mvc-files/      Upload générique (écriture sécurisée, storage, service HTTP Range)
+├── forge-mvc-images/      Traitement d'image (Pillow) + couche médias applicative
+├── forge-mvc-audio/      Upload, sondage, transcodage MP3, lecture HTTP Range
+├── forge-mvc-iot/        Réception/exposition de données IoT (MQTT)
+├── forge-mvc-video/      Upload, transcodage MP4, lecture HTTP Range
+├── forge-mvc-pivot/      Tables pivot enrichies (many_to_many avec attributs)
+└── forge-mvc-mail/       Envoi de courriels (composition, transports, templates)
 ```
 
 Chacun a son propre `pyproject.toml`. `requirements-dev.txt` les
@@ -215,7 +224,7 @@ installe **tous** en éditable, donc les modifications dans
 `packages/forge-mvc-*/` sont prises en compte sans réinstallation.
 
 Pour publier un opt-in sur PyPI, suivre la procédure release dédiée
-([release-policy.md](../release-policy.md)).
+([release-policy.md](/docs/forge/release/release-policy/)).
 
 ---
 
@@ -233,7 +242,7 @@ static/        CSS Tailwind compilé + assets de la landing
 mvc/views/landing/  Source canonique de la landing page
 ```
 
-Détails complets dans [Contribuer à Forge](../contributing.md) (section
+Détails complets dans [Contribuer à Forge](/docs/forge/philosophy/contributing/) (section
 « Comprendre l'architecture »).
 
 ---
@@ -242,19 +251,19 @@ Détails complets dans [Contribuer à Forge](../contributing.md) (section
 
 | Étape | Ressource |
 |---|---|
-| Processus de contribution complet | [Contribuer à Forge](../contributing.md) |
-| Conventions de code et de tests | [Conventions de travail](../contributing/conventions.md) |
-| Charte philosophique du projet | [Charte v2](../charter.md) |
-| Décisions architecturales | ADR dans la navigation Philosophie |
-| Procédure de release | [Politique de release](../release-policy.md) |
-| Tests E2E MariaDB | [Tests E2E](../reference/tests-e2e.md) |
+| Processus de contribution complet | [Contribuer à Forge](/docs/forge/philosophy/contributing/) |
+| Conventions de code et de tests | [Conventions de travail](/docs/forge/contributing/conventions/) |
+| Charte philosophique du projet | [Charte v2](/docs/forge/philosophy/charter/) |
+| Décisions architecturales | [ADR](/docs/forge/adr/) |
+| Procédure de release | [Politique de release](/docs/forge/release/release-policy/) |
+| Tests E2E MariaDB | [Tests E2E](/docs/forge/reference/tests-e2e/) |
 
 ---
 
 ## Voir aussi
 
-- [Installation — vue d'ensemble](index.md)
-- [Installation avec pipx (utilisateur du framework)](pipx.md)
-- [Windows + WSL (parcours complet)](windows-wsl.md)
-- [Démarrer avec Forge](../getting-started.md)
-- [Roadmap Forge](../roadmap/forge-roadmap.md) — ticket `INSTALL-CORE-DEV-DOCS-AUDIT-001`
+- [Installation — vue d'ensemble](/docs/forge/install/)
+- [Installation avec pipx (utilisateur du framework)](/docs/forge/install/pipx/)
+- [Windows + WSL (parcours complet)](/docs/forge/install/windows-wsl/)
+- [Démarrer avec Forge](/docs/forge/guide/getting-started/)
+- [Roadmap Forge](/docs/forge/roadmap/forge-roadmap/) — ticket `INSTALL-CORE-DEV-DOCS-AUDIT-001`

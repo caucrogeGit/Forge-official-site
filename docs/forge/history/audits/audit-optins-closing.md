@@ -158,11 +158,11 @@ def register_optins(router):
 
 ## Documentation disponible
 
-- [Structure des opt-ins (projet)](../../architecture/optins-project-structure.md) ;
-- [Audit `forge optin:enable`](../../architecture/optins-cli-enable-audit.md) ;
-- [Référence CLI — Opt-ins](../../reference/cli-commands.md#opt-ins-branchement-projet)
+- [Structure des opt-ins (projet)](/docs/forge/architecture/optins-project-structure/) ;
+- [Audit `forge optin:enable`](/docs/forge/architecture/optins-cli-enable-audit/) ;
+- [Référence CLI — Opt-ins](/docs/forge/reference/cli-commands/#opt-ins-branchement-projet)
   (`optin:enable`, `optin:list`) ;
-- [Starter Bonjour IoT](../../starters/welcome-iot/index.md).
+- Starter Bonjour IoT.
 
 ## Tests et validations
 
