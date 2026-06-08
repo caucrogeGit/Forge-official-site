@@ -436,9 +436,9 @@ load_api_routes(router)  # charge mvc/api_routes.py si présent
 
 | Pattern | URL | Paramètres |
 |---|---|---|
-| `/contacts` | `/contacts` | `{}` |
-| `/contacts/{id}` | `/contacts/42` | `{"id": "42"}` |
-| `/api/{version}/contacts/{id}` | `/api/v1/contacts/5` | `{"version": "v1", "id": "5"}` |
+| `/contact` | `/contact` | `{}` |
+| `/contact/show/{id}` | `/contact/42` | `{"id": "42"}` |
+| `/api/{version}/contact/show/{id}` | `/api/v1/contact/5` | `{"version": "v1", "id": "5"}` |
 
 ### Exemples
 
@@ -447,7 +447,7 @@ from core.http.router import Router
 
 router = Router()
 router.add("GET", "/", home, name="home", public=True, csrf=False)
-router.add("POST", "/contacts", create_contact, name="contacts.create")
+router.add("POST", "/contact", create_contact, name="contacts.create")
 
 url = router.url_for("contacts.create")
 ```
@@ -807,14 +807,14 @@ class ContactController(BaseController):
     def create(self, request):
         data = self.body(request)
         # validation ...
-        return self.redirect_with_flash(request, "/contacts", "Contact créé.")
+        return self.redirect_with_flash(request, "/contact", "Contact créé.")
 
     def api_index(self, request):
         return self.json({"contacts": fetch_all("SELECT * FROM Contact")})
 ```
 
 Dans les CRUD générés, les identifiants de route sont parsés avant usage.
-Une valeur invalide comme `/contacts/abc` retourne `not_found()` au lieu de
+Une valeur invalide comme `/contact/abc` retourne `not_found()` au lieu de
 provoquer une erreur serveur.
 
 </details>
@@ -1471,10 +1471,17 @@ plus supportés depuis `MEDIA-SHIMS-REMOVE-001`. L'import correct est
 
 </details>
 
-<details markdown="1" id="corei18n">
-<summary><code>core.i18n</code> - Internationalisation</summary>
+<details markdown="1" id="forgemvci18n">
+<summary><code>forge_mvc_i18n</code> - Internationalisation (opt-in)</summary>
 
-`core.i18n` fournit une API Python minimale pour traduire des clés depuis un
+`forge-mvc-i18n` est un module **opt-in** extrait du core (ADR-027). Installez-le
+pour activer la traduction :
+
+```bash
+pip install --pre forge-mvc-i18n
+```
+
+`forge_mvc_i18n` fournit une API Python minimale pour traduire des clés depuis un
 catalogue JSON local.
 
 Le catalogue français est :
@@ -1489,7 +1496,7 @@ Il contient des clés génériques plates en notation pointée (`common.save`,
 ### Utilisation
 
 ```python
-from core.i18n import trans, load_catalog
+from forge_mvc_i18n import trans, load_catalog
 
 # Traduction d'une clé (locale fr par défaut)
 trans("common.save")                      # → "Enregistrer"
@@ -1522,8 +1529,8 @@ catalog = load_catalog("fr", translations_dir="translations")
 La langue par défaut et la langue de fallback sont toutes deux `"fr"` initialement :
 
 ```python
-from core.i18n import get_default_locale, set_default_locale
-from core.i18n import get_fallback_locale, set_fallback_locale
+from forge_mvc_i18n import get_default_locale, set_default_locale
+from forge_mvc_i18n import get_fallback_locale, set_fallback_locale
 
 get_default_locale()          # → "fr"
 get_fallback_locale()         # → "fr"
@@ -1552,14 +1559,25 @@ Le catalogue de fallback absent est ignoré silencieusement.
 
 ### Utilisation dans les templates Jinja
 
-`trans()` est disponible comme global Jinja dans tous les templates Forge et utilise la même langue par défaut :
+`trans()` est toujours disponible comme global Jinja dans tous les templates
+Forge. Le noyau expose un **repli no-op** qui retourne la clé telle quelle, pour
+que les templates générés (CRUD, pages publiques) rendent sans erreur même sans
+traduction. Dès que `forge-mvc-i18n` est installé, le renderer remplace ce repli
+par la vraie fonction `trans()` qui charge les catalogues :
 
 ```html
-{{ trans("common.save") }}           {# → Enregistrer #}
-{{ trans("validation.required") }}   {# → Ce champ est obligatoire. #}
-{{ trans("cle.inconnue") }}          {# → cle.inconnue #}
+{{ trans("common.save") }}           {# forge-mvc-i18n absent → common.save ; présent → Enregistrer #}
+{{ trans("validation.required") }}   {# présent → Ce champ est obligatoire. #}
+{{ trans("cle.inconnue") }}          {# → cle.inconnue (clé inconnue dans tous les cas) #}
 {{ trans("common.save", locale="fr") }}
 ```
+
+### Commandes CLI de scaffolding
+
+Les commandes `forge i18n:init` et `forge i18n:check` font partie du CLI du
+noyau (outillage de projet) et restent disponibles sans installer
+`forge-mvc-i18n` : elles créent et vérifient le fichier `translations/fr.json`,
+indépendamment du translator runtime.
 
 ### Commandes CLI
 
@@ -1747,7 +1765,7 @@ L'interface officielle est la commande `forge`.
 | Commande | Rôle |
 |---|---|
 | `forge --version` | Affiche la version CLI. |
-| `forge new NomProjet [--ref REF]` | Crée un projet depuis le dernier tag stable. `--ref main` est explicite pour le développement. |
+| `forge new NomProjet [--profile PROFIL]` | Crée un projet nu à partir du squelette embarqué (le core vient du paquet `forge-mvc`). |
 | `forge make:entity NomEntite` | Crée le JSON canonique d'une entité. |
 | `forge make:crud NomEntite [--dry-run]` | Génère contrôleur, vues et routes CRUD, avec champs relationnels `many_to_one`, formulaires `many_to_many` côté source, affichage `many_to_many` dans list/show côté source et partials internes de liste. |
 | `forge make:public-page <nom>` | Génère une page publique simple, son template, son contrôleur et sa route dédiée. |
@@ -1928,7 +1946,6 @@ Les conseils de récupération sont présents pour les erreurs les plus fréquen
 |---|---|
 | Commande inconnue | `forge help` pour la liste des commandes |
 | Argument manquant (`new`, `make:entity`, `make:crud`, `starter:build`) | Exemple concret avec nom plausible |
-| `forge new --ref` sans valeur | Exemple avec branche |
 | `forge new --profile` sans valeur | Liste des profils disponibles |
 | `forge project:check` hors projet | `forge new <NomProjet>` pour créer un projet |
 | `forge routes:list` avec arguments en trop | Usage correct sans argument |
@@ -1940,7 +1957,6 @@ Les conseils enrichissent la sortie mais **ne corrigent jamais automatiquement**
 ```bash
 forge --version
 forge new GestionVentes
-forge new ForgeDev --ref main
 ```
 
 ```bash
@@ -2283,8 +2299,8 @@ un filtre actif :
 
 ```html
 {% if pagination.q or pagination.filters %}
-<a href="/contacts"
-   hx-get="/contacts" hx-target="#crud-results" hx-swap="innerHTML" hx-push-url="true"
+<a href="/contact"
+   hx-get="/contact" hx-target="#crud-results" hx-swap="innerHTML" hx-push-url="true"
    class="...">Réinitialiser</a>
 {% endif %}
 ```
@@ -2306,7 +2322,7 @@ Les vues liste générées par `make:crud` embarquent une recherche texte et une
 Paramètre GET `q` :
 
 ```
-/contacts?q=roger
+/contact?q=roger
 ```
 
 La recherche utilise `LIKE %q%` sur tous les champs textuels (`VARCHAR`, `CHAR`, `TEXT`). Les champs numériques (`INT`, `DECIMAL`…), les dates, les booléens et les clés étrangères sont exclus. La clause SQL est toujours paramétrée (aucune concaténation directe). Il s'agit d'une recherche simple côté serveur : pas de full-text search, pas de moteur externe et pas de JavaScript personnalisé. HTMX améliore seulement la soumission du formulaire quand il est disponible.
@@ -2316,8 +2332,8 @@ La recherche utilise `LIKE %q%` sur tous les champs textuels (`VARCHAR`, `CHAR`,
 Paramètre GET `page`, 20 éléments par page dans le CRUD généré :
 
 ```
-/contacts?page=2
-/contacts?q=roger&page=2
+/contact?page=2
+/contact?q=roger&page=2
 ```
 
 - `page` absent ou invalide → page 1.
@@ -2348,7 +2364,7 @@ Ce ticket ne fournit pas d'infinite scroll ou de taille de page dynamique.
 Les actions de suppression générées restent des formulaires HTML classiques :
 
 ```html
-<form method="post" action="/contacts/12/delete?...">
+<form method="post" action="/contact/12/delete?...">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <button type="submit">Supprimer</button>
 </form>
@@ -2356,13 +2372,13 @@ Les actions de suppression générées restent des formulaires HTML classiques :
 
 Le formulaire conserve `method="post"`, l'`action`, le bouton `submit` et le
 champ `csrf_token`. Le CRUD généré n'ajoute pas de `_method` car la route
-générée reste une route `POST /<ressource>/{id}/delete`; si une application a
+générée reste une route `POST /<ressource>/destroy/{id}`; si une application a
 un override de méthode personnalisé, il reste à sa charge.
 
 Le même formulaire reçoit une amélioration HTMX progressive :
 
 ```html
-hx-post="/contacts/12/delete?..."
+hx-post="/contact/12/delete?..."
 hx-target="#crud-results"
 hx-swap="innerHTML"
 hx-confirm="{{ trans('crud.confirm_delete') }}"
@@ -2404,7 +2420,7 @@ La zone `#crud-results` contient `_table.html` + `_pagination.html`. Quand HTMX 
 | Élément | Fallback sans HTMX | Avec HTMX |
 |---|---|---|
 | Formulaire recherche / filtres | `method="get"` | `hx-get` + `hx-target="#crud-results"` + `hx-push-url="true"` |
-| Lien Réinitialiser | `href="/contacts"` | `hx-get="/contacts"` + `hx-push-url="true"` |
+| Lien Réinitialiser | `href="/contact"` | `hx-get="/contact"` + `hx-push-url="true"` |
 | En-têtes de colonnes (tri) | `href="?sort=..."` | `hx-get="?sort=..."` + `hx-push-url="true"` |
 | Liens de pagination | `href="?page=..."` | `hx-get="?page=..."` + `hx-push-url="true"` |
 | Formulaire suppression unitaire | `method="post"` + `onsubmit="return confirm(...)"` | `hx-post` + `hx-confirm` |
@@ -2462,8 +2478,8 @@ Toutes les colonnes non-PK déclarées dans `entity.json` sont triables. Aucune 
 **Paramètres GET**
 
 ```
-/contacts?sort=nom&direction=asc
-/contacts?sort=email&direction=desc
+/contact?sort=nom&direction=asc
+/contact?sort=email&direction=desc
 ```
 
 - `sort` : nom de champ (non-PK ou PK) ; valeur inconnue ignorée → tri par défaut (PK).
@@ -2533,17 +2549,17 @@ Les liens de tri portent `hx-get`, `hx-target="#crud-results"`, `hx-swap="innerH
 **Flux**
 
 1. L'utilisateur coche une ou plusieurs lignes dans la liste et clique **Supprimer la sélection**.
-2. Le formulaire poste vers `POST /contacts/bulk-delete`.
+2. Le formulaire poste vers `POST /contact/bulk-delete`.
 3. Le contrôleur valide les IDs, stocke la liste et affiche une page de confirmation.
-4. L'utilisateur confirme via `POST /contacts/bulk-delete/confirm`.
+4. L'utilisateur confirme via `POST /contact/bulk-delete-confirm`.
 5. La suppression est exécutée en base avec une requête SQL paramétrée `IN (?, ?, ?)`.
 6. Redirection vers la liste avec un message flash.
 
 **Routes générées**
 
 ```python
-g.add("POST", "/bulk-delete",         ContactController.bulk_delete,         name="contact_bulk_delete")
-g.add("POST", "/bulk-delete/confirm", ContactController.bulk_delete_confirm,  name="contact_bulk_delete_confirm")
+g.add("POST", "/bulk-delete",         ContactController.bulk_delete,         name="contact-bulk_delete")
+g.add("POST", "/bulk-delete-confirm", ContactController.bulk_delete_confirm,  name="contact-bulk_delete_confirm")
 ```
 
 **HTML — attribut `form` HTML5**
@@ -2551,7 +2567,7 @@ g.add("POST", "/bulk-delete/confirm", ContactController.bulk_delete_confirm,  na
 Les cases à cocher sont dans le `<tbody>` du tableau ; le formulaire `bulk-delete-form` est déclaré en dehors du tableau pour éviter l'imbrication invalide de `<form>` :
 
 ```html
-<form id="bulk-delete-form" method="post" action="/contacts/bulk-delete">
+<form id="bulk-delete-form" method="post" action="/contact/bulk-delete">
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <button type="submit">Supprimer la sélection</button>
 </form>
@@ -2603,12 +2619,12 @@ La suppression groupée n'utilise ni `<script>`, ni attributs `hx-*`. Elle fonct
 
 ### Export CSV CRUD généré
 
-`forge make:crud` génère un export CSV minimal sur la route `GET /{plural}/export.csv`.
+`forge make:crud` génère un export CSV minimal sur la route `GET /{snake}/export-csv`.
 
 **Route générée**
 
 ```python
-g.add("GET", "/export.csv", ContactController.export_csv, name="contact_export_csv")
+g.add("GET", "/export-csv", ContactController.export_csv, name="contact-export_csv")
 ```
 
 **Modèle — `_EXPORT_LIMIT` et `find_{plural}_for_export`**
@@ -2666,7 +2682,7 @@ Le lien d'export est un `<a href>` classique, sans attributs HTMX, placé entre 
 
 ```html
 <div class="mb-2">
-    <a href="/contacts/export.csv?q={{ pagination.q | urlencode }}&amp;sort={{ pagination.sort }}&amp;direction={{ pagination.direction }}{% for key, val in pagination.filters.items() %}{% if val %}&amp;{{ key }}={{ val | urlencode }}{% endif %}{% endfor %}"
+    <a href="/contact/export-csv?q={{ pagination.q | urlencode }}&amp;sort={{ pagination.sort }}&amp;direction={{ pagination.direction }}{% for key, val in pagination.filters.items() %}{% if val %}&amp;{{ key }}={{ val | urlencode }}{% endif %}{% endfor %}"
        class="text-sm text-blue-600 hover:underline">Exporter CSV</a>
 </div>
 ```
@@ -2715,8 +2731,8 @@ Les vues liste générées par `make:crud` embarquent un tri simple côté serve
 Paramètres GET :
 
 ```text
-/contacts?sort=nom&direction=asc
-/contacts?sort=email&direction=desc&q=roger&page=2
+/contact?sort=nom&direction=asc
+/contact?sort=email&direction=desc&q=roger&page=2
 ```
 
 Règles :
@@ -2774,7 +2790,7 @@ Types **non supportés** (erreur à la validation) : `TEXT`, `DATE`, `DATETIME`,
 
 - Champ `VARCHAR`/`CHAR`/`INT` → `<input type="text">` dans le formulaire de recherche.
 - Champ `BOOL`/`BOOLEAN` → `<select>` avec Tous / Oui / Non.
-- Valeur filtrée transmise en GET : `/contacts?statut=actif&actif=1&q=roger&page=2`
+- Valeur filtrée transmise en GET : `/contact?statut=actif&actif=1&q=roger&page=2`
 - Filtres conservés dans les liens de tri et de pagination via une boucle Jinja2 générique.
 - `list.filter=false` ou `"list"` absent → comportement actuel inchangé.
 
@@ -2818,8 +2834,8 @@ Un lien « Réinitialiser » est généré dans le formulaire. Il s'affiche dès
 
 ```html
 {% if pagination.q or pagination.filters %}
-<a href="/contacts"
-   hx-get="/contacts" hx-target="#crud-results" hx-swap="innerHTML" hx-push-url="true">
+<a href="/contact"
+   hx-get="/contact" hx-target="#crud-results" hx-swap="innerHTML" hx-push-url="true">
   Réinitialiser
 </a>
 {% endif %}

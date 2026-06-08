@@ -35,7 +35,7 @@ Il reste deux choses manuelles : **renseigner les mots de passe MariaDB** dans `
 ### Cas B — Installation manuelle (usage avancé)
 
 ```bash
-git clone --branch v1.0.0-beta.13 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
+git clone --branch v1.0.0-beta.15 --depth=1 https://github.com/caucrogeGit/Forge.git MonProjet
 cd MonProjet
 rm -rf .git && git init && git add -A && git commit -m "init: MonProjet"
 python3 -m venv .venv
@@ -225,14 +225,14 @@ Copier le bloc affiché dans `mvc/routes.py` :
 ```python
 from mvc.controllers.contact_controller import ContactController
 
-with router.group("/contacts") as g:
-    g.add("GET",  "",              ContactController.index,   name="contact_index")
-    g.add("GET",  "/new",          ContactController.new,     name="contact_new")
-    g.add("POST", "",              ContactController.create,  name="contact_create")
-    g.add("GET",  "/{id}",         ContactController.show,    name="contact_show")
-    g.add("GET",  "/{id}/edit",    ContactController.edit,    name="contact_edit")
-    g.add("POST", "/{id}",         ContactController.update,  name="contact_update")
-    g.add("POST", "/{id}/delete",  ContactController.destroy, name="contact_destroy")
+with router.group("/contact") as g:
+    g.add("GET",  "",               ContactController.index,   name="contact-index")
+    g.add("GET",  "/new",           ContactController.new,     name="contact-new")
+    g.add("POST", "/create",        ContactController.create,  name="contact-create")
+    g.add("GET",  "/show/{id}",     ContactController.show,    name="contact-show")
+    g.add("GET",  "/edit/{id}",     ContactController.edit,    name="contact-edit")
+    g.add("POST", "/update/{id}",   ContactController.update,  name="contact-update")
+    g.add("POST", "/destroy/{id}",  ContactController.destroy, name="contact-destroy")
 ```
 
 !!! warning "Ordre des routes"
@@ -253,7 +253,7 @@ python app.py
 Ouvrir dans le navigateur :
 
 ```text
-https://localhost:8000/contacts
+https://localhost:8000/contact
 ```
 
 ---

@@ -29,3 +29,11 @@ structurante (`docs/adr/<numéro>-<sujet>.md`).
 | [ADR-020](/docs/forge/adr/020-files-media-storage-primitives/) | Périmètre de `forge-mvc-files` : primitives de stockage média génériques (proposé) |
 | [ADR-021](/docs/forge/adr/021-pivot-extraction/) | Extraction de pivot advanced hors du core : `forge-mvc-pivot` (accepté) |
 | [ADR-022](/docs/forge/adr/022-mail-extraction/) | Extraction de l'email hors du core : `forge-mvc-mail` (accepté) |
+| [ADR-023](/docs/forge/adr/023-starter-build-canonical/) | `forge starter:build` comme seule façon de construire un starter ; `forge new` produit un projet nu (accepté) |
+| [ADR-024](/docs/forge/adr/024-skeleton-bootstrap/) | Bootstrap par squelette dédié et dépendance core via pip (accepté) |
+| [ADR-025](/docs/forge/adr/025-welcome-forge-continuous-tutorial/) | welcome-forge : tutoriel continu manuel au lieu de starters par palier (accepté) |
+| [ADR-026](/docs/forge/adr/026-request-param-naming/) | Accesseurs de Request nommés par leur source : `query` et `route` (accepté) |
+| [ADR-027](/docs/forge/adr/027-i18n-extraction/) | Extraction de l'i18n vers `forge-mvc-i18n`, repli no-op conservé dans le noyau (accepté) |
+| [ADR-028](/docs/forge/adr/028-welcome-forge-tutorial-per-level/) | welcome-forge : tutoriel continu manuel sur les trois niveaux, un mini-projet par niveau (accepté) |
+| [ADR-029](/docs/forge/adr/029-route-naming-convention/) | Convention de route : chemin `/contrôleur/méthode` (index nu), nom `contrôleur-méthode` (accepté) |
+| [ADR-030](/docs/forge/adr/030-explicit-route-injection/) | Injection de routes dans `mvc/routes.py` par commande explicite et portée de la règle 4.3 (proposé) |

@@ -26,7 +26,7 @@ La famille canonique de gestion des opt-ins officiels, **exactement 5 verbes** :
 | `forge opt-in:remove <name>` | présence (−) | affiche la désinstallation |
 | `forge opt-in:enable <name>` | activation (+) | câblage réel (kind `route`) / conseil (library, crosscutting) |
 | `forge opt-in:disable <name>` | activation (−) | inverse de `enable` |
-| `forge opt-in:list` | lecture | état des 11 opt-ins officiels |
+| `forge opt-in:list` | lecture | état des 12 opt-ins officiels |
 
 **Décisions finales 1.0** :
 
@@ -58,14 +58,22 @@ L'ensemble des commandes dispatchées est figé par
 [`cli-commands.md`](/docs/forge/reference/cli-commands/). Les codes de sortie suivent la
 convention : `0` succès, `2` usage/argument, `1` erreur d'exécution.
 
-## 4. Starters 1.0 (gelés — 107)
+## 4. Starters 1.0 (gelés — 84)
 
-La liste pédagogique est **figée** : 107 starters, numérotés de 1 à 107,
-nommés selon [la convention](/docs/forge/philosophy/starter-author-guide/)
-(`<module>-welcome`, `first-*`…). La progression
-`welcome-forge` est organisée par niveau ; le **niveau avancé** (`relations`, …)
-prolonge le niveau intermédiaire (`list-records`, `filter-list`, …), lui-même
-au-dessus du niveau débutant. Trois autres progressions par niveau couvrent les
+La liste pédagogique est **figée** : 84 starters, à numéros uniques (la
+numérotation n'est plus une plage dense `1..N` depuis ADR-025), nommés selon
+[la convention](/docs/forge/philosophy/starter-author-guide/) (`<module>-welcome`,
+`first-*`…).
+
+!!! note "welcome-forge : trois niveaux en tutoriels continus (ADR-025, ADR-028)"
+    Les trois niveaux de `welcome-forge` ne sont **plus des starters
+    buildables** : chacun est un **tutoriel continu manuel**, un mini-projet
+    écrit à la main palier après palier — débutant (11 paliers, ADR-025),
+    intermédiaire (8 paliers, « Carnet de notes », ADR-028) et avancé (4 paliers,
+    « Catalogue d'articles », ADR-028). Ils ne figurent donc plus dans la liste
+    gelée ci-dessous.
+
+Les progressions par niveau qui restent des starters buildables couvrent les
 modules opt-in : `welcome-iot` (`iot-welcome`, …) pour `forge-mvc-iot`,
 `welcome-video` (`video-welcome`, …) pour `forge-mvc-video`, `welcome-images`
 (`images-welcome`, …) pour `forge-mvc-images`, `welcome-files`
@@ -83,22 +91,15 @@ diagnostic). **Les 10 opt-ins dotés d'un parcours ont chacun leur progression
 
 ```
 audio-doctor, audio-play, audio-probe, audio-transcode, audio-upload, audio-welcome,
-csrf, db-transaction, delete-record, dynamic-route, file-upload, filter-list,
 file-bytes, file-delete, file-rate-limit, file-safe-name, file-safe-path, file-serve, file-store, file-validate, files-welcome,
-first-html-view, first-sql, first-sql-write, flash-messages, form-post,
 image-alt-order, image-attach, image-cover, image-delete, image-gallery, image-safety, image-upload, image-variants, images-welcome,
 iot-api, iot-contract, iot-dashboard, iot-device, iot-doctor, iot-events,
 iot-simulate, iot-subscriber, iot-welcome,
-json-api, json-response,
-layout-template,
 mail-config, mail-doctor, mail-message, mail-template, mail-transport, mail-welcome,
 mfa-challenge, mfa-crypto, mfa-enroll, mfa-recovery, mfa-replay, mfa-revalidation, mfa-secret, mfa-verify, mfa-welcome,
-list-records, pagination, query-params,
 rbac-check, rbac-guard, rbac-permission, rbac-request-roles, rbac-resolve, rbac-role, rbac-template, rbac-user-role, rbac-welcome,
-relations, request-debug, server-validation, session-state,
 stats-admin-sql, stats-event, stats-list, stats-normalize, stats-schema, stats-track, stats-track-sql, stats-validate, stats-welcome,
-update-record,
-video-detail, video-doctor, video-list, video-playback, video-probe, video-status, video-transcode, video-upload, video-welcome, welcome,
+video-detail, video-doctor, video-list, video-playback, video-probe, video-status, video-transcode, video-upload, video-welcome,
 workflow-available, workflow-badge, workflow-check, workflow-color, workflow-find, workflow-jinja, workflow-status, workflow-transition, workflow-welcome
 ```
 

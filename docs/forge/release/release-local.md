@@ -36,7 +36,7 @@ Puis exécuter la validation complète (script existant) :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b13
+# ex. : bash tools/release-validate.sh 1.0.0b15
 ```
 
 Ce script couvre : cohérence de version, CHANGELOG, pytest, ruff, compileall,
@@ -134,7 +134,7 @@ ls dist/
 Puis installer :
 
 ```bash
-pipx install dist/forge_mvc-1.0.0b13-py3-none-any.whl --force
+pipx install dist/forge_mvc-1.0.0b15-py3-none-any.whl --force
 ```
 
 ### Vérifier que c'est bien la bonne installation qui répond
@@ -145,7 +145,7 @@ which forge
 forge --version
 ```
 
-Résultat attendu : `Forge 1.0.0b13`
+Résultat attendu : `Forge 1.0.0b15`
 
 Si le terminal indique :
 
@@ -175,7 +175,7 @@ forge doctor
 forge starter:list
 ```
 
-`forge starter:list` doit afficher les 107 starters sans erreur. C'est la vérification minimale que les ressources sont bien incluses dans la wheel.
+`forge starter:list` doit afficher les 96 starters sans erreur. C'est la vérification minimale que les ressources sont bien incluses dans la wheel.
 
 ---
 
@@ -521,13 +521,14 @@ Dans le navigateur, à l'URL affichée par Forge :
 
 ### Premier pas — Bienvenue dans Forge (sans BDD)
 
-Ce starter ne nécessite aucune base de données. Il s'applique directement via `forge new --starter welcome`.
+Ce starter ne nécessite aucune base de données. Il se construit dans le projet courant via `forge starter:build welcome`.
 
 ```bash
 cd ~/Projets
-forge new TestStarter7 --starter welcome
+forge new TestStarter7
 cd TestStarter7
 source .venv/bin/activate
+forge starter:build welcome
 python app.py
 ```
 
@@ -541,9 +542,10 @@ Palier 2 de la [progression officielle des starters](/docs/forge/starters/#progr
 
 ```bash
 cd ~/Projets
-forge new TestStarterQueryParams --starter query-params
+forge new TestStarterQueryParams
 cd TestStarterQueryParams
 source .venv/bin/activate
+forge starter:build query-params
 python app.py
 ```
 
@@ -582,8 +584,8 @@ Le build MkDocs `--strict` détecte les ancres cassées et les liens internes in
 | Étape | Résultat attendu |
 |---|---|
 | `python -m build` | wheel créée dans `dist/` |
-| `forge --version` | `Forge 1.0.0b13` |
-| `forge starter:list` | 107 starters affichés |
+| `forge --version` | `Forge 1.0.0b15` |
+| `forge starter:list` | 96 starters affichés |
 | `forge starter:build N --dry-run` | plan affiché sans erreur (×48) |
 | `forge db:init` + `starter:build 1` | CRUD contacts fonctionnel |
 | `forge db:init` + `starter:build 2` | login `admin` / `secret123` → `/dashboard` |
@@ -591,7 +593,7 @@ Le build MkDocs `--strict` détecte les ancres cassées et les liens internes in
 | `forge db:init` + `starter:build 4` | auth + suivi + seed |
 | `forge db:init` + `starter:build 5` | pages publiques + formulaire séjour |
 | `forge db:init` + `starter:build 6` | auth + MFA TOTP (nécessite forge-mvc-mfa) |
-| `forge new MonProjet --starter welcome` | pages éducatives HTTP sans BDD |
+| `forge starter:build welcome` | pages éducatives HTTP sans BDD |
 | `pytest tests/test_packaging.py` | 14/14 passants |
 | `mkdocs build --strict` | 0 avertissement d'ancre |
 

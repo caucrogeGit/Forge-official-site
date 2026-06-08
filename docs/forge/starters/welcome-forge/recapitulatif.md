@@ -1,17 +1,17 @@
 # Aide-mémoire de la progression
 
-Récapitulatif des **24 paliers** de la progression *Bonjour Forge*, répartis en
+Récapitulatif des **23 paliers** de la progression *Bonjour Forge*, répartis en
 trois niveaux, et des API Forge introduites à chaque étape. À garder sous la main
 avant d'aborder les progressions opt-in autonomes.
 
-## Niveau débutant — 11 paliers
+## Niveau débutant (11 paliers)
 
 | # | Palier | Ce qu'on apprend | API-clé |
 |---|--------|------------------|---------|
 | 1 | [Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/) | Premier contrôleur, une route, réponse texte | `Response.text(...)` |
-| 2 | [Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/) | Lire la query string | `request.param("name", default=...)` |
+| 2 | [Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/) | Lire la query string | `request.query("name", default=...)` |
 | 3 | [Première vue HTML](/docs/forge/starters/welcome-forge/debutant/first-html-view/) | Rendre un template | `BaseController.render(...)` |
-| 4 | [Route dynamique](/docs/forge/starters/welcome-forge/debutant/dynamic-route/) | Segment variable d'URL | `request.route_param("id")` |
+| 4 | [Route dynamique](/docs/forge/starters/welcome-forge/debutant/dynamic-route/) | Segment variable d'URL | `request.route("id")` |
 | 5 | [Inspecter une requête](/docs/forge/starters/welcome-forge/debutant/request-debug/) | Explorer la requête en dev | `request.data`, `Response.debug(...)` |
 | 6 | [Réponse JSON](/docs/forge/starters/welcome-forge/debutant/json-response/) | Données structurées (API) | `Response.json({...})` |
 | 7 | [Le jeton CSRF](/docs/forge/starters/welcome-forge/debutant/csrf/) | Protéger les formulaires | `BaseController.csrf_token(request)` |
@@ -20,27 +20,31 @@ avant d'aborder les progressions opt-in autonomes.
 | 10 | [Première base SQL](/docs/forge/starters/welcome-forge/debutant/first-sql/) | Lire en base, SQL visible | `core.database.db.fetch_one(...)` |
 | 11 | [Écrire en base](/docs/forge/starters/welcome-forge/debutant/first-sql-write/) | Insérer une ligne | `core.database.db.insert(...)` |
 
-## Niveau intermédiaire — 8 paliers
+## Niveau intermédiaire (8 paliers)
+
+Un seul mini-projet, le « Carnet de notes », construit à la main palier après palier.
 
 | # | Palier | Ce qu'on apprend | API-clé |
 |---|--------|------------------|---------|
 | 1 | [Lister des enregistrements](/docs/forge/starters/welcome-forge/intermediaire/list-records/) | Lire plusieurs lignes et les itérer | `fetch_all(...)`, `{% for %}` |
-| 2 | [Rechercher / filtrer](/docs/forge/starters/welcome-forge/intermediaire/filter-list/) | Filtrer une liste | `request.param("q")` + `WHERE … LIKE ?` |
-| 3 | [Paginer une liste](/docs/forge/starters/welcome-forge/intermediaire/pagination/) | Découper une liste en pages | `LIMIT ? OFFSET ?`, `COUNT(*)` |
-| 4 | [Héritage de gabarit](/docs/forge/starters/welcome-forge/intermediaire/layout-template/) | Factoriser l'enveloppe HTML | `{% extends %}`, `{% block %}` |
+| 2 | [Héritage de gabarit](/docs/forge/starters/welcome-forge/intermediaire/layout-template/) | Factoriser l'enveloppe HTML | `{% extends %}`, `{% block %}` |
+| 3 | [Rechercher / filtrer](/docs/forge/starters/welcome-forge/intermediaire/filter-list/) | Filtrer une liste | `request.query("q")` + `WHERE … LIKE ?` |
+| 4 | [Paginer une liste](/docs/forge/starters/welcome-forge/intermediaire/pagination/) | Découper une liste en pages | `LIMIT ? OFFSET ?`, `COUNT(*)` |
 | 5 | [Modifier un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/update-record/) | Formulaire pré-rempli + mise à jour | `execute("UPDATE … WHERE id = ?")` |
 | 6 | [Supprimer un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/delete-record/) | Action destructive sûre | `execute("DELETE … WHERE id = ?")` + CSRF |
-| 7 | [Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/) | Garder un état entre requêtes | `get_session_store()`, cookie durci |
-| 8 | [Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/) | Retour one-shot après action | `set_flash` / `get_flash`, POST-Redirect-GET |
+| 7 | [Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/) | Retour one-shot après action | `set_flash` / `get_flash`, POST-Redirect-GET |
+| 8 | [Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/) | Garder un état entre requêtes | `get_session_store()`, cookie durci |
 
-## Niveau avancé — 5 paliers
+## Niveau avancé (4 paliers)
+
+Un seul mini-projet, le « Catalogue d'articles », construit à la main palier après palier.
 
 | # | Palier | Ce qu'on apprend | API-clé |
 |---|--------|------------------|---------|
 | 1 | [Relations entre tables](/docs/forge/starters/welcome-forge/avance/relations/) | Deux tables liées, lecture jointe | `FOREIGN KEY`, `SELECT … JOIN …` |
-| 2 | [Téléverser un fichier](/docs/forge/starters/welcome-forge/avance/file-upload/) | Recevoir et stocker un fichier | `request.file(...)`, `save_upload(...)` |
-| 3 | [API JSON protégée](/docs/forge/starters/welcome-forge/avance/json-api/) | Exposer du JSON derrière un jeton | `Response.json`, `request.header("Authorization")` |
-| 4 | [Écritures transactionnelles](/docs/forge/starters/welcome-forge/avance/db-transaction/) | Plusieurs écritures atomiques | `with transaction() as tx:`, `insert(..., tx=tx)` |
+| 2 | [Écritures transactionnelles](/docs/forge/starters/welcome-forge/avance/db-transaction/) | Plusieurs écritures atomiques | `with transaction() as tx:`, `insert(..., tx=tx)` |
+| 3 | [Téléverser un fichier](/docs/forge/starters/welcome-forge/avance/file-upload/) | Recevoir et stocker un fichier | `request.file(...)`, `save_upload(...)` |
+| 4 | [API JSON protégée](/docs/forge/starters/welcome-forge/avance/json-api/) | Exposer du JSON derrière un jeton | `Response.json`, `request.header("Authorization")` |
 
 ## Réponses (`core.http.response.Response`)
 
@@ -57,8 +61,8 @@ avant d'aborder les progressions opt-in autonomes.
 
 | Accès | Source |
 |-------|--------|
-| `request.param("k", default=...)` | Query string (`?k=...`) |
-| `request.route_param("k")` | Segment de route (`/x/{k}`) |
+| `request.query("k", default=...)` | Query string (`?k=...`) |
+| `request.route("k")` | Segment de route (`/x/{k}`) |
 | `request.form("k", default=...)` | Corps d'un formulaire POST |
 | `request.file("k")` | Fichier reçu (`multipart/form-data`) |
 | `request.header("Name", default=...)` | En-tête HTTP (`Authorization`…) |
@@ -74,7 +78,7 @@ avant d'aborder les progressions opt-in autonomes.
 | `db.execute(sql, params)` | Écriture générique |
 | `with transaction() as tx:` + `db.insert(..., tx=tx)` | Écritures **atomiques** (commit / rollback) |
 
-Les requêtes restent **paramétrées** (placeholders `?`) — jamais de
+Les requêtes restent **paramétrées** (placeholders `?`) : jamais de
 concaténation de valeurs. **Forge garde le SQL visible.** Les relations
 s'écrivent à la main (`JOIN`), sans ORM.
 

@@ -1,51 +1,29 @@
 # Bonjour Forge
 
-Premier contact avec Forge : afficher une réponse texte. Pas de vue HTML,
-pas de base de données, pas de moteur Jinja2.
+Premier palier d'un tutoriel continu : vous allez construire à la main un
+seul projet qui grandit palier après palier. On démarre par la réponse la
+plus simple possible.
 
-**Ce que vous allez apprendre :** écrire votre premier contrôleur Forge,
-déclarer une route dans `mvc/routes.py`, et renvoyer une réponse texte
-avec `Response.text(...)` — le cycle requête → contrôleur → réponse dans
-sa forme la plus minimale.
+!!! info "Le mini-projet du niveau débutant"
+    Chaque niveau de welcome-forge est un **mini-projet autonome** que vous
+    écrivez à la main, palier après palier. Au niveau débutant, vous partez de
+    « Bonjour Forge » (une simple réponse texte) et faites grandir le projet
+    jusqu'à **lire et écrire en base** : vues HTML, route dynamique, réponse
+    JSON, jeton CSRF, formulaire POST, validation serveur, puis SQL. Un
+    `WelcomeController` accumule les paliers HTTP, puis un `MessageController`
+    porte les paliers base de données.
 
-Identifiant : `welcome` (alias `bienvenue` / `bonjour` / `bonjour-forge`).
+**Ce que vous allez apprendre :** écrire votre premier contrôleur, déclarer
+une route et renvoyer une réponse texte avec `Response.text(...)`, sans vue
+HTML ni base de données.
 
-## Ce que ce starter montre
+Le squelette fournit déjà `mvc/routes.py` avec `router = Router()` et la
+route d'accueil `/` (servie par `HomeController`). Nous allons greffer notre
+travail dessus.
 
-- une route `/welcome`
-- un contrôleur `WelcomeController` avec une méthode `index`
-- aucune vue HTML
-- aucune base de données
+## L'ajout
 
-## Classes Forge utilisées
-
-| Classe | Rôle dans ce starter | Référence |
-|--------|----------------------|-----------|
-| `Request` | Reçue par chaque méthode du contrôleur. | [Request](/docs/forge/reference/http/#3-request-reference) |
-| `Response` | Construire la réponse texte avec `Response.text(...)`. | [Response](/docs/forge/reference/http/#4-response-reference) |
-| `BaseController` | Classe parente du contrôleur. | [BaseController](/docs/forge/reference/api/#coremvccontroller) |
-
-## Les routes
-
-```python
-# mvc/routes.py
-from mvc.controllers.welcome_controller import WelcomeController
-
-with router.group("", public=True) as pub:
-    pub.add("GET", "/welcome", WelcomeController.index, name="welcome_index")
-```
-
-### Comprendre ce code
-
-- `router.group("", public=True)` ouvre un groupe de routes publiques
-  (sans authentification requise) et sans préfixe d'URL.
-- Chaque `pub.add(...)` enregistre une route : verbe HTTP, URL, méthode
-  de contrôleur à appeler, et un `name=` pour générer l'URL ailleurs
-  sans la coder en dur.
-- Le routeur lit ce fichier au démarrage et oriente chaque requête
-  entrante vers la bonne méthode.
-
-## Le contrôleur
+Créez le fichier `mvc/controllers/welcome_controller.py` :
 
 ```python
 # mvc/controllers/welcome_controller.py
@@ -61,16 +39,32 @@ class WelcomeController(BaseController):
         return Response.text("Bonjour Forge")
 ```
 
-### Comprendre ce code
+Dans `mvc/routes.py`, ajoutez l'import du contrôleur puis la route
+`/welcome` à l'intérieur du groupe public déjà présent.
 
-- `WelcomeController` hérite de `BaseController` — c'est ce qui en fait
-  un contrôleur Forge utilisable par le routeur.
-- Chaque action reçoit `request: Request` et doit renvoyer `Response`.
-  C'est la signature unique d'une méthode de contrôleur Forge.
-- `Response.text(...)` produit une réponse `text/plain` ; aucun template
-  HTML n'est rendu à ce stade. La lecture d'un paramètre d'URL
-  (`request.param(...)`) est introduite au palier suivant
-  (`query-params`).
+## Votre mvc/routes.py à ce stade
+
+```python
+# mvc/routes.py
+from core.http.router import Router
+from mvc.controllers.home_controller import HomeController
+from mvc.controllers.welcome_controller import WelcomeController
+
+router = Router()
+
+with router.group("", public=True) as pub:
+    pub.add("GET", "/", HomeController.index, name="home-index")
+    pub.add("GET", "/welcome", WelcomeController.index, name="welcome-index")
+```
+
+## Comprendre ce code
+
+- Un contrôleur est une classe qui hérite de `BaseController` ; chaque
+  action reçoit un `request: Request` et retourne un `Response`.
+- `Response.text(...)` construit une réponse `text/plain`, sans template.
+- Le groupe `with router.group("", public=True) as pub:` regroupe les
+  routes publiques ; la protection CSRF y est active par défaut, ce qui
+  protégera nos futurs formulaires POST.
 
 ## Tester dans le navigateur
 
@@ -80,15 +74,11 @@ class WelcomeController(BaseController):
 
 ## À retenir
 
-- Une URL appelle une route.
-- La route appelle une méthode du contrôleur.
+- Une URL est associée à une route, qui appelle une méthode de contrôleur.
 - La méthode reçoit `request` et retourne `Response`.
-- `Response.text(...)` ne passe par aucun template.
+- `Response.text(...)` renvoie du texte brut, sans moteur de rendu.
 
-## Après ce starter
-
-Passez au palier suivant : **Paramètres d'URL** — vous y apprendrez à
-lire une valeur transmise dans l'adresse (`?name=...`) avec
-`request.param(...)`.
+Au palier suivant, votre contrôleur va lire une valeur passée dans
+l'adresse.
 
 [Continuer avec Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/)

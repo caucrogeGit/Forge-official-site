@@ -1,111 +1,113 @@
 # Supprimer un enregistrement
 
-Objectif : supprimer une ligne via une action **destructive sécurisée**.
+Objectif : supprimer une note via une action **destructive sécurisée**.
 
-**Ce que vous allez apprendre :** la dernière opération du CRUD — **supprimer**.
-Une suppression ne se fait **jamais** par un simple lien `GET` : elle passe par
-un **POST protégé par CSRF** et `core.database.db.execute("DELETE … WHERE id =
-?")`.
+**Ce que vous allez apprendre :** une suppression ne se fait **jamais** par un
+simple lien `GET` : elle passe par un **POST protégé par CSRF** et
+`core.database.db.execute("DELETE … WHERE id = ?")`, puis une redirection vers la
+liste (motif POST-Redirect-GET).
 
-Palier 6 du **niveau intermédiaire** de la
-[progression officielle des starters](/docs/forge/starters/#progression-recommandee),
-après [Modifier un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/update-record/).
+## Là où nous en sommes
 
-## Ce que ce starter montre
+Le Carnet de notes sait lister et modifier. Nous complétons par la suppression.
+La liste affiche déjà un lien « éditer » par note ; nous y ajoutons un bouton
+« supprimer ». Comme la liste portera désormais un formulaire, `index` doit lui
+fournir un **jeton CSRF**.
 
-- une liste avec un **bouton supprimer** par ligne (mini-formulaire `POST`) ;
-- le jeton **CSRF** sur chaque formulaire de suppression ;
-- `execute("DELETE … WHERE id = ?")` **paramétré** ;
-- après écriture, on **relit et on ré-affiche** la liste à jour.
+## L'ajout
 
-## Classes Forge utilisées
-
-| Classe | Rôle dans ce starter | Référence |
-|--------|----------------------|-----------|
-| `Request` | `request.route_param("id")`. | [Request](/docs/forge/reference/http/#3-request-reference) |
-| `Response` | Produite via `render(...)`. | [Response](/docs/forge/reference/http/#4-response-reference) |
-| `BaseController` | `render(...)` + `csrf_token(...)`. | [BaseController](/docs/forge/reference/api/#coremvccontroller) |
-| `core.database.db.execute` / `fetch_all` | Supprimer une ligne, relire la liste. | [Migrations SQL](/docs/forge/features/migrations/) |
-
-## Tester
-
-```bash
-forge migration:apply
-forge run
-```
-
-Ouvrez `https://localhost:8000/delete-record`, cliquez **supprimer** sur une
-ligne → elle disparaît de la liste.
-
-## Le contrôleur
+Ajoutez la requête et la méthode `delete` dans `mvc/controllers/note_controller.py`,
+et faites garantir la session par `index`, car la liste porte désormais des
+formulaires de suppression (le jeton CSRF doit donc être non vide) :
 
 ```python
-# mvc/controllers/delete_record_controller.py
-SELECT_ALL = "SELECT id, content FROM first_sql_messages ORDER BY id"
-DELETE_ONE = "DELETE FROM first_sql_messages WHERE id = ?"
+DELETE_ONE = "DELETE FROM notes WHERE id = ?"
 
 
-class DeleteRecordController(BaseController):
+class NoteController(BaseController):
 
     @staticmethod
     def index(request: Request) -> Response:
-        messages = fetch_all(SELECT_ALL)
-        return BaseController.render(
-            "delete_record/index.html",
-            context={"messages": messages, "csrf_token": BaseController.csrf_token(request)},
+        # … lecture de q, page, notes inchangée …
+        session_id, csrf_token = NoteController._start_session(request)
+        response = BaseController.render(
+            "note/index.html",
             request=request,
+            context={
+                "notes": notes,
+                "q": q,
+                "page": page,
+                "has_prev": page > 1,
+                "has_next": page * PAGE_SIZE < total,
+                "csrf_token": csrf_token,
+            },
         )
+        set_session_cookie(response, session_id)
+        return response
 
     @staticmethod
     def delete(request: Request) -> Response:
-        record_id = int(request.route_param("id"))
+        record_id = int(request.route("id"))
         execute(DELETE_ONE, (record_id,))
-        messages = fetch_all(SELECT_ALL)
-        return BaseController.render(
-            "delete_record/index.html",
-            context={"messages": messages, "csrf_token": BaseController.csrf_token(request),
-                     "deleted": True},
-            request=request,
-        )
+        return BaseController.redirect("/note")
 ```
 
-### Comprendre ce code
-
-- La suppression est un **POST** : une action qui modifie l'état n'est jamais
-  un `GET` (un lien ou un robot ne doivent pas pouvoir supprimer).
-- `execute(DELETE_ONE, (record_id,))` — l'`id` est un **paramètre lié**.
-- Après l'écriture, on **relit** (`fetch_all`) et on ré-affiche la liste.
-
-## La vue
+Dans `mvc/views/note/index.html`, ajoutez le bouton de suppression à côté du lien
+« éditer » de chaque note :
 
 ```html
-<!-- mvc/views/delete_record/index.html -->
-{% for m in messages %}
-<li>
-  #{{ m.id }} — {{ m.content }}
-  <form method="post" action="/delete-record/{{ m.id }}" style="display:inline">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-    <button type="submit">supprimer</button>
-  </form>
+<li>#{{ note.id }} : {{ note.content }}
+    <a href="/note/edit/{{ note.id }}">éditer</a>
+    <form method="post" action="/note/delete/{{ note.id }}" style="display:inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit">supprimer</button>
+    </form>
 </li>
-{% endfor %}
 ```
 
-### Comprendre ce code
+Puis déclarez la route de suppression dans `mvc/routes.py`.
 
+## Votre mvc/routes.py à ce stade
+
+```python
+# mvc/routes.py
+from core.http.router import Router
+from mvc.controllers.home_controller import HomeController
+from mvc.controllers.note_controller import NoteController
+
+router = Router()
+
+with router.group("", public=True) as pub:
+    pub.add("GET",  "/", HomeController.index, name="home-index")
+    pub.add("GET",  "/note", NoteController.index, name="note-index")
+    pub.add("GET",  "/note/edit/{id}", NoteController.edit, name="note-edit")
+    pub.add("POST", "/note/update/{id}", NoteController.update, name="note-update")
+    pub.add("POST", "/note/delete/{id}", NoteController.delete, name="note-delete")
+```
+
+## Comprendre ce code
+
+- La suppression est un **POST** : une action qui modifie l'état n'est jamais un
+  `GET` (un lien ou un robot ne doivent pas pouvoir supprimer).
 - Chaque ligne porte son **propre mini-formulaire** `POST` vers
-  `/delete-record/{id}` avec le **jeton CSRF**.
-- Pas de lien `GET` de suppression : on protège l'action destructive.
+  `/note/delete/{id}` avec le **jeton CSRF**.
+- `execute(DELETE_ONE, (record_id,))` : l'`id` est un **paramètre lié**.
+- Après l'écriture, `redirect("/note")` renvoie vers la liste : le navigateur
+  recharge l'état réel par un `GET` (motif POST-Redirect-GET).
+
+## Tester dans le navigateur
+
+| URL | Résultat |
+|---|---|
+| `https://localhost:8000/note` | la liste, avec « éditer » et « supprimer » par note |
+| Cliquer « supprimer » | la note disparaît, la liste se recharge |
 
 ## À retenir
 
-- Supprimer = `POST` + CSRF + `DELETE … WHERE id = ?` paramétré.
+- Supprimer, c'est `POST` plus CSRF plus `DELETE … WHERE id = ?` paramétré.
 - Une action qui change l'état n'est **jamais** un `GET`.
-- Après l'écriture, on relit la base pour ré-afficher l'état réel.
+- Après l'écriture, on **redirige** vers la liste (POST-Redirect-GET).
 
-## Après ce starter
+Au palier suivant, nous confirmons ces actions par un message flash.
 
-Passez au palier suivant : **Mémoriser un état en session** — garder un état
-côté serveur entre les requêtes.
-
-[Continuer avec Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/)
+[Continuer avec Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/)

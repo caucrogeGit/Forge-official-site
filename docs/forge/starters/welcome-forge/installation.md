@@ -1,9 +1,9 @@
-# Installation — Progression « Bonjour Forge »
+# Installation : progression « Bonjour Forge »
 
 Ce préambule installe Forge et génère le projet de départ de la progression
 pédagogique. C'est la **seule page du parcours** qui contient des commandes de
 création : tous les paliers suivants supposent le projet **déjà créé** et se
-concentrent sur le code.
+concentrent sur le code, que vous écrivez vous-même au fil des paliers.
 
 !!! info "Référence complète"
     Cette page suffit pour démarrer la progression. Pour les parcours
@@ -15,11 +15,11 @@ concentrent sur le code.
 - **Python 3.12+** (Forge n'est pas compatible avec les versions antérieures).
 - Aucune base de données n'est requise pour les premiers paliers : ils tournent
   **sans `db:init`**. La base MariaDB n'est nécessaire qu'à partir du palier
-  « Première base SQL » — voir [Préparer MariaDB](/docs/forge/install/mariadb/).
+  « Première base SQL », voir [Préparer MariaDB](/docs/forge/install/mariadb/).
 
 ## 1. Installer Forge
 
-Méthode recommandée pour utiliser le framework — installation isolée avec
+Méthode recommandée pour utiliser le framework : installation isolée avec
 **pipx** (bêta publique, `--pre` requis) :
 
 ```bash
@@ -38,24 +38,33 @@ Alternatives (Linux/macOS, Windows, depuis les sources) : voir
 
 ## 2. Créer le projet de départ
 
-La progression démarre sur le starter `welcome` (Bonjour Forge). On crée le
-projet directement à partir de ce starter :
+`forge new` crée un projet Forge **nu**, sans starter :
 
 ```bash
-forge new mon-projet --starter welcome
+forge new mon-projet
 ```
 
-## 3. Lancer le projet
+## 3. Activer l'environnement
+
+Le projet généré contient son propre environnement virtuel :
 
 ```bash
 cd mon-projet
 source .venv/bin/activate
+```
+
+## 4. Lancer le projet
+
+```bash
 forge run
 ```
 
-Ouvrez `https://localhost:8000/welcome` : la page affiche **« Bonjour Forge »**.
+Ouvrez `https://localhost:8000/` : la page d'accueil du squelette s'affiche. La
+route `/welcome` n'existe pas encore : vous la créerez vous-même au premier
+palier. Ce parcours est un **tutoriel continu** où vous construisez, à la main,
+un seul projet qui grandit palier après palier.
 
-## 4. Vérifier l'installation
+## 5. Vérifier l'installation
 
 ```bash
 forge doctor

@@ -157,6 +157,7 @@ chaque package publiable :
 | `forge-mvc-files` | `3 - Alpha` | Upload générique extrait du core (ADR-019) : écriture sécurisée, storage anti-traversal, service de fichiers, rate-limit. Publié sur PyPI depuis `1.0.0-beta.13` |
 | `forge-mvc-pivot` | `4 - Beta` | Pivot advanced extrait du core (ADR-021) : associations `many_to_many` enrichies + générateur `make:pivot-crud`. Publié sur PyPI depuis `1.0.0-beta.13` |
 | `forge-mvc-mail` | `4 - Beta` | Email opt-in extrait du core (ADR-022) : composition, transports interchangeables, templates Jinja, CLI `mail:*`. Publié sur PyPI depuis `1.0.0-beta.13` |
+| `forge-mvc-i18n` | `4 - Beta` | Internationalisation opt-in extraite du core (ADR-027) : catalogues JSON, locale par défaut et fallback, cache, helper `trans()` Jinja. Le noyau garde un repli no-op renvoyant la clé. Pas encore publié sur PyPI |
 
 Critères de passage Beta → Stable d'un module opt-in :
 
@@ -324,7 +325,7 @@ Avant toute release, exécuter le script de validation :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b13
+# ex. : bash tools/release-validate.sh 1.0.0b15
 ```
 
 Ce script vérifie en une seule passe :
@@ -362,12 +363,12 @@ Vérifications post-publication :
 
 ### Publication PyPI
 
-**État Forge 1.0.0b13 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b13`.
-`1.0.0b13` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
+**État Forge 1.0.0b15 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b15`.
+`1.0.0b15` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
 
 | Package | Publication PyPI | Notes |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b13` | `pip install --pre forge-mvc` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b15` | `pip install --pre forge-mvc` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -402,7 +403,7 @@ reste manuelle et délibérée.
 
 | Package | Statut PyPI | Règle |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b13` | Publié dès `1.0.0-beta.1` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b15` | Publié dès `1.0.0-beta.1` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -414,6 +415,7 @@ reste manuelle et délibérée.
 | `forge-mvc-iot` | ✅ Publié sur PyPI depuis `1.0.0-beta.12`, version alignée avec le core | `pip install --pre forge-mvc-iot` |
 | `forge-mvc-pivot` | ✅ Publié sur PyPI depuis `1.0.0-beta.13`, version alignée avec le core | `pip install --pre forge-mvc-pivot` |
 | `forge-mvc-mail` | ✅ Publié sur PyPI depuis `1.0.0-beta.13`, version alignée avec le core | `pip install --pre forge-mvc-mail` |
+| `forge-mvc-i18n` | ⏳ Pas encore publié sur PyPI (extrait du core en `1.0.0-beta.15`, ADR-027) | `pip install --pre forge-mvc-i18n` (à la publication) |
 
 ### Règles de version
 
@@ -467,7 +469,9 @@ Les onze opt-ins officiels sont publiés sur PyPI :
 - `forge-mvc-mfa` (Alpha) : publication en `1.0.0-beta.9` ;
 - `forge-mvc-iot` (Alpha) : publication en `1.0.0-beta.12` ;
 - `forge-mvc-files`, `forge-mvc-images`, `forge-mvc-audio`, `forge-mvc-video`,
-  `forge-mvc-pivot`, `forge-mvc-mail` : publication en `1.0.0-beta.13`.
+  `forge-mvc-pivot`, `forge-mvc-mail` : publication en `1.0.0-beta.13` ;
+- `forge-mvc-i18n` (Bêta) : extrait du core en `1.0.0-beta.15` (ADR-027),
+  publication PyPI à venir.
 
 Les extras `forge-mvc[rbac]`, `forge-mvc[workflow]`, `forge-mvc[stats]` et
 `forge-mvc[all]` sont disponibles via `pip install --pre forge-mvc[all]`.
@@ -484,7 +488,9 @@ Avant leur publication PyPI, les opt-ins `forge-mvc-rbac`, `forge-mvc-workflow` 
 
 ### Opt-ins publiés et synchronisés
 
-Les onze opt-ins officiels sont publiés sur PyPI avec une version synchronisée avec le core :
+Douze opt-ins officiels existent ; onze sont publiés sur PyPI avec une version
+synchronisée avec le core. `forge-mvc-i18n`, extrait en `1.0.0-beta.15`, attend
+sa première publication :
 
 | Package | Publication | Statut | Prérequis |
 |---|---|---|---|
@@ -499,6 +505,7 @@ Les onze opt-ins officiels sont publiés sur PyPI avec une version synchronisée
 | `forge-mvc-video` | PyPI depuis `1.0.0-beta.13` | Bêta | `ffmpeg` requis ; transcodage MP4 H.264/AAC |
 | `forge-mvc-pivot` | PyPI depuis `1.0.0-beta.13` | Bêta | Associations `many_to_many` enrichies + `make:pivot-crud` |
 | `forge-mvc-mail` | PyPI depuis `1.0.0-beta.13` | Bêta | Transports interchangeables (console, SMTP, log) |
+| `forge-mvc-i18n` | Publication à venir (extrait en `1.0.0-beta.15`) | Bêta | Catalogues JSON, fallback, cache, helper `trans()` ; repli no-op du noyau |
 
 La publication est strictement synchronisée : core et opt-ins portent la même version.
 

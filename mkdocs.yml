@@ -27,10 +27,12 @@ nav:
   - Documentation Forge:
       - Vue d'ensemble: forge/index.md
 
+
       - Installation:
           - Vue d'ensemble: forge/install/index.md
           - Installer Forge:
               - Windows + WSL (parcours complet): forge/install/windows-wsl.md
+              - Dépannage serveur dev (WSL2): forge/install/wsl-dev-server.md
               - Avec pipx: forge/install/pipx.md
               - Mode développement: forge/install/core-dev.md
               - VM Debian vierge: forge/install/vm-debian.md
@@ -39,6 +41,8 @@ nav:
           - Environnement:
               - Préparer MariaDB: forge/install/mariadb.md
               - Comptes MariaDB d'un projet: forge/install/mariadb-comptes.md
+              - Configurer VS Code (auto-import): forge/install/vscode.md
+              - Environnement VS Code (extensions et config): forge/install/vscode-environnement.md
               - Production: forge/install/production.md
 
       - Premiers pas:
@@ -126,19 +130,19 @@ nav:
                   - Bilan débutant: forge/starters/welcome-forge/debutant/bilan.md
               - Intermédiaire:
                   - Lister des enregistrements: forge/starters/welcome-forge/intermediaire/list-records.md
+                  - Héritage de gabarit: forge/starters/welcome-forge/intermediaire/layout-template.md
                   - Rechercher / filtrer: forge/starters/welcome-forge/intermediaire/filter-list.md
                   - Paginer une liste: forge/starters/welcome-forge/intermediaire/pagination.md
-                  - Héritage de gabarit: forge/starters/welcome-forge/intermediaire/layout-template.md
                   - Modifier un enregistrement: forge/starters/welcome-forge/intermediaire/update-record.md
                   - Supprimer un enregistrement: forge/starters/welcome-forge/intermediaire/delete-record.md
-                  - Mémoriser un état en session: forge/starters/welcome-forge/intermediaire/session-state.md
                   - Messages flash: forge/starters/welcome-forge/intermediaire/flash-messages.md
+                  - Mémoriser un état en session: forge/starters/welcome-forge/intermediaire/session-state.md
                   - Bilan intermédiaire: forge/starters/welcome-forge/intermediaire/bilan.md
               - Avancé:
                   - Relations entre tables: forge/starters/welcome-forge/avance/relations.md
+                  - Écritures transactionnelles: forge/starters/welcome-forge/avance/db-transaction.md
                   - Téléverser un fichier: forge/starters/welcome-forge/avance/file-upload.md
                   - API JSON protégée: forge/starters/welcome-forge/avance/json-api.md
-                  - Écritures transactionnelles: forge/starters/welcome-forge/avance/db-transaction.md
                   - Bilan avancé: forge/starters/welcome-forge/avance/bilan.md
               - Aide-mémoire: forge/starters/welcome-forge/recapitulatif.md
           - Progression IoT (welcome-iot):
@@ -357,6 +361,14 @@ nav:
               - ADR-020 Primitives stockage files: forge/adr/020-files-media-storage-primitives.md
               - ADR-021 Extraction pivot: forge/adr/021-pivot-extraction.md
               - ADR-022 Extraction mail: forge/adr/022-mail-extraction.md
+              - ADR-023 Starter build canonique: forge/adr/023-starter-build-canonical.md
+              - ADR-024 Bootstrap squelette dédié: forge/adr/024-skeleton-bootstrap.md
+              - ADR-025 welcome-forge tutoriel continu: forge/adr/025-welcome-forge-continuous-tutorial.md
+              - ADR-026 Accesseurs Request query/route: forge/adr/026-request-param-naming.md
+              - ADR-027 Extraction i18n: forge/adr/027-i18n-extraction.md
+              - ADR-028 welcome-forge tutoriel par niveau: forge/adr/028-welcome-forge-tutorial-per-level.md
+              - ADR-029 Convention de route: forge/adr/029-route-naming-convention.md
+              - ADR-030 Injection de routes explicite: forge/adr/030-explicit-route-injection.md
 
       - IoT:
           - Architecture Forge IoT: forge/iot/architecture.md
@@ -415,6 +427,7 @@ nav:
           - Pour contribuer:
               - Vue d'ensemble: forge/philosophy/contributing.md
               - Conventions de travail: forge/contributing/conventions.md
+              - Convention de route: forge/contributing/route-convention.md
               - Modèle de starter (référence welcome): forge/contributing/starter-welcome-model.md
               - Dépôt canonique et récupération: forge/contributing/canonical-repo.md
           - Audits:

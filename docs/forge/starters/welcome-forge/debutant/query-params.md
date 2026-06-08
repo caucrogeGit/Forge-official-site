@@ -1,126 +1,78 @@
 # Paramètres d'URL
 
-Objectif : lire une valeur passée dans l'URL avec `request.param(...)`.
+Objectif : lire une valeur passée dans l'adresse, par exemple `?name=Roger`.
 
-**Ce que vous allez apprendre :** récupérer une valeur de la query string
-(`?name=Roger`) avec `request.param("name", default=...)`, et fournir une
-valeur par défaut quand le paramètre est absent — sans exception ni
-`None` à gérer.
+**Ce que vous allez apprendre :** récupérer une valeur de la chaîne de
+requête avec `request.query("name", default=...)`, avec une valeur de repli
+quand le paramètre est absent.
 
-Ce starter est identifié par `query-params` dans la CLI Forge
-(aliases `query_params` / `params`). Il représente le **palier 2** de
-la
-[progression officielle des starters](/docs/forge/starters/#progression-recommandee),
-juste après [Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/).
+## Là où nous en sommes
 
-## Ce que ce starter installe
+Votre `WelcomeController` possède déjà la méthode `index` (palier 1), et
+`mvc/routes.py` déclare la route `/welcome`. Nous y ajoutons deux méthodes
+et deux routes.
 
-- une route `/query-params`
-- une route `/query-params/hello`
-- un contrôleur `QueryParamsController` avec deux méthodes
-- aucune vue HTML
-- aucune base de données
+## L'ajout
 
-## Classes Forge utilisées
-
-| Classe | Rôle dans ce starter | Référence |
-|--------|----------------------|-----------|
-| `Request` | Lire un paramètre de *query string* avec `request.param(...)`. | [Request](/docs/forge/reference/http/#3-request-reference) |
-| `Response` | Construire la réponse texte avec `Response.text(...)`. | [Response](/docs/forge/reference/http/#4-response-reference) |
-| `BaseController` | Classe parente du contrôleur. | [BaseController](/docs/forge/reference/api/#coremvccontroller) |
-
-## Exemple
-
-`/query-params/hello?name=Roger`
-
-retourne :
-
-`Bonjour Roger`
-
-Sans paramètre, `/query-params/hello` retourne `Bonjour Forge` (valeur
-par défaut).
-
-## Les routes
+Ajoutez ces deux méthodes à la classe `WelcomeController` :
 
 ```python
-# mvc/routes.py
-from mvc.controllers.query_params_controller import QueryParamsController
-
-with router.group("", public=True) as pub:
-    pub.add("GET", "/query-params",       QueryParamsController.index, name="query_params_index")
-    pub.add("GET", "/query-params/hello", QueryParamsController.hello, name="query_params_hello")
-```
-
-### Comprendre ce code
-
-- Deux routes publiques dans le même groupe : une page d'accueil
-  informative, et `/query-params/hello` qui lit le paramètre.
-- Le `name=` est utile même pour des URL fixes : il permet ensuite de
-  générer l'URL depuis un template avec `url_for("query_params_hello")`,
-  au lieu de la coder en dur.
-
-## Le contrôleur
-
-```python
-# mvc/controllers/query_params_controller.py
-from core.http.request import Request
-from core.http.response import Response
-from core.mvc.controller.base_controller import BaseController
-
-
-class QueryParamsController(BaseController):
-    """Starter pédagogique : lire des paramètres d'URL."""
-
     @staticmethod
-    def index(request: Request) -> Response:
+    def query_params(request: Request) -> Response:
         return Response.text(
-            "Ajoutez ?name=Roger à l'URL, puis ouvrez /query-params/hello?name=Roger"
+            "Ajoutez ?name=Roger à l'URL, puis ouvrez /welcome/hello?name=Roger"
         )
 
     @staticmethod
     def hello(request: Request) -> Response:
-        name = request.param("name", default="Forge")
+        name = request.query("name", default="Forge")
         return Response.text(f"Bonjour {name}")
 ```
 
-### Comprendre ce code
+Puis ajoutez les deux routes dans le groupe public de `mvc/routes.py`.
 
-- Un *paramètre d'URL* (ou *query string*) est la partie après le `?` :
-  `?name=Roger` apporte la valeur `name=Roger`.
-- `request.param("name", default="Forge")` lit cette valeur. Le second
+## Votre mvc/routes.py à ce stade
+
+```python
+# mvc/routes.py
+from core.http.router import Router
+from mvc.controllers.home_controller import HomeController
+from mvc.controllers.welcome_controller import WelcomeController
+
+router = Router()
+
+with router.group("", public=True) as pub:
+    pub.add("GET", "/", HomeController.index, name="home-index")
+    pub.add("GET",  "/welcome", WelcomeController.index, name="welcome-index")
+    pub.add("GET",  "/welcome/query-params", WelcomeController.query_params, name="welcome-query_params")
+    pub.add("GET",  "/welcome/hello", WelcomeController.hello, name="welcome-hello")
+```
+
+## Comprendre ce code
+
+- La chaîne de requête est la partie après le `?` : `?name=Roger` porte la
+  valeur `name=Roger`.
+- `request.query("name", default="Forge")` lit cette valeur ; le second
   argument évite tout cas particulier « clé absente ».
-- Le type retourné est toujours `str` ; toute conversion (int, date…)
-  est à faire explicitement côté contrôleur.
-- La réponse reste un `Response.text(...)` — aucun template ici, donc
-  rien à rendre.
+- La valeur retournée est toujours de type `str` ; une conversion (entier,
+  date) reste à votre charge dans le contrôleur.
 
 ## Tester dans le navigateur
 
 | URL | Résultat |
 |---|---|
-| `https://localhost:8000/query-params` | message d'aide |
-| `https://localhost:8000/query-params/hello` | `Bonjour Forge` |
-| `https://localhost:8000/query-params/hello?name=Roger` | `Bonjour Roger` |
-| `https://localhost:8000/query-params/hello?name=Alice` | `Bonjour Alice` |
+| `https://localhost:8000/welcome/query-params` | message d'aide |
+| `https://localhost:8000/welcome/hello` | `Bonjour Forge` |
+| `https://localhost:8000/welcome/hello?name=Roger` | `Bonjour Roger` |
+| `https://localhost:8000/welcome/hello?name=Alice` | `Bonjour Alice` |
 
 ## À retenir
 
-- `request.param(key, default=...)` lit une valeur de la *query string*
-  (`?key=valeur`).
-- Le second argument `default=...` est la valeur retournée si la clé
-  est absente — pas d'exception, pas de `None` à manipuler.
-- Le type retourné est toujours `str` (ou la valeur de `default`).
-- Aucun template, aucun moteur de rendu : la réponse reste en
-  `text/plain`.
+- `request.query(cle, default=...)` lit une valeur de la chaîne de requête.
+- `default=...` est renvoyé si la clé est absente : pas d'exception, pas de
+  `None` à gérer.
+- La réponse reste un `Response.text(...)`, donc aucun template.
 
-## Après ce starter
-
-Passez au palier suivant : **Première vue HTML**.
-
-Vous y apprendrez à rendre une page HTML avec :
-
-```python
-BaseController.render(...)
-```
+Au palier suivant, nous passons du texte brut à une vraie page HTML.
 
 [Continuer avec Première vue HTML](/docs/forge/starters/welcome-forge/debutant/first-html-view/)

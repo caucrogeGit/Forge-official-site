@@ -22,13 +22,13 @@ La progression cœur `welcome-forge` enseigne les fondamentaux ; chaque opt-in a
 sa propre progression `welcome-<module>` (débutant → avancé). La liste exhaustive
 est aussi disponible via `forge starter:list`.
 
-### Bonjour Forge — progression cœur (`welcome-forge`)
+### Bonjour Forge : progression cœur (`welcome-forge`)
 
-*Débutant — 11 paliers* — [Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/) · [Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/) · [Première vue HTML](/docs/forge/starters/welcome-forge/debutant/first-html-view/) · [Route dynamique](/docs/forge/starters/welcome-forge/debutant/dynamic-route/) · [Inspecter une requête](/docs/forge/starters/welcome-forge/debutant/request-debug/) · [Réponse JSON](/docs/forge/starters/welcome-forge/debutant/json-response/) · [Le jeton CSRF](/docs/forge/starters/welcome-forge/debutant/csrf/) · [Premier formulaire POST](/docs/forge/starters/welcome-forge/debutant/form-post/) · [Validation serveur](/docs/forge/starters/welcome-forge/debutant/server-validation/) · [Première base SQL](/docs/forge/starters/welcome-forge/debutant/first-sql/) · [Écrire en base](/docs/forge/starters/welcome-forge/debutant/first-sql-write/)
+*Débutant, 11 paliers (tutoriel continu)* : [Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/) · [Paramètres d'URL](/docs/forge/starters/welcome-forge/debutant/query-params/) · [Première vue HTML](/docs/forge/starters/welcome-forge/debutant/first-html-view/) · [Route dynamique](/docs/forge/starters/welcome-forge/debutant/dynamic-route/) · [Inspecter une requête](/docs/forge/starters/welcome-forge/debutant/request-debug/) · [Réponse JSON](/docs/forge/starters/welcome-forge/debutant/json-response/) · [Le jeton CSRF](/docs/forge/starters/welcome-forge/debutant/csrf/) · [Premier formulaire POST](/docs/forge/starters/welcome-forge/debutant/form-post/) · [Validation serveur](/docs/forge/starters/welcome-forge/debutant/server-validation/) · [Première base SQL](/docs/forge/starters/welcome-forge/debutant/first-sql/) · [Écrire en base](/docs/forge/starters/welcome-forge/debutant/first-sql-write/)
 
-*Intermédiaire* — [Lister des enregistrements](/docs/forge/starters/welcome-forge/intermediaire/list-records/) · [Rechercher / filtrer](/docs/forge/starters/welcome-forge/intermediaire/filter-list/) · [Paginer une liste](/docs/forge/starters/welcome-forge/intermediaire/pagination/) · [Héritage de gabarit](/docs/forge/starters/welcome-forge/intermediaire/layout-template/) · [Modifier un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/update-record/) · [Supprimer un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/delete-record/) · [Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/) · [Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/)
+*Intermédiaire, 8 paliers (tutoriel continu)* : [Lister des enregistrements](/docs/forge/starters/welcome-forge/intermediaire/list-records/) · [Héritage de gabarit](/docs/forge/starters/welcome-forge/intermediaire/layout-template/) · [Rechercher / filtrer](/docs/forge/starters/welcome-forge/intermediaire/filter-list/) · [Paginer une liste](/docs/forge/starters/welcome-forge/intermediaire/pagination/) · [Modifier un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/update-record/) · [Supprimer un enregistrement](/docs/forge/starters/welcome-forge/intermediaire/delete-record/) · [Messages flash](/docs/forge/starters/welcome-forge/intermediaire/flash-messages/) · [Mémoriser un état en session](/docs/forge/starters/welcome-forge/intermediaire/session-state/)
 
-*Avancé* — [Relations entre tables](/docs/forge/starters/welcome-forge/avance/relations/) · [Téléverser un fichier](/docs/forge/starters/welcome-forge/avance/file-upload/) · [API JSON protégée](/docs/forge/starters/welcome-forge/avance/json-api/) · [Écritures transactionnelles](/docs/forge/starters/welcome-forge/avance/db-transaction/)
+*Avancé, 4 paliers (tutoriel continu)* : [Relations entre tables](/docs/forge/starters/welcome-forge/avance/relations/) · [Écritures transactionnelles](/docs/forge/starters/welcome-forge/avance/db-transaction/) · [Téléverser un fichier](/docs/forge/starters/welcome-forge/avance/file-upload/) · [API JSON protégée](/docs/forge/starters/welcome-forge/avance/json-api/)
 
 ### IoT (opt-in `forge-mvc-iot`)
 
@@ -72,35 +72,28 @@ est aussi disponible via `forge starter:list`.
 
 ## Progression recommandée
 
-Le starter `Bonjour Forge` est volontairement minimal (deux routes texte,
-zéro vue HTML, zéro base de données). **Ne sautez pas directement aux
-notions SQL** : plusieurs paliers intermédiaires permettent d'aborder
-l'accès base sereinement. La progression officielle est :
+Le niveau débutant `Bonjour Forge` est un **tutoriel continu** : vous
+construisez à la main un seul projet qui grandit palier après palier (un
+contrôleur qui s'enrichit, un `mvc/routes.py` qui s'accumule). **Ne sautez pas
+directement aux notions SQL** : les paliers HTTP préparent l'accès base
+sereinement. Les 11 paliers du niveau débutant :
 
-1. **Bonjour Forge** — afficher une réponse texte avec `Response.text(...)`.
-   *(livré — starter `welcome`)*
-2. **Paramètres d'URL** — lire une valeur simple avec `request.param(...)`.
-   *(livré — starter `query-params`, ticket `STARTER-QUERY-PARAMS-001`)*
-3. **Première vue HTML** — rendre une page avec `BaseController.render(...)`.
-   *(livré — starter `first-html-view`, ticket `STARTER-FIRST-HTML-VIEW-001`)*
-4. **Route dynamique** — lire un paramètre de route comme `/articles/{id}`.
-   *(livré — starter `dynamic-route`, ticket `STARTER-DYNAMIC-ROUTE-001`)*
-5. **Inspecter une requête** — explorer `request.data` avec `Response.debug(...)` en développement.
-   *(livré — starter `request-debug`, ticket `STARTER-REQUEST-DEBUG-001`)*
-6. **Réponse JSON** — retourner des données structurées avec `Response.json(...)`.
-   *(livré — starter `json-response`, ticket `STARTER-JSON-RESPONSE-001`)*
-7. **Le jeton CSRF** — comprendre la protection CSRF des formulaires.
-   *(livré — starter `csrf`, ticket `STARTER-CSRF-001`)*
-8. **Premier formulaire POST** — envoyer des données depuis un formulaire HTML.
-   *(livré — starter `form-post`, ticket `STARTER-FORM-POST-001`)*
-9. **Validation serveur** — refuser ou accepter les données reçues.
-   *(livré — starter `server-validation`, ticket `STARTER-SERVER-VALIDATION-001`)*
-10. **Première base SQL** — lire une donnée : MariaDB, migrations et SQL visible.
-   *(livré — starter `first-sql`, ticket `STARTER-FIRST-SQL-001`)*
-11. **Écrire en base** — insérer une ligne depuis un formulaire avec `db.insert(...)`.
-   *(livré — starter `first-sql-write`, ticket `STARTER-FIRST-SQL-WRITE-001`)*
+1. **Bonjour Forge** : afficher une réponse texte avec `Response.text(...)`.
+2. **Paramètres d'URL** : lire une valeur simple avec `request.query(...)`.
+3. **Première vue HTML** : rendre une page avec `BaseController.render(...)`.
+4. **Route dynamique** : lire un paramètre de route comme `/articles/{id}`.
+5. **Inspecter une requête** : explorer `request.data` avec `Response.debug(...)` en développement.
+6. **Réponse JSON** : retourner des données structurées avec `Response.json(...)`.
+7. **Le jeton CSRF** : comprendre la protection CSRF des formulaires.
+8. **Premier formulaire POST** : envoyer des données depuis un formulaire HTML.
+9. **Validation serveur** : refuser ou accepter les données reçues.
+10. **Première base SQL** : lire une donnée : MariaDB, migrations et SQL visible.
+11. **Écrire en base** : insérer une ligne depuis un formulaire avec `db.insert(...)`.
 
-Une fois ces **11 paliers** acquis, vous avez terminé le starter de
+Après le préambule d'installation, suivez les paliers dans l'ordre depuis
+[Bonjour Forge](/docs/forge/starters/welcome-forge/debutant/welcome/).
+
+Une fois ces **11 paliers** acquis, vous avez terminé le niveau débutant de
 découverte *Bonjour Forge*. Vous pouvez ensuite explorer les progressions
 opt-in dédiées (IoT, vidéo, images, fichiers, audio, MFA, RBAC, workflow,
 stats), chacune autonome et présentée par niveau dans le catalogue ci-dessus.
@@ -124,9 +117,15 @@ Pour choisir un profil : [Profils de projet](/docs/forge/features/profiles/).
 
 ```bash
 forge starter:list                 # catalogue complet depuis la CLI
-forge starter:build <identifiant>  # ex. : forge starter:build welcome
+forge starter:build <identifiant>  # ex. : forge starter:build iot-welcome
 ```
 
-Un starter se génère par son **identifiant public** (`welcome`, `query-params`,
-`iot-welcome`…), pas par un numéro. Chaque page de starter liste les commandes
-exactes, le modèle de données et les étapes de reconstruction.
+Un starter se génère par son **identifiant public** (`iot-welcome`,
+`mfa-welcome`, `rbac-welcome`…), pas par un numéro. Chaque page de starter liste
+les commandes exactes, le modèle de données et les étapes de reconstruction.
+
+!!! note "Le parcours débutant Bonjour Forge ne se génère plus par `starter:build`"
+    Le niveau débutant de `welcome-forge` est désormais un **tutoriel continu**
+    que l'on suit à la main (voir la progression ci-dessus). Les commandes
+    `forge starter:build` concernent les progressions opt-in et les autres
+    starters, pas les 11 paliers débutant.

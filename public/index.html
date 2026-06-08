@@ -82,10 +82,11 @@
   </div>
 
   <div class="landing-version-strip landing-accent-text flex flex-wrap justify-center gap-2 text-sm font-medium mb-12">
-    <a href="https://github.com/caucrogeGit/Forge/releases" target="_blank" rel="noopener noreferrer" class="hover:underline">v1.0.0-beta.13</a><span class="opacity-40">·</span>
+    <a href="https://github.com/caucrogeGit/Forge/releases" target="_blank" rel="noopener noreferrer" class="hover:underline">v1.0.0-beta.15</a><span class="opacity-40">·</span>
     <a href="https://docs.python.org/3.12/" target="_blank" rel="noopener noreferrer" class="hover:underline">Python 3.12+</a><span class="opacity-40">·</span>
     <a href="https://mariadb.com/kb/en/" target="_blank" rel="noopener noreferrer" class="hover:underline">MariaDB 11.8</a><span class="opacity-40">·</span>
     <a href="https://nodejs.org/docs/latest-v20.x/api/" target="_blank" rel="noopener noreferrer" class="hover:underline">Node.js 20</a><span class="opacity-40">·</span>
+    <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener noreferrer" class="hover:underline">Tailwind CSS 4.3</a><span class="opacity-40">·</span>
     <a href="https://jinja.palletsprojects.com/en/3.1.x/" target="_blank" rel="noopener noreferrer" class="hover:underline">Jinja2 3.1</a><span class="opacity-40">·</span>
     <a href="https://htmx.org/docs/" target="_blank" rel="noopener noreferrer" class="hover:underline">HTMX</a><span class="opacity-40">·</span>
     <a href="https://alpinejs.dev/start-here" target="_blank" rel="noopener noreferrer" class="hover:underline">Alpine.js</a>
@@ -97,61 +98,35 @@
   <p class="landing-accent-text text-xl sm:text-2xl font-semibold leading-tight tracking-tight mb-6">
     Framework web applicatif Python.
   </p>
-  <p class="text-lg text-white font-medium max-w-2xl mx-auto leading-relaxed mb-4">
-    Forge génère un MVC CRUD explicite à partir d'un
-    <a href="https://forgemvc.com/docs/forge/entities/entity-schema/"
-       target="_blank" rel="noopener noreferrer"
-       class="landing-accent-text font-semibold hover:underline">modèle JSON</a> visible.
-  </p>
 </section>
 
-<!-- Nouveautés 1.0.0-beta.13 : opt-ins média/données + features transverses -->
-<section id="beta13" class="py-24 px-6 sec-light">
+<!-- Nouveautés 1.0.0-beta.15 : i18n opt-in, welcome-forge refondu, convention de route, squelette dédié -->
+<section id="beta15" class="py-24 px-6 sec-light">
   <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
-      <div class="text-5xl sm:text-7xl text-black font-semibold tracking-tight leading-tight mb-0">Nouveautés 1.0.0-beta.13</div>
+      <div class="text-5xl sm:text-7xl text-black font-semibold tracking-tight leading-tight mb-0">Nouveautés 1.0.0-beta.15</div>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge IoT</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Opt-in pour recevoir, stocker et exposer des données de capteurs : un subscriber MQTT alimente une table d'événements, relue via une API HTTP JSON. Le cœur reste autonome.</p>
+        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge i18n</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Le douzième opt-in : traduction par catalogues JSON, locale par défaut et fallback, helper trans() pour les templates. Extrait du cœur pour qu'il reste autonome ; un repli no-op garde le CRUD généré fonctionnel sans le module.</p>
       </div>
 
       <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge Video</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Opt-in d'upload, transcodage MP4 (H.264/AAC) et lecture en streaming. Le transcodage tourne dans un worker dédié, jamais pendant une requête HTTP.</p>
+        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">welcome-forge refondu</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Les trois niveaux d'apprentissage deviennent des tutoriels continus manuels : un mini-projet par niveau (Carnet de notes, Catalogue d'articles), écrit à la main palier après palier, sans génération automatique.</p>
       </div>
 
       <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge Images</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Opt-in de traitement d'images : variantes et miniatures, galerie attachée à une entité, image de couverture, et une garde qui refuse les images piégées à l'upload.</p>
+        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Convention de route</h3>
+        <p class="text-white/60 text-sm leading-relaxed">Une route se déduit du contrôleur et de la méthode : chemin /contrôleur/méthode (index nu), nom contrôleur-méthode. Prévisible et lisible, appliquée au squelette, au parcours welcome et au CRUD généré.</p>
       </div>
 
       <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge Files</h3>
-        <p class="text-white/60 text-sm leading-relaxed">La brique générique d'upload : écriture sécurisée anti-traversal, stockage et service de fichiers en streaming. Le socle des opt-ins média spécialisés.</p>
-      </div>
-
-      <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Forge Audio</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Opt-in d'upload, sondage des métadonnées, transcodage MP3 et lecture audio en streaming. Un module sobre, sans état.</p>
-      </div>
-
-      <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Slugs canoniques</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Des identifiants d'URL lisibles et stables, produits d'une seule façon officielle depuis une colonne source, avec CRUD et routage public par slug intégrés.</p>
-      </div>
-
-      <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Modèle opt-in unifié</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Une seule façon d'ajouter une brique optionnelle : l'installer, l'activer, la désactiver ou la lister, avec un vocabulaire clair « opt-in ». Le cœur ne s'alourdit jamais.</p>
-      </div>
-
-      <div class="landing-panel rounded-xl p-6 border border-white/10 h-full">
-        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Parcours welcome</h3>
-        <p class="text-white/60 text-sm leading-relaxed">Chaque opt-in a sa progression pédagogique, du premier contact au niveau avancé, générable en un starter pour apprendre brique par brique.</p>
+        <h3 class="text-xl font-bold tracking-tight text-[#E8651A] mb-2">Squelette dédié</h3>
+        <p class="text-white/60 text-sm leading-relaxed">forge new produit un projet nu, matérialisé depuis un squelette embarqué : pas de clone du dépôt, un point de départ minimal et neutre que vous faites grandir.</p>
       </div>
 
     </div>
@@ -260,7 +235,7 @@
           <p class="text-slate-600">
             Une installation <strong class="text-[#E8651A]">éditable</strong> depuis les
             sources (pas via <code class="text-xs text-[#E8651A]">pipx</code>), qui inclut le
-            runtime, les outils et les <strong class="text-[#E8651A]">11 modules opt-in</strong>
+            runtime, les outils et les <strong class="text-[#E8651A]">12 modules opt-in</strong>
             du monorepo.
           </p>
           <p class="text-slate-600">
@@ -638,8 +613,8 @@
     </div>
 
     <!-- Modules officiels opt-in -->
-    <div id="modules" class="mt-16 mb-10">
-      <h3 class="text-2xl font-bold tracking-tight mb-3">Modules officiels opt-in installables séparément selon leur état de disponibilité.</h3>
+    <div id="modules" class="text-center mt-16 mb-16">
+      <h2 class="text-5xl sm:text-7xl font-bold tracking-tight leading-tight mb-4">Forge fournit des modules officiels opt-in installables séparément.</h2>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -751,6 +726,16 @@
         </div>
         <h3 class="font-semibold mb-2 text-[#E8651A] group-hover:landing-accent-text transition-colors">forge-mvc-pivot</h3>
         <p class="text-sm text-white/60 leading-relaxed">Tables pivot enrichies : associations many_to_many avec attributs, générateur make:pivot-crud.</p>
+      </article>
+      </a>
+
+      <a href="https://forgemvc.com/docs/forge/reference/api/#forgemvci18n" class="block group" target="_blank" rel="noopener noreferrer">
+      <article class="landing-panel rounded-xl border border-white/10 p-7 hover:border-[#E8651A]/40 transition-all group-hover:border-[#E8651A]/40 cursor-pointer h-full">
+        <div class="landing-icon-chip w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+        </div>
+        <h3 class="font-semibold mb-2 text-[#E8651A] group-hover:landing-accent-text transition-colors">forge-mvc-i18n</h3>
+        <p class="text-sm text-white/60 leading-relaxed">Internationalisation : traduction par catalogues JSON, locale par défaut et fallback, helper trans() pour les templates.</p>
       </article>
       </a>
 

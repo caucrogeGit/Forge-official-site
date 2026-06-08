@@ -180,7 +180,7 @@ Vérifier :
 
 ```bash
 forge --version
-# Forge 1.0.0b13
+# Forge 1.0.0b15
 ```
 
 Si la commande `forge` n'est pas trouvée :
@@ -272,28 +272,31 @@ Détails complets : [Préparer MariaDB](/docs/forge/install/mariadb/).
 
 Pour suivre la progression pédagogique de la documentation Forge,
 ce guide cible explicitement le starter [Bonjour Forge](/docs/forge/guide/bonjour-forge/).
-Créer un nouveau projet avec ce starter pré-appliqué :
+Créer un nouveau projet nu puis y construire ce starter :
 
 ```bash
 mkdir -p ~/Projets
 cd ~/Projets
 
-forge new forge-test-wsl --starter welcome
+forge new forge-test-wsl
 cd forge-test-wsl
 source .venv/bin/activate
+forge starter:build welcome
 ```
 
 `forge new` clone le squelette, prépare l'environnement virtuel
 Python `.venv`, installe les dépendances Python, génère les
 certificats SSL HTTPS de développement, compile le CSS Tailwind si
-Node.js est présent, applique le starter `welcome` (alias
-`bonjour-forge`) et initialise un dépôt Git propre.
+Node.js est présent et initialise un dépôt Git propre.
+`forge starter:build welcome` construit ensuite le starter `welcome`
+(alias `bonjour-forge`) dans le projet.
 
-!!! note "Sans `--starter welcome`"
-    `forge new MonProjet` sans option produit un squelette minimal
-    avec la route `/` (HomeController) et `/login` — pas de
-    `/welcome`. Si vous omettez le starter, n'exécutez pas les tests
-    `/welcome` plus bas ; testez `/` à la place.
+!!! note "Sans le starter `welcome`"
+    Un projet créé par `forge new MonProjet`, tant que
+    `forge starter:build welcome` n'a pas été lancé, reste un squelette
+    minimal avec la route `/` (HomeController) et `/login` — pas de
+    `/welcome`. Si vous ne construisez pas le starter, n'exécutez pas
+    les tests `/welcome` plus bas ; testez `/` à la place.
 
 ---
 
@@ -549,6 +552,12 @@ Si une route renvoie 404, vérifier que le starter `welcome` a bien
 
 - La bêta publique exige le flag `--pre`.
 - Solution : `pipx install --pip-args="--pre" forge-mvc`.
+
+### `forge run` : « port déjà utilisé » ou serveur qui ne répond pas
+
+- Deux pièges fréquents sous WSL2 : le serveur dev parle HTTPS (et non HTTP),
+  et un forward fantôme de VS Code peut tenir le port, invisible à `ss`/`lsof`.
+- Solution détaillée : [Dépannage du serveur de dev sous WSL2](/docs/forge/install/wsl-dev-server/).
 
 ---
 

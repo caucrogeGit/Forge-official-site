@@ -1448,7 +1448,7 @@ Affiche la version courante de Forge.
 
 ```bash
 $ forge --version
-Forge 1.0.0b13
+Forge 1.0.0b15
 ```
 
 </details>

@@ -57,12 +57,12 @@ Ce ticket vérifie que :
 
 ## 5. Contexte utile avant de commencer
 
-Forge utilise un format de version PEP 440 en interne (ex : `1.0.0b13`) et une notation SemVer dans certaines communications (ex : `1.0.0-beta.3`). Ces deux formats désignent la même version.
+Forge utilise un format de version PEP 440 en interne (ex : `1.0.0b15`) et une notation SemVer dans certaines communications (ex : `1.0.0-beta.3`). Ces deux formats désignent la même version.
 
 La cohérence entre ce que la CLI affiche et ce que la documentation présente est importante pour éviter la confusion chez les testeurs débutants.
 
 ```text
-Format PEP 440 :  1.0.0b13
+Format PEP 440 :  1.0.0b15
 Format SemVer  :  1.0.0-beta.3  (exemple — vérifier la documentation)
 Ces deux notations désignent la même version.
 ```
