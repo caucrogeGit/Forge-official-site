@@ -1101,7 +1101,7 @@ pip install --pre forge-mvc-iot
 pip install --pre forge-mvc-images
 ```
 
-Voir [Installation — Contrat d'installation des opt-ins](/docs/forge/install/#contrat-dinstallation-des-opt-ins).
+Voir [Installation — Contrat d'installation des opt-ins](/docs/forge/install/opt-ins/).
 
 <details markdown="1" id="forge-rbacvalidate">
 <summary><code>forge rbac:validate</code> - Valide mvc/security/rbac.json avec le schéma RBAC Forge</summary>

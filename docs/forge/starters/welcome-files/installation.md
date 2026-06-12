@@ -7,7 +7,7 @@ projet **déjà créé**.
 
 !!! info "Référence complète"
     Pour l'installation détaillée du core et des autres parcours, voir
-    [Installer Forge](/docs/forge/install/).
+    [Installer Forge](/docs/forge/install/poste-linux/).
 
 !!! info "Module publié sur PyPI"
     `forge-mvc-files` est publié sur PyPI depuis `1.0.0-beta.13`. On l'installe
@@ -17,7 +17,7 @@ projet **déjà créé**.
 ## Prérequis
 
 - **Forge installé** (core `forge-mvc`). Sinon, suivre d'abord
-  [Installer Forge](/docs/forge/install/).
+  [Installer Forge](/docs/forge/install/poste-linux/).
 - **Python 3.12+**.
 - Aucune base de données : `forge-mvc-files` est **sans état** (stockage disque).
 

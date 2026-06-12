@@ -7,12 +7,12 @@ projet **déjà créé**.
 
 !!! info "Référence complète"
     Pour l'installation détaillée du core et des autres parcours, voir
-    [Installer Forge](/docs/forge/install/).
+    [Installer Forge](/docs/forge/install/poste-linux/).
 
 ## Prérequis
 
 - **Forge installé** (core `forge-mvc`). Si ce n'est pas encore fait, suivre
-  d'abord [Installer Forge](/docs/forge/install/).
+  d'abord [Installer Forge](/docs/forge/install/poste-linux/).
 - **Python 3.12+**.
 - **`ffmpeg` / `ffprobe` ne sont pas nécessaires au début** : les premiers
   paliers (premier contact, liste, détail, upload) fonctionnent sans eux.

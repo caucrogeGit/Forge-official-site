@@ -16,7 +16,7 @@ forge run → route → contrôleur → Request → Response.text(...)
 !!! tip "Forge n'est pas encore installé ?"
     Commencez par le parcours d'installation :
     [VM Debian vierge](/docs/forge/install/vm-debian/),
-    [pipx](/docs/forge/install/pipx/),
+    [poste Linux (pipx)](/docs/forge/install/poste-linux/),
     [depuis GitHub](/docs/forge/install/github/),
     [Windows + WSL (parcours complet)](/docs/forge/install/windows-wsl/).
 
@@ -59,9 +59,9 @@ cachée :
 # mvc/routes.py
 from mvc.controllers.welcome_controller import WelcomeController
 
-with router.group("", public=True) as pub:
-    pub.add("GET", "/welcome",       WelcomeController.index, name="welcome-index")
-    pub.add("GET", "/welcome/greet", WelcomeController.greet, name="welcome-greet")
+with router.group("", public=True) as public:
+    public.add("GET", "/welcome",       WelcomeController.index, name="welcome-index")
+    public.add("GET", "/welcome/greet", WelcomeController.greet, name="welcome-greet")
 ```
 
 Chaque ligne associe une méthode HTTP et un chemin à une méthode de

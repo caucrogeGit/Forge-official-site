@@ -5,12 +5,12 @@ de départ. C'est la **seule page du parcours** qui contient des commandes de
 création : tous les paliers suivants supposent le projet **déjà créé**.
 
 !!! info "Référence complète"
-    Pour l'installation détaillée du core, voir [Installer Forge](/docs/forge/install/).
+    Pour l'installation détaillée du core, voir [Installer Forge](/docs/forge/install/poste-linux/).
 
 ## Prérequis
 
 - **Forge installé** (core `forge-mvc`). Sinon, suivre d'abord
-  [Installer Forge](/docs/forge/install/).
+  [Installer Forge](/docs/forge/install/poste-linux/).
 - **Python 3.12+**.
 - Aucune base de données : `forge-mvc-workflow` est **sans état** — il fournit des
   fonctions pures (statuts, transitions, badges). L'application décide où stocker le

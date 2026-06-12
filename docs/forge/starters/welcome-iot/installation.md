@@ -7,13 +7,13 @@ projet **déjà créé**.
 
 !!! info "Référence complète"
     Pour l'installation détaillée du core et des autres parcours, voir
-    [Installer Forge](/docs/forge/install/). Pour la configuration MQTT,
+    [Installer Forge](/docs/forge/install/poste-linux/). Pour la configuration MQTT,
     voir [Configuration IoT](/docs/forge/iot/configuration/).
 
 ## Prérequis
 
 - **Forge installé** (core `forge-mvc`). Si ce n'est pas encore fait, suivre
-  d'abord [Installer Forge](/docs/forge/install/).
+  d'abord [Installer Forge](/docs/forge/install/poste-linux/).
 - **Python 3.12+**.
 - **Aucun broker MQTT n'est requis** pour les premiers paliers : ils
   fonctionnent sans broker ni base de données. Le broker n'intervient qu'au

@@ -10,10 +10,13 @@ edit_uri: ""
 theme:
   name: material
   language: fr
+  favicon: static/favicon.svg
+  logo: static/forge-logo.png
   features:
     - navigation.sections
     - navigation.top
     - content.code.copy
+    - content.tooltips
     - search.suggest
     - search.highlight
   palette:
@@ -29,11 +32,10 @@ nav:
 
 
       - Installation:
-          - Vue d'ensemble: forge/install/index.md
           - Installer Forge:
               - Windows + WSL (parcours complet): forge/install/windows-wsl.md
               - Dépannage serveur dev (WSL2): forge/install/wsl-dev-server.md
-              - Avec pipx: forge/install/pipx.md
+              - Poste Linux (pipx): forge/install/poste-linux.md
               - Mode développement: forge/install/core-dev.md
               - VM Debian vierge: forge/install/vm-debian.md
               - Depuis GitHub: forge/install/github.md
@@ -41,6 +43,7 @@ nav:
           - Environnement:
               - Préparer MariaDB: forge/install/mariadb.md
               - Comptes MariaDB d'un projet: forge/install/mariadb-comptes.md
+              - Contrat d'installation des opt-ins: forge/install/opt-ins.md
               - Configurer VS Code (auto-import): forge/install/vscode.md
               - Environnement VS Code (extensions et config): forge/install/vscode-environnement.md
               - Production: forge/install/production.md
@@ -88,6 +91,13 @@ nav:
           - Sécurité et sessions:
               - Audit Auth: forge/reference/audit-auth.md
               - Sessions: forge/reference/sessions.md
+          - Objets HTTP:
+              - L'objet Request: forge/reference/http/request.md
+              - L'objet Response: forge/reference/http/response.md
+              - Le cookie HTTP: forge/reference/http/cookie.md
+              - La session HTTP: forge/reference/http/session.md
+              - La protection CSRF: forge/reference/http/csrf.md
+          - Aide-mémoire Markdown: forge/reference/markdown.md
           - Outils:
               - Profils de projet: forge/reference/profils.md
               - Tests E2E: forge/reference/tests-e2e.md
@@ -145,6 +155,14 @@ nav:
                   - API JSON protégée: forge/starters/welcome-forge/avance/json-api.md
                   - Bilan avancé: forge/starters/welcome-forge/avance/bilan.md
               - Aide-mémoire: forge/starters/welcome-forge/recapitulatif.md
+          - Progression façades helper (welcome-helpers):
+              - Préambule: forge/starters/welcome-helpers/installation.md
+              - La base Facade: forge/starters/welcome-helpers/facade-base.md
+              - La façade Session: forge/starters/welcome-helpers/session.md
+              - La façade Cookies: forge/starters/welcome-helpers/cookies.md
+              - La façade Flash: forge/starters/welcome-helpers/flash.md
+              - Imports et usage: forge/starters/welcome-helpers/imports-usage.md
+              - Bilan: forge/starters/welcome-helpers/bilan.md
           - Progression IoT (welcome-iot):
               - Installation: forge/starters/welcome-iot/installation.md
               - Débutant:
@@ -317,8 +335,33 @@ nav:
                   - Diagnostiquer le module Mail: forge/starters/welcome-mail/avance/mail-doctor.md
                   - Bilan avancé: forge/starters/welcome-mail/avance/bilan.md
               - Aide-mémoire: forge/starters/welcome-mail/recapitulatif.md
+          - Progression Markdown (welcome-markdown):
+              - Préambule: forge/starters/welcome-markdown/installation.md
+              - Débutant:
+                  - Titre et introduction: forge/starters/welcome-markdown/debutant/titre-et-intro.md
+                  - La mise en forme du texte: forge/starters/welcome-markdown/debutant/mise-en-forme.md
+                  - Les listes: forge/starters/welcome-markdown/debutant/listes.md
+                  - Citations et séparateurs: forge/starters/welcome-markdown/debutant/citations-et-separations.md
+                  - Liens et images: forge/starters/welcome-markdown/debutant/liens-et-images.md
+                  - Bilan débutant: forge/starters/welcome-markdown/debutant/bilan.md
+              - Intermédiaire:
+                  - Présenter des données en tableau: forge/starters/welcome-markdown/intermediaire/tableaux.md
+                  - Définir des termes: forge/starters/welcome-markdown/intermediaire/definitions.md
+                  - Mettre en avant avec les admonitions: forge/starters/welcome-markdown/intermediaire/admonitions.md
+                  - Replier le détail: forge/starters/welcome-markdown/intermediaire/blocs-depliables.md
+                  - Montrer du code: forge/starters/welcome-markdown/intermediaire/code.md
+                  - Bilan intermédiaire: forge/starters/welcome-markdown/intermediaire/bilan.md
+              - Avancé:
+                  - Offrir des variantes avec les onglets: forge/starters/welcome-markdown/avance/onglets.md
+                  - Diagrammes et inclusions: forge/starters/welcome-markdown/avance/diagrammes-et-inclusions.md
+                  - Le texte enrichi: forge/starters/welcome-markdown/avance/texte-enrichi.md
+                  - Notes, abréviations et attributs: forge/starters/welcome-markdown/avance/notes-et-attributs.md
+                  - Infobulles et agrandissement d'image: forge/starters/welcome-markdown/avance/infobulles-et-images.md
+                  - Relecture et maths: forge/starters/welcome-markdown/avance/relecture-et-maths.md
+                  - Bilan avancé: forge/starters/welcome-markdown/avance/bilan.md
 
       - Déploiement:
+          - Mise en production pas à pas: forge/deployment/mise-en-production.md
           - Checklist de production: forge/deployment/production-checklist.md
           - Guide de déploiement: forge/deployment/deployment.md
           - Déploiement WSGI minimal: forge/deployment/wsgi-deployment.md
@@ -334,6 +377,7 @@ nav:
           - Guide de migration: forge/features/migration-guide.md
           - Politique LTS: forge/release/lts-policy.md
           - Contrat de stabilité: forge/release/stability-contract.md
+          - Numéros de version brûlés: forge/release/burned-version-numbers.md
 
       - Philosophie:
           - Charte v2: forge/philosophy/charter.md
@@ -475,6 +519,7 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - nl2br
   - tables
   - toc:
       permalink: true
@@ -483,15 +528,49 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.smartsymbols
+  - pymdownx.critic
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.progressbar
+  - pymdownx.betterem
+  - abbr
+  - sane_lists
+  - meta
+  - wikilinks
+  - legacy_attrs
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
   - search:
       lang: fr
       separator: '[\s\-\.:\_/]+'
+  - glightbox
 
 docs_dir: docs
 site_dir: site

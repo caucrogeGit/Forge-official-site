@@ -163,4 +163,3 @@ optionnels et propres au confort de chacun :
 | Auto-import des classes `core` (Python + Pylance) | [Configurer VS Code pour l'auto-import](/docs/forge/install/vscode/) |
 | Schémas JSON des entités et relations | [Autocomplétion VS Code avec les schémas JSON](/docs/forge/entities/vscode-json-schema/) |
 | Outils CLI du projet (ruff, mkdocs, pytest) | [Mode développement](/docs/forge/install/core-dev/) |
-| Vue d'ensemble de l'installation | [Installation](/docs/forge/install/) |

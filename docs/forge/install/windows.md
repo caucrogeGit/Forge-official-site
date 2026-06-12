@@ -129,7 +129,6 @@ pour le support natif Windows sont bienvenues, mais non planifiées.
 
 ## Voir aussi
 
-- [Vue d'ensemble de l'installation](/docs/forge/install/)
-- [Installation avec pipx](/docs/forge/install/pipx/)
+- [Poste Linux (pipx)](/docs/forge/install/poste-linux/)
 - [Préparer MariaDB](/docs/forge/install/mariadb/)
 - [Démarrer avec Forge](/docs/forge/guide/getting-started/)

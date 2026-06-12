@@ -21,7 +21,7 @@ Deux parcours **distincts**, qui ne se mélangent pas :
 | Point d'entrée projet | `forge new mon-app` | `cd Forge` (le dépôt cloné) |
 | Fichiers modifiés | `mvc/`, `env/`, `mvc/entities/...` | `core/`, `forge_cli/`, `tests/`, `docs/`, `packages/` |
 | Lancement | `forge run` dans le projet généré | `python -m pytest` + outils de dev |
-| Référence | [Installation avec pipx](/docs/forge/install/pipx/) | cette page + [Contribuer](/docs/forge/philosophy/contributing/) |
+| Référence | [Poste Linux (pipx)](/docs/forge/install/poste-linux/) | cette page + [Contribuer](/docs/forge/philosophy/contributing/) |
 
 !!! warning "Ne pas utiliser `pipx` pour développer le core"
     `pipx` installe Forge dans un environnement isolé, en lecture seule
@@ -264,8 +264,7 @@ Détails complets dans [Contribuer à Forge](/docs/forge/philosophy/contributing
 
 ## Voir aussi
 
-- [Installation — vue d'ensemble](/docs/forge/install/)
-- [Installation avec pipx (utilisateur du framework)](/docs/forge/install/pipx/)
+- [Poste Linux (pipx, utilisateur du framework)](/docs/forge/install/poste-linux/)
 - [Windows + WSL (parcours complet)](/docs/forge/install/windows-wsl/)
 - [Démarrer avec Forge](/docs/forge/guide/getting-started/)
 - [Roadmap Forge](/docs/forge/roadmap/forge-roadmap/) — ticket `INSTALL-CORE-DEV-DOCS-AUDIT-001`

@@ -23,4 +23,3 @@ Le contenu détaillé reste dans les pages dédiées — ne pas dupliquer ici.
 
 - [Déploiement avancé](/docs/forge/deployment/deploy-advanced/) — scénarios étendus.
 - [Sécurité en production](/docs/forge/deployment/production-security/) — durcissement et audit.
-- [Installation — vue d'ensemble](/docs/forge/install/) — retour à l'aiguillage.
