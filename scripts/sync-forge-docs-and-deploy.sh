@@ -141,6 +141,14 @@ python - "${FORGE_ROOT}/docs" "${FORGEWEB_ROOT}/docs/forge" <<'PYCHECK'
 import sys
 from pathlib import Path
 
+# Source unique de vérité pour les dossiers réellement importés : la whitelist
+# de l'import. Les dossiers canoniques NON whitelistés (assets internes type
+# docs/logos/, hors nav et non publiés) ne sont pas mirrorés — il ne faut donc
+# pas les compter comme « manquants » ici, sinon le contrôle échoue à tort.
+# cwd = racine du dépôt (le script y fait cd avant cette étape).
+sys.path.insert(0, "scripts")
+from import_forge_docs import WHITELISTED_SUBDIRS
+
 source = Path(sys.argv[1])
 dest = Path(sys.argv[2])
 
@@ -151,7 +159,15 @@ if not dest.is_dir():
     print(f"ERREUR : destination absente : {dest}", file=sys.stderr)
     sys.exit(2)
 
-source_md = {p.relative_to(source) for p in source.rglob("*.md")}
+def in_whitelist(rel: Path) -> bool:
+    return len(rel.parts) > 1 and rel.parts[0] in WHITELISTED_SUBDIRS
+
+# On ne compare que les .md vivant sous un sous-dossier whitelisté.
+source_md = {
+    p.relative_to(source)
+    for p in source.rglob("*.md")
+    if in_whitelist(p.relative_to(source))
+}
 dest_md = {p.relative_to(dest) for p in dest.rglob("*.md")}
 
 missing = sorted(source_md - dest_md)
