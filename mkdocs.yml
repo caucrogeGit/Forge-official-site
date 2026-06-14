@@ -413,6 +413,10 @@ nav:
               - ADR-028 welcome-forge tutoriel par niveau: forge/adr/028-welcome-forge-tutorial-per-level.md
               - ADR-029 Convention de route: forge/adr/029-route-naming-convention.md
               - ADR-030 Injection de routes explicite: forge/adr/030-explicit-route-injection.md
+              - ADR-031 Découplage mail complet: forge/adr/031-mail-core-decoupling.md
+              - ADR-032 Périmètre config upload: forge/adr/032-upload-config-perimeter.md
+              - ADR-033 Migrations en DB_ADMIN: forge/adr/033-migrations-admin-credentials.md
+              - ADR-034 Nommage DB généré sans suffixes: forge/adr/034-generated-db-identifier-naming.md
 
       - IoT:
           - Architecture Forge IoT: forge/iot/architecture.md
@@ -497,6 +501,15 @@ nav:
               - 1.0.0-beta.7: forge/history/releases/release-1.0.0-beta.7.md
               - 1.0.0-beta.6: forge/history/releases/release-1.0.0-beta.6.md
           - Licence: forge/philosophy/licence.md
+
+  # TEMP welcome-vacance (2TNE CIEL) — retirer ce bloc, la whitelist vacances
+  # de scripts/import_forge_docs.py et docs/forge/vacances/ le 2026-06-28,
+  # en parité avec le canonique. Sans lien avec Forge.
+  - Welcome Vacance (2TNE CIEL):
+      - Vue d'ensemble: forge/vacances/welcome-vacance.md
+      - Palier 1 - Câble T568B: forge/vacances/palier-1/index.md
+      - Palier 2 - Machines virtuelles: forge/vacances/palier-2/index.md
+      - Palier 3 - Réseau VirtualBox: forge/vacances/palier-3/index.md
 
   - Projet Forge-official-site:
       - Architecture générale: meta/01-architecture-generale-forge-web.md

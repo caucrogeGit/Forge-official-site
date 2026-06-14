@@ -37,3 +37,7 @@ structurante (`docs/adr/<numéro>-<sujet>.md`).
 | [ADR-028](/docs/forge/adr/028-welcome-forge-tutorial-per-level/) | welcome-forge : tutoriel continu manuel sur les trois niveaux, un mini-projet par niveau (accepté) |
 | [ADR-029](/docs/forge/adr/029-route-naming-convention/) | Convention de route : chemin `/contrôleur/méthode` (index nu), nom `contrôleur-méthode` (accepté) |
 | [ADR-030](/docs/forge/adr/030-explicit-route-injection/) | Injection de routes dans `mvc/routes.py` par commande explicite et portée de la règle 4.3 (proposé) |
+| [ADR-031](/docs/forge/adr/031-mail-core-decoupling/) | Découplage complet du mail hors de `core.forge` ; `forge-mvc-mail` lit sa config depuis l'environnement (accepté) |
+| [ADR-032](/docs/forge/adr/032-upload-config-perimeter/) | Périmètre de la config upload : seul `upload_max_size` est du core, le reste va aux opt-ins files/images (accepté) |
+| [ADR-033](/docs/forge/adr/033-migrations-admin-credentials/) | `forge db:apply` applique les migrations avec `DB_ADMIN_*` (et non `DB_APP_*`) : `forge_app` reste DML strict (accepté) |
+| [ADR-034](/docs/forge/adr/034-generated-db-identifier-naming/) | `forge new` génère `DB_NAME` / `DB_APP_LOGIN` à partir du nom normalisé du projet, sans suffixes `_db`/`_app` (accepté) |

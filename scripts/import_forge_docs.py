@@ -53,6 +53,11 @@ WHITELISTED_SUBDIRS: tuple[str, ...] = (
     "philosophy",
     "release",
     "video",
+    # Starter scolaire temporaire « welcome-vacance » (2TNE CIEL), publié à
+    # partir de 1.0.0-beta.16 et lié depuis la landing (entrée « 2TNE »).
+    # Sans lien avec Forge ; à retirer (whitelist + nav + entrée landing) le
+    # 2026-06-28 en parité avec le bloc TEMP du canonique.
+    "vacances",
 )
 
 # Extensions de fichiers autorisées.
@@ -68,6 +73,9 @@ ALLOWED_EXTENSIONS: frozenset[str] = frozenset({
     # Sketch Arduino d'exemple référencé par docs/iot/esp32-example.md
     # (asset de documentation téléchargeable, non sensible).
     ".ino",
+    # Supports téléchargeables du starter welcome-vacance (QCM, activités,
+    # corrigés) référencés en lien relatif depuis docs/vacances/palier-*/.
+    ".pdf",
 })
 
 # Motifs de noms de fichiers explicitement refusés (ceinture de sécurité).
