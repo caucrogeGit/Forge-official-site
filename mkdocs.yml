@@ -479,6 +479,7 @@ nav:
               - Conventions de travail: forge/contributing/conventions.md
               - Convention de route: forge/contributing/route-convention.md
               - Modèle de starter (référence welcome): forge/contributing/starter-welcome-model.md
+              - Convention de création d'un palier (Welcome pédagogique): forge/contributing/convention-creation-palier-welcome-pedagogique.md
               - Dépôt canonique et récupération: forge/contributing/canonical-repo.md
           - Audits:
               - Tracker des constats: forge/history/audits/findings-tracker.md
@@ -504,14 +505,16 @@ nav:
               - 1.0.0-beta.6: forge/history/releases/release-1.0.0-beta.6.md
           - Licence: forge/philosophy/licence.md
 
-  # TEMP welcome-vacance (2TNE CIEL) — retirer ce bloc, la whitelist vacances
-  # de scripts/import_forge_docs.py et docs/forge/vacances/ le 2026-06-28,
-  # en parité avec le canonique. Sans lien avec Forge.
-  - Welcome Vacance (2TNE CIEL):
-      - Vue d'ensemble: forge/vacances/welcome-vacance.md
-      - Palier 1 - Câble T568B: forge/vacances/palier-1/index.md
-      - Palier 2 - Machines virtuelles: forge/vacances/palier-2/index.md
-      - Palier 3 - Réseau VirtualBox: forge/vacances/palier-3/index.md
+  # TEMP welcome-reseau (2TNE CIEL) — retirer ce bloc, la whitelist
+  # starters-pedagogique de scripts/import_forge_docs.py et
+  # docs/forge/starters-pedagogique/ le 2026-06-28, en parité avec le
+  # canonique. Sans lien avec Forge.
+  - Welcome Réseau (2TNE CIEL):
+      - Vue d'ensemble: forge/starters-pedagogique/welcome-reseau/index.md
+      - Palier 1 - Câble T568B: forge/starters-pedagogique/welcome-reseau/palier-1/index.md
+      - Palier 2 - Machines virtuelles: forge/starters-pedagogique/welcome-reseau/palier-2/index.md
+      - Palier 3 - Réseau IP: forge/starters-pedagogique/welcome-reseau/palier-3/index.md
+      - Palier 4 - Réseau interne: forge/starters-pedagogique/welcome-reseau/palier-4/index.md
 
   - Projet Forge-official-site:
       - Architecture générale: meta/01-architecture-generale-forge-web.md
