@@ -116,15 +116,15 @@ nav:
       - Outils:
           - Génération PDF: forge/features/pdf.md
           - Module média: forge/features/media.md
+          - ImageMagick (logos transparents): forge/features/imagemagick-logos.md
 
       - Modules et starters:
           - Vue d'ensemble des starters: forge/starters/index.md
           - Créer un module: forge/philosophy/module-author-guide.md
-          - Créer un starter: forge/philosophy/starter-author-guide.md
           - Structure des opt-ins (projet): forge/architecture/optins-project-structure.md
           - Audit forge optin:enable: forge/architecture/optins-cli-enable-audit.md
           - Progression pédagogique:
-              - Installation: forge/starters/welcome-forge/installation.md
+              - Présentation: forge/starters/welcome-forge/index.md
               - Débutant:
                   - Bonjour Forge: forge/starters/welcome-forge/debutant/welcome.md
                   - Paramètres d'URL: forge/starters/welcome-forge/debutant/query-params.md
@@ -417,6 +417,8 @@ nav:
               - ADR-032 Périmètre config upload: forge/adr/032-upload-config-perimeter.md
               - ADR-033 Migrations en DB_ADMIN: forge/adr/033-migrations-admin-credentials.md
               - ADR-034 Nommage DB généré sans suffixes: forge/adr/034-generated-db-identifier-naming.md
+              - ADR-035 Parcours manuels, retrait génération: forge/adr/035-starters-manual-not-generated.md
+              - ADR-036 Typage statique du cœur en CI: forge/adr/036-core-static-typing.md
 
       - IoT:
           - Architecture Forge IoT: forge/iot/architecture.md

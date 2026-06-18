@@ -126,3 +126,10 @@ Livrables :
 * tableau des tests ping rempli ;
 * captures d'écran des modes réseau VirtualBox ;
 * conclusion simple pour chaque mode.
+
+---
+
+!!! info "Ressources du palier 3"
+
+    * [Dossier technique complet](/docs/forge/vacances/palier-3/palier-3-dossier-technique-reseau-virtualbox/) : toutes les explications détaillées sur les modes réseau.
+    * [QCM du palier 3](/docs/forge/vacances/palier-3/qcm-palier-3-reseau-virtualbox/) : à valider à 100 % avant de réaliser l'activité.

@@ -13,7 +13,7 @@ confort dans `mvc/helpers/` : `Session`, `Cookies`, `Flash`. Ce sont des
 
 ## Prérequis
 
-- Un projet Forge déjà créé (voir [Bonjour Forge](/docs/forge/starters/welcome-forge/installation/)).
+- Un projet Forge déjà créé (voir [Parcours Welcome Forge](/docs/forge/starters/welcome-forge/)).
 - Le dossier `mvc/helpers/` existe déjà (créé par `forge new`, avec un
   `__init__.py` vide).
 

@@ -54,7 +54,7 @@ cd Forge
 pip install -e packages/forge-mvc-images/
 ```
 
-La dépendance `forge-mvc==1.0.0b15` doit être satisfaite. Si vous travaillez depuis
+La dépendance `forge-mvc==1.0.0b17` doit être satisfaite. Si vous travaillez depuis
 le dépôt Forge directement (sans venv isolé), le core est déjà disponible via `PYTHONPATH`.
 
 ---
@@ -709,7 +709,7 @@ Les garanties suivantes sont assurées par le storage de `forge-mvc-files`
 | **Exposition hors racine** | Impossible | La route `/media/...` refuse tout chemin sortant de `storage/uploads/` |
 | **Double slash / normpath** | Nettoyé | `//` réduits avant normalisation |
 
-Ces garanties couvrent le code source audité en `1.0.0b15`. Elles ne couvrent pas la
+Ces garanties couvrent le code source audité en `1.0.0b17`. Elles ne couvrent pas la
 détection MIME côté serveur (repose sur le `Content-Type` déclaré par le navigateur ;
 `python-magic` est hors périmètre) ni les permissions d'accès aux médias servis.
 

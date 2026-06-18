@@ -2,7 +2,7 @@
 
 [Accueil](../index.md) <a href="javascript:void(0)" onclick="window.history.back()">Retour</a>
 
-Cette section décrit l'API publique actuelle de Forge `1.0.0b15`.
+Cette section décrit l'API publique actuelle de Forge `1.0.0b17`.
 Elle est organisée par thème pour faciliter la navigation.
 
 Pour les flux guidés, voir aussi le [guide de démarrage](/docs/forge/guide/guide/),
@@ -22,7 +22,6 @@ flowchart LR
     CLI --> EntityGen["Génération entités"]
     CLI --> CrudGen["Génération CRUD"]
     CLI --> DbTools["db:init / db:apply"]
-    CLI --> Starters["starter:list / starter:build"]
 
     Project --> CoreConfig["core.forge"]
     Project --> Router["core.http.router"]

@@ -41,3 +41,5 @@ structurante (`docs/adr/<numéro>-<sujet>.md`).
 | [ADR-032](/docs/forge/adr/032-upload-config-perimeter/) | Périmètre de la config upload : seul `upload_max_size` est du core, le reste va aux opt-ins files/images (accepté) |
 | [ADR-033](/docs/forge/adr/033-migrations-admin-credentials/) | `forge db:apply` applique les migrations avec `DB_ADMIN_*` (et non `DB_APP_*`) : `forge_app` reste DML strict (accepté) |
 | [ADR-034](/docs/forge/adr/034-generated-db-identifier-naming/) | `forge new` génère `DB_NAME` / `DB_APP_LOGIN` à partir du nom normalisé du projet, sans suffixes `_db`/`_app` (accepté) |
+| [ADR-035](/docs/forge/adr/035-starters-manual-not-generated/) | Modèle pédagogique unique : parcours réalisés à la main depuis la doc, retrait de `starter:build`/`starter:list` et de la génération (accepté) |
+| [ADR-036](/docs/forge/adr/036-core-static-typing/) | Typage statique du cœur vérifié en CI (Pyright), `py.typed`, strictness par cliquet en commençant par l'API publique (accepté) |

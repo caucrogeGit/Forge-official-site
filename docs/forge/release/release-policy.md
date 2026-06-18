@@ -132,7 +132,7 @@ Se référer au [Contrat de stabilité Forge 1.x](/docs/forge/release/stability-
 
 ### Expérimental — stable en usage, interface peut évoluer
 
-- `forge module:*`, `forge deploy:*`, `forge starter:build`.
+- `forge module:*`, `forge deploy:*`.
 - Backends de session `FileSessionStore`, `MariaDbSessionStore`.
 - Pages publiques (`make:public-*`).
 
@@ -293,11 +293,10 @@ Vérification minimale de la wheel installée :
 ```bash
 pipx install dist/forge_mvc-X.Y.Z-py3-none-any.whl --force
 forge --version
-forge starter:list
 ```
 
-Voir [Validation locale](/docs/forge/release/release-local/) pour la procédure complète avec
-les quatre starters.
+Voir [Validation locale](/docs/forge/release/release-local/) pour la procédure complète des
+parcours pédagogiques.
 
 ---
 
@@ -325,7 +324,7 @@ Avant toute release, exécuter le script de validation :
 
 ```bash
 bash tools/release-validate.sh <VERSION>
-# ex. : bash tools/release-validate.sh 1.0.0b15
+# ex. : bash tools/release-validate.sh 1.0.0b17
 ```
 
 Ce script vérifie en une seule passe :
@@ -363,12 +362,12 @@ Vérifications post-publication :
 
 ### Publication PyPI
 
-**État Forge 1.0.0b15 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b15`.
-`1.0.0b15` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
+**État Forge 1.0.0b17 :** le core `forge-mvc` est **publié sur PyPI** sous `forge-mvc==1.0.0b17`.
+`1.0.0b17` est une préversion bêta PEP 440 — l'option `--pre` est nécessaire pour l'installer.
 
 | Package | Publication PyPI | Notes |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b15` | `pip install --pre forge-mvc` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b17` | `pip install --pre forge-mvc` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |
@@ -403,7 +402,7 @@ reste manuelle et délibérée.
 
 | Package | Statut PyPI | Règle |
 |---|---|---|
-| `forge-mvc` (core) | ✅ Publié — `1.0.0b15` | Publié dès `1.0.0-beta.1` |
+| `forge-mvc` (core) | ✅ Publié — `1.0.0b17` | Publié dès `1.0.0-beta.1` |
 | `forge-mvc-rbac` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-rbac` |
 | `forge-mvc-workflow` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-workflow` |
 | `forge-mvc-stats` | ✅ Publié sur PyPI — version alignée avec le core | `pip install --pre forge-mvc-stats` |

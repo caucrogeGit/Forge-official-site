@@ -13,8 +13,7 @@
 > pattern, suivez les checklists.
 >
 > Complète la [charte philosophique](/docs/forge/philosophy/charter/) (principes 2,
-> 5, 8, 10, 11), les [conventions internes](/docs/forge/contributing/conventions/) et le
-> [guide de création de starter](/docs/forge/philosophy/starter-author-guide/).
+> 5, 8, 10, 11) et les [conventions internes](/docs/forge/contributing/conventions/).
 
 ## Exemples canoniques à copier
 
